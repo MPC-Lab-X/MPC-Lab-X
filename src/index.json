@@ -480,6 +480,50 @@
                                                 "max": 10000
                                             }
                                         }
+                                    },
+                                    "realImaginaryPart": {
+                                        "name": "Real and Imaginary Parts",
+                                        "description": "Problems involving the identification and manipulation of the real and imaginary parts of complex numbers. Example: In 3 + 4i, the real part is 3, and the imaginary part is 4.",
+                                        "parameters": {
+                                            "isMCQ": {
+                                                "type": "boolean",
+                                                "name": "Multiple Choice",
+                                                "description": "Whether the problem is multiple choice.",
+                                                "default": true
+                                            },
+                                            "minReal": {
+                                                "type": "number",
+                                                "name": "Minimum Real Part",
+                                                "description": "The minimum value for the real part a.",
+                                                "default": -20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "maxReal": {
+                                                "type": "number",
+                                                "name": "Maximum Real Part",
+                                                "description": "The maximum value for the real part a.",
+                                                "default": 20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "minImaginary": {
+                                                "type": "number",
+                                                "name": "Minimum Imaginary Part",
+                                                "description": "The minimum value for the imaginary part b.",
+                                                "default": -20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "maxImaginary": {
+                                                "type": "number",
+                                                "name": "Maximum Imaginary Part",
+                                                "description": "The maximum value for the imaginary part b.",
+                                                "default": 20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            }
+                                        }
                                     }
                                 }
                             }
