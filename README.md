@@ -45,12 +45,12 @@ npm install mpclab
 
 - **Step 4**: Enjoy the generated problem!
 
-> **Note**: This is a basic example. You can customize and generate problems with a wide range of parameters and constraints. Check the [USAGE.md](docs/USAGE.md) file for detailed usage instructions.
+> **Note**: This is a basic example. You can customize and generate problems with a wide range of parameters and constraints. Check the [USAGE.md](/docs/USAGE.md) file for detailed usage instructions.
 
 ## Contributing
 
-Contributions are welcome! For major changes, please open an issue first to discuss what you would like to change. Please make sure to update tests as appropriate. Check the [CONTRIBUTING.md](docs/CONTRIBUTING.md) file for more details.
+Contributions are welcome! For major changes, please open an issue first to discuss what you would like to change. Please make sure to update tests as appropriate. Check the [CONTRIBUTING.md](/docs/CONTRIBUTING.md) file for more details.
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](/LICENSE) file for details.
