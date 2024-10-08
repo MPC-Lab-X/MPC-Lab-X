@@ -630,6 +630,70 @@
                                                 "default": true
                                             }
                                         }
+                                    },
+                                    "multipleComplexNumbers": {
+                                        "name": "Multiple Complex Numbers",
+                                        "description": "Addition and subtraction of multiple complex numbers in a single problem. Example: (2 + i) + (3 - 2i) - (1 + 4i)",
+                                        "parameters": {
+                                            "isMCQ": {
+                                                "type": "boolean",
+                                                "name": "Multiple Choice",
+                                                "description": "Whether the problem is multiple choice.",
+                                                "default": true
+                                            },
+                                            "minReal": {
+                                                "type": "number",
+                                                "name": "Minimum Real Part",
+                                                "description": "The minimum value for the real part a.",
+                                                "default": -20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "maxReal": {
+                                                "type": "number",
+                                                "name": "Maximum Real Part",
+                                                "description": "The maximum value for the real part a.",
+                                                "default": 20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "minImaginary": {
+                                                "type": "number",
+                                                "name": "Minimum Imaginary Part",
+                                                "description": "The minimum value for the imaginary part b.",
+                                                "default": -20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "maxImaginary": {
+                                                "type": "number",
+                                                "name": "Maximum Imaginary Part",
+                                                "description": "The maximum value for the imaginary part b.",
+                                                "default": 20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "numComplexNumbers": {
+                                                "type": "number",
+                                                "name": "Number of Complex Numbers",
+                                                "description": "The number of complex numbers to include.",
+                                                "default": 3,
+                                                "min": 2,
+                                                "max": 5
+                                            },
+                                            "allowAddition": {
+                                                "type": "boolean",
+                                                "name": "Allow Addition",
+                                                "description": "Whether to allow addition.",
+                                                "default": true
+                                            },
+                                            "allowSubtraction": {
+                                                "type": "boolean",
+                                                "name": "Allow Subtraction",
+                                                "description": "Whether to allow subtraction.",
+                                                "default": true
+                                            }
+                                        }
                                     }
                                 }
                             }
