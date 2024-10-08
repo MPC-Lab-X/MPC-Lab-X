@@ -694,6 +694,58 @@
                                                 "default": true
                                             }
                                         }
+                                    },
+                                    "constantWithComplexNumber": {
+                                        "name": "Constant with Complex Number",
+                                        "description": "Problems involving the addition or subtraction of real constants and complex numbers. Example: 5 + (3 + 2i)",
+                                        "parameters": {
+                                            "isMCQ": {
+                                                "type": "boolean",
+                                                "name": "Multiple Choice",
+                                                "description": "Whether the problem is multiple choice.",
+                                                "default": true
+                                            },
+                                            "minReal": {
+                                                "type": "number",
+                                                "name": "Minimum Real Part",
+                                                "description": "The minimum value for the real part a.",
+                                                "default": -20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "maxReal": {
+                                                "type": "number",
+                                                "name": "Maximum Real Part",
+                                                "description": "The maximum value for the real part a.",
+                                                "default": 20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "minImaginary": {
+                                                "type": "number",
+                                                "name": "Minimum Imaginary Part",
+                                                "description": "The minimum value for the imaginary part b.",
+                                                "default": -20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "maxImaginary": {
+                                                "type": "number",
+                                                "name": "Maximum Imaginary Part",
+                                                "description": "The maximum value for the imaginary part b.",
+                                                "default": 20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "constant": {
+                                                "type": "number",
+                                                "name": "Real Constant",
+                                                "description": "The real constant to be added or subtracted.",
+                                                "default": null,
+                                                "min": -10000,
+                                                "max": 10000
+                                            }
+                                        }
                                     }
                                 }
                             }
