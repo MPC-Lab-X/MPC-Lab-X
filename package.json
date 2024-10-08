@@ -1,0 +1,33 @@
+{
+  "name": "mpclab",
+  "version": "0.1.0-beta",
+  "description": "mpclab is a powerful problem generation module tailored for educational purposes. It enables developers and educators to create, customize, and generate a diverse range of problems across subjects like mathematics, physics, and chemistry. With flexible, dynamic problem generation and parameterized controls, MPC-Lab-X makes it easy to scale from simple exercises to complex assessments.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MPC-Lab-X/MPC-Lab-X.git"
+  },
+  "keywords": [
+    "problems-generator",
+    "teaching-tool",
+    "math",
+    "chemistry",
+    "physics",
+    "mathematics"
+  ],
+  "author": "Tony Kan",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/MPC-Lab-X/MPC-Lab-X/issues"
+  },
+  "homepage": "https://github.com/MPC-Lab-X/MPC-Lab-X#readme",
+  "dependencies": {
+    "mathjs": "^13.2.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

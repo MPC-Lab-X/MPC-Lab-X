@@ -1,0 +1,17 @@
+# Dependencies directory
+node_modules/
+
+# Testing directory
+test/
+tests/
+*.test.js
+*.spec.js
+
+# Configuration files
+.env
+.gitignore
+.npmignore
+
+# Build files
+dist/
+build/
