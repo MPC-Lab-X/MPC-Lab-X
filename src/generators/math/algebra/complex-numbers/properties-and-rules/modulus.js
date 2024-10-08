@@ -3,6 +3,7 @@
  * @description Generates problems involving the modulus (absolute value) of complex numbers. Example: |3 + 4i| = √(3² + 4²) = 5.
  */
 
+const math = require("mathjs");
 const { randomInt } = require("../../../../../utils/random");
 
 /**
@@ -27,7 +28,11 @@ const generateProblem = (options) => {
   ];
 
   // Calculate modulus of the complex number
-  const modulus = Math.sqrt(a ** 2 + b ** 2);
+  const modulusValue = Math.sqrt(a ** 2 + b ** 2);
+
+  // Use math.js to format modulus as a fraction
+  const simplifiedFraction = math.fraction(modulusValue);
+  const modulus = modulusValue.toFixed(2); // Float representation
 
   const steps = [
     {
@@ -48,8 +53,16 @@ const generateProblem = (options) => {
 
   const solution = [
     {
-      type: "formula",
-      value: `${modulus}`,
+      type: "numeric",
+      decimal: parseFloat(modulus), // Float representation
+      fraction:
+        simplifiedFraction.d === 1
+          ? null
+          : {
+              s: simplifiedFraction.s,
+              n: simplifiedFraction.n,
+              d: simplifiedFraction.d,
+            },
     },
   ];
 
