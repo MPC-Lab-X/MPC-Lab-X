@@ -746,6 +746,62 @@
                                                 "max": 10000
                                             }
                                         }
+                                    },
+                                    "modulusAdditionSubtraction": {
+                                        "name": "Modulus Addition and Subtraction",
+                                        "description": "Problems involving the modulus (absolute value) of complex numbers in addition and subtraction. Example: |3 + 4i| + |1 - i|",
+                                        "parameters": {
+                                            "isMCQ": {
+                                                "type": "boolean",
+                                                "name": "Multiple Choice",
+                                                "description": "Whether the problem is multiple choice.",
+                                                "default": true
+                                            },
+                                            "minReal": {
+                                                "type": "number",
+                                                "name": "Minimum Real Part",
+                                                "description": "The minimum value for the real part a.",
+                                                "default": -20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "maxReal": {
+                                                "type": "number",
+                                                "name": "Maximum Real Part",
+                                                "description": "The maximum value for the real part a.",
+                                                "default": 20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "minImaginary": {
+                                                "type": "number",
+                                                "name": "Minimum Imaginary Part",
+                                                "description": "The minimum value for the imaginary part b.",
+                                                "default": -20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "maxImaginary": {
+                                                "type": "number",
+                                                "name": "Maximum Imaginary Part",
+                                                "description": "The maximum value for the imaginary part b.",
+                                                "default": 20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "allowAddition": {
+                                                "type": "boolean",
+                                                "name": "Allow Addition",
+                                                "description": "Whether to allow addition.",
+                                                "default": true
+                                            },
+                                            "allowSubtraction": {
+                                                "type": "boolean",
+                                                "name": "Allow Subtraction",
+                                                "description": "Whether to allow subtraction.",
+                                                "default": true
+                                            }
+                                        }
                                     }
                                 }
                             }
