@@ -398,6 +398,44 @@
                                                 "max": 10000
                                             }
                                         }
+                                    },
+                                    "modulus": {
+                                        "name": "Modulus",
+                                        "description": "Problems involving the modulus (absolute value) of complex numbers. Example: |3 + 4i| = √(3² + 4²) = 5.",
+                                        "parameters": {
+                                            "minReal": {
+                                                "type": "number",
+                                                "name": "Minimum Real Part",
+                                                "description": "The minimum value for the real part a.",
+                                                "default": -20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "maxReal": {
+                                                "type": "number",
+                                                "name": "Maximum Real Part",
+                                                "description": "The maximum value for the real part a.",
+                                                "default": 20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "minImaginary": {
+                                                "type": "number",
+                                                "name": "Minimum Imaginary Part",
+                                                "description": "The minimum value for the imaginary part b.",
+                                                "default": -20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "maxImaginary": {
+                                                "type": "number",
+                                                "name": "Maximum Imaginary Part",
+                                                "description": "The maximum value for the imaginary part b.",
+                                                "default": 20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            }
+                                        }
                                     }
                                 }
                             }
