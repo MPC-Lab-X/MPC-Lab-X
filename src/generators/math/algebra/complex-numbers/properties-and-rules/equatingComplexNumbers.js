@@ -8,7 +8,7 @@ const { randomInt } = require("../../../../../utils/random");
 /**
  * @function generateProblem - Generate a complex number equality problem.
  * @param {Object} options - The options for generating the problem.
- * @param {number} options.isMCQ - Whether the problem is multiple choice.
+ * @param {boolean} options.isMCQ - Whether the problem is multiple choice.
  * @param {number} options.minReal - The minimum value for the real part a.
  * @param {number} options.maxReal - The maximum value for the real part a.
  * @param {number} options.minImaginary - The minimum value for the imaginary part b.

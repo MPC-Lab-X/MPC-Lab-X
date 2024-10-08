@@ -8,7 +8,7 @@ const { randomInt } = require("../../../../utils/random");
 /**
  * @function generateProblem - Generate a linear equation problem in point-slope form.
  * @param {Object} options - The options for generating the problem.
- * @param {number} options.isMCQ - Whether the problem is multiple choice.
+ * @param {boolean} options.isMCQ - Whether the problem is multiple choice.
  * @param {number} options.isSimplified - Whether the problem is simplified.
  * @param {number} options.minSlope - The minimum value for the slope m.
  * @param {number} options.maxSlope - The maximum value for the slope m.
