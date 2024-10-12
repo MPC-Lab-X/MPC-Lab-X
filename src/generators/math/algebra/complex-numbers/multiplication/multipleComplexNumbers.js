@@ -60,7 +60,7 @@ const generateProblem = (options) => {
   const steps = [
     {
       type: "text",
-      value: `To solve this problem, we multiply the complex numbers step by step, applying the formula: (a + bi)(c + di) = (ac - bd) + (ad + bc)i.`,
+      value: `To solve this problem, multiply the complex numbers step by step, applying the formula: (a + bi)(c + di) = (ac - bd) + (ad + bc)i.`,
     },
     ...complexNumbers.map((cn) => ({
       type: "formula",
