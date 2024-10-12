@@ -804,6 +804,56 @@
                                         }
                                     }
                                 }
+                            },
+                            "multiplication": {
+                                "name": "Multiplication",
+                                "description": "Problems involving the multiplication of complex numbers.",
+                                "topics": {
+                                    "basicMultiplication": {
+                                        "name": "Basic Multiplication",
+                                        "description": "Basic problems involving the multiplication of complex numbers. Example: (2 + i) * (1 - i)",
+                                        "parameters": {
+                                            "isMCQ": {
+                                                "type": "boolean",
+                                                "name": "Multiple Choice",
+                                                "description": "Whether the problem is multiple choice.",
+                                                "default": true
+                                            },
+                                            "minReal": {
+                                                "type": "number",
+                                                "name": "Minimum Real Part",
+                                                "description": "The minimum value for the real part a.",
+                                                "default": -20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "maxReal": {
+                                                "type": "number",
+                                                "name": "Maximum Real Part",
+                                                "description": "The maximum value for the real part a.",
+                                                "default": 20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "minImaginary": {
+                                                "type": "number",
+                                                "name": "Minimum Imaginary Part",
+                                                "description": "The minimum value for the imaginary part b.",
+                                                "default": -20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "maxImaginary": {
+                                                "type": "number",
+                                                "name": "Maximum Imaginary Part",
+                                                "description": "The maximum value for the imaginary part b.",
+                                                "default": 20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

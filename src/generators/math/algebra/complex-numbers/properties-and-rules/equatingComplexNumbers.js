@@ -24,13 +24,13 @@ const generateProblem = (options) => {
   const problem = [
     {
       type: "text",
-      value: `If (${a} + ${b < 0 ? "-" : "+"} ${Math.abs(b)}i) = (${c} + ${
+      value: `If (${a} ${b < 0 ? "-" : "+"} ${Math.abs(b)}i) = (${c} ${
         d < 0 ? "-" : "+"
       } ${Math.abs(d)}i), find the values of a, b, c, and d.`,
     },
     {
       type: "formula",
-      value: `(${a} + ${b < 0 ? "-" : "+"} ${Math.abs(b)}i) = (${c} + ${
+      value: `(${a} ${b < 0 ? "-" : "+"} ${Math.abs(b)}i) = (${c} ${
         d < 0 ? "-" : "+"
       } ${Math.abs(d)}i)`,
     },
@@ -88,7 +88,7 @@ const generateProblem = (options) => {
       },
       {
         type: "formula",
-        value: `(${a} + ${b < 0 ? "-" : "+"} ${Math.abs(b)}i) = (${c} + ${
+        value: `(${a} ${b < 0 ? "-" : "+"} ${Math.abs(b)}i) = (${c} ${
           d < 0 ? "-" : "+"
         } ${Math.abs(d)}i)`,
       },

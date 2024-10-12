@@ -22,13 +22,13 @@ const generateProblem = (options) => {
   const problem = [
     {
       type: "text",
-      value: `Identify the real and imaginary parts of the complex number (${realPart} + ${
+      value: `Identify the real and imaginary parts of the complex number (${realPart} ${
         imaginaryPart < 0 ? "-" : "+"
       } ${Math.abs(imaginaryPart)}i).`,
     },
     {
       type: "formula",
-      value: `(${realPart} + ${imaginaryPart < 0 ? "-" : "+"} ${Math.abs(
+      value: `(${realPart} ${imaginaryPart < 0 ? "-" : "+"} ${Math.abs(
         imaginaryPart
       )}i)`,
     },
@@ -41,7 +41,7 @@ const generateProblem = (options) => {
     },
     {
       type: "text",
-      value: `Thus, for the complex number (${realPart} + ${
+      value: `Thus, for the complex number (${realPart} ${
         imaginaryPart < 0 ? "-" : "+"
       } ${Math.abs(imaginaryPart)}i):`,
     },
@@ -96,7 +96,7 @@ const generateProblem = (options) => {
       },
       {
         type: "formula",
-        value: `(${realPart} + ${imaginaryPart < 0 ? "-" : "+"} ${Math.abs(
+        value: `(${realPart} ${imaginaryPart < 0 ? "-" : "+"} ${Math.abs(
           imaginaryPart
         )}i)`,
       },

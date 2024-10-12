@@ -111,7 +111,7 @@ class ProblemGenerator {
 
       for (const topic of options.topics) {
         const path = topic.path;
-        const topicOptions = topic.options;
+        const topicOptions = topic.options || {};
 
         const count = Math.min(topicOptions.count || 1, this.maxCount);
 
@@ -124,7 +124,7 @@ class ProblemGenerator {
 
         for (const key in parameters) {
           if (topicOptions[key] === undefined) {
-            topicOptions[key] = parameters[key];
+            topicOptions[key] = parameters[key].default;
           }
         }
 
