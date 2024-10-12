@@ -126,6 +126,15 @@ class ProblemGenerator {
           if (topicOptions[key] === undefined) {
             topicOptions[key] = parameters[key].default;
           }
+
+          if (topicOptions[key].type === "number") {
+            if (topicOptions[key] < parameters[key].min) {
+              topicOptions[key] = parameters[key].min;
+            }
+            if (topicOptions[key] > parameters[key].max) {
+              topicOptions[key] = parameters[key].max;
+            }
+          }
         }
 
         for (const key in topicOptions) {

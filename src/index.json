@@ -904,6 +904,66 @@
                                                 "max": 5
                                             }
                                         }
+                                    },
+                                    "constantTimesComplexNumber": {
+                                        "name": "Constant Times Complex Numbers",
+                                        "description": "Multiplication of a real constant with a complex number. Example: 4 * (3 + 2i)",
+                                        "parameters": {
+                                            "isMCQ": {
+                                                "type": "boolean",
+                                                "name": "Multiple Choice",
+                                                "description": "Whether the problem is multiple choice.",
+                                                "default": true
+                                            },
+                                            "minConstant": {
+                                                "type": "number",
+                                                "name": "Minimum Real Constant",
+                                                "description": "The minimum value for the real constant.",
+                                                "default": -20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "maxConstant": {
+                                                "type": "number",
+                                                "name": "Maximum Real Constant",
+                                                "description": "The maximum value for the real constant.",
+                                                "default": 20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "minReal": {
+                                                "type": "number",
+                                                "name": "Minimum Real Part",
+                                                "description": "The minimum value for the real part a.",
+                                                "default": -20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "maxReal": {
+                                                "type": "number",
+                                                "name": "Maximum Real Part",
+                                                "description": "The maximum value for the real part a.",
+                                                "default": 20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "minImaginary": {
+                                                "type": "number",
+                                                "name": "Minimum Imaginary Part",
+                                                "description": "The minimum value for the imaginary part b.",
+                                                "default": -20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "maxImaginary": {
+                                                "type": "number",
+                                                "name": "Maximum Imaginary Part",
+                                                "description": "The maximum value for the imaginary part b.",
+                                                "default": 20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            }
+                                        }
                                     }
                                 }
                             }
