@@ -213,8 +213,8 @@
                                         "type": "number",
                                         "name": "Minimum Solution",
                                         "description": "The minimum value for the solution c.",
-                                        "default": -20,
-                                        "min": -10000,
+                                        "default": 1,
+                                        "min": 1,
                                         "max": 10000
                                     },
                                     "maxSolution": {
@@ -222,7 +222,7 @@
                                         "name": "Maximum Solution",
                                         "description": "The maximum value for the solution c.",
                                         "default": 20,
-                                        "min": -10000,
+                                        "min": 1,
                                         "max": 10000
                                     }
                                 }

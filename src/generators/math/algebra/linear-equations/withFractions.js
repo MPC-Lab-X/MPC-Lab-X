@@ -18,8 +18,8 @@ const { randomInt, randomVariable } = require("../../../../utils/random");
  * @returns {Object} - The linear equation problem with fractions.
  */
 const generateProblem = (options) => {
-  const a = randomInt(options.minCoefficient, options.maxCoefficient);
-  const b = randomInt(options.minDenominator, options.maxDenominator);
+  const a = randomInt(options.minCoefficient, options.maxCoefficient, true);
+  const b = randomInt(options.minDenominator, options.maxDenominator, true);
   const c = randomInt(options.minSolution, options.maxSolution);
 
   const x = randomVariable();

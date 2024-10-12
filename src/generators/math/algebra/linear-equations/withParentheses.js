@@ -18,7 +18,7 @@ const { randomInt, randomVariable } = require("../../../../utils/random");
  * @returns {Object} - The linear equation problem with parentheses.
  */
 const generateProblem = (options) => {
-  const a = randomInt(options.minCoefficient, options.maxCoefficient);
+  const a = randomInt(options.minCoefficient, options.maxCoefficient, true);
   const b = randomInt(options.minConstant, options.maxConstant);
   const c = randomInt(options.minSolution, options.maxSolution);
 

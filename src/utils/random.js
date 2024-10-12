@@ -7,10 +7,15 @@
  * @function randomInt - Generate a random integer between min and max (inclusive).
  * @param {number} min - The minimum value (inclusive).
  * @param {number} max - The maximum value (inclusive).
+ * @param {boolean} noZero - Whether to exclude zero from the range.
  * @returns {number} - A random integer between min and max.
  */
-const randomInt = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+const randomInt = (min, max, noZero = false) => {
+  let result;
+  do {
+    result = Math.floor(Math.random() * (max - min + 1)) + min;
+  } while (noZero && result === 0);
+  return result;
 };
 
 /**
