@@ -1,5 +1,5 @@
 /**
- * @file src/generators/math/algebra/complex-numbers/multiplication/multipleComplexNumbersMultiplication.js
+ * @file src/generators/math/algebra/complex-numbers/multiplication/multipleComplexNumbers.js
  * @description Generates problems involving the multiplication of several complex numbers. Example: (1 + i) * (3 - i) * (2 + 4i).
  */
 
