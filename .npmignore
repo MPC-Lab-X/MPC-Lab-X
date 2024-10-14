@@ -1,11 +1,15 @@
 # Dependencies directory
 node_modules/
 
+# Documentation directory
+docs/
+
 # Testing directory
 test/
 tests/
 *.test.js
 *.spec.js
+coverage/
 
 # Configuration files
 .env
