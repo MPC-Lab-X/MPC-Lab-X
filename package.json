@@ -4,7 +4,7 @@
   "description": "mpclab is a powerful problem generation module tailored for educational purposes. It enables developers and educators to create, customize, and generate a diverse range of problems across subjects like mathematics, physics, and chemistry. With flexible, dynamic problem generation and parameterized controls, MPC-Lab-X makes it easy to scale from simple exercises to complex assessments.",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage --ci --bail"
   },
   "repository": {
     "type": "git",
