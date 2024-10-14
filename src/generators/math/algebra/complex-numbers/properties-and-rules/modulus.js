@@ -41,7 +41,7 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `|${a} ${b < 0 ? "-" : "+"} ${Math.abs(b)}i| = \\sqrt{${a}^2 + ${
+      value: `|${a} ${b < 0 ? "-" : "+"} ${Math.abs(b)}i| = \\sqrt{${a}^2 ${
         b < 0 ? "-" : "+"
       } ${Math.abs(b)}^2}`,
     },

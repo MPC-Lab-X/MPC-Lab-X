@@ -6,7 +6,7 @@
 const generateProblem = require("../../../../../src/generators/math/algebra/linear-equations/slopeInterceptForm");
 
 describe("generateProblem", () => {
-  test("generates a simplified problem", () => {
+  it("generates a simplified problem", () => {
     const options = {
       isMCQ: false,
       isSimplified: true,
@@ -22,7 +22,7 @@ describe("generateProblem", () => {
     expect(problem.solution).toHaveLength(2);
   });
 
-  test("generates a non-simplified problem", () => {
+  it("generates a non-simplified problem", () => {
     const options = {
       isMCQ: false,
       isSimplified: false,
@@ -38,7 +38,7 @@ describe("generateProblem", () => {
     expect(problem.solution).toHaveLength(2);
   });
 
-  test("generates a multiple choice problem", () => {
+  it("generates a multiple choice problem", () => {
     const options = {
       isMCQ: true,
       isSimplified: true,
@@ -54,7 +54,7 @@ describe("generateProblem", () => {
     expect(problem.solution).toHaveLength(1);
   });
 
-  test("generates a multiple choice problem with non-simplified equation", () => {
+  it("generates a multiple choice problem with non-simplified equation", () => {
     const options = {
       isMCQ: true,
       isSimplified: false,

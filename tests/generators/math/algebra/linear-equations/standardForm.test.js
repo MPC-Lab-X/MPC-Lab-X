@@ -6,7 +6,7 @@
 const generateProblem = require("../../../../../src/generators/math/algebra/linear-equations/standardForm");
 
 describe("generateProblem", () => {
-  test("should generate a problem with valid options", () => {
+  it("should generate a problem with valid options", () => {
     const options = {
       minCoefficient: 1,
       maxCoefficient: 10,
@@ -26,7 +26,7 @@ describe("generateProblem", () => {
     expect(problem.solution).toBeInstanceOf(Array);
   });
 
-  test("should generate a problem with integer solution", () => {
+  it("should generate a problem with integer solution", () => {
     const options = {
       minCoefficient: 1,
       maxCoefficient: 10,
@@ -42,7 +42,7 @@ describe("generateProblem", () => {
     expect(Number.isInteger(solution)).toBe(true);
   });
 
-  test("should generate different problems for different options", () => {
+  it("should generate different problems for different options", () => {
     const options1 = {
       minCoefficient: 1,
       maxCoefficient: 5,
