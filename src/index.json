@@ -1200,6 +1200,66 @@
                                                 "max": 10000
                                             }
                                         }
+                                    },
+                                    "constantDividedByComplex": {
+                                        "name": "Constant Divided by Complex Numbers",
+                                        "description": "Problems where a constant is divided by a complex number. Example: 5 / (2 - i)",
+                                        "parameters": {
+                                            "isMCQ": {
+                                                "type": "boolean",
+                                                "name": "Multiple Choice",
+                                                "description": "Whether the problem is multiple choice.",
+                                                "default": true
+                                            },
+                                            "minConstant": {
+                                                "type": "number",
+                                                "name": "Minimum Constant",
+                                                "description": "The minimum value for the constant.",
+                                                "default": -20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "maxConstant": {
+                                                "type": "number",
+                                                "name": "Maximum Constant",
+                                                "description": "The maximum value for the constant.",
+                                                "default": 20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "minDenomReal": {
+                                                "type": "number",
+                                                "name": "Minimum Real Part (Denominator)",
+                                                "description": "The minimum value for the real part of the denominator.",
+                                                "default": -20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "maxDenomReal": {
+                                                "type": "number",
+                                                "name": "Maximum Real Part (Denominator)",
+                                                "description": "The maximum value for the real part of the denominator.",
+                                                "default": 20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "minDenomImaginary": {
+                                                "type": "number",
+                                                "name": "Minimum Imaginary Part (Denominator)",
+                                                "description": "The minimum value for the imaginary part of the denominator.",
+                                                "default": -20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            },
+                                            "maxDenomImaginary": {
+                                                "type": "number",
+                                                "name": "Maximum Imaginary Part (Denominator)",
+                                                "description": "The maximum value for the imaginary part of the denominator.",
+                                                "default": 20,
+                                                "min": -10000,
+                                                "max": 10000
+                                            }
+                                        }
                                     }
                                 }
                             }
