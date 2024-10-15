@@ -4,6 +4,7 @@
  */
 
 const { randomInt } = require("../../../../utils/random");
+const expressionTemplates = require("../../../../utils/expressionTemplates");
 
 /**
  * @function generateProblem - Generate a linear equation problem in slope-intercept form.
@@ -27,14 +28,14 @@ const generateProblem = (options) => {
   let bMultiplier = 1;
   let coefficientY = 1;
 
-  let equation = `${y} = ${m}${x} ${b > 0 ? "+" : ""} ${b}`;
+  let equation = expressionTemplates.equation.linear.slopeIntercept(m, b, x);
 
   // If the problem is not simplified, multiply all terms by a random integer
   if (!options.isSimplified) {
     const randomMultiplier = randomInt(2, 5);
     equation = `${randomMultiplier}${y} = ${randomMultiplier * m}${x} ${
-      randomMultiplier * b > 0 ? "+" : ""
-    } ${randomMultiplier * b}`;
+      randomMultiplier * b < 0 ? "-" : "+"
+    } ${Math.abs(randomMultiplier * b)}`;
     coefficientY = randomMultiplier;
     mMultiplier *= randomMultiplier;
     bMultiplier *= randomMultiplier;
@@ -45,7 +46,10 @@ const generateProblem = (options) => {
       type: "text",
       value: `Simplify the equation by dividing all terms by ${coefficientY}.`,
     },
-    { type: "formula", value: `${y} = ${m}${x} ${b > 0 ? "+" : ""} ${b}` },
+    {
+      type: "formula",
+      value: expressionTemplates.equation.linear.slopeIntercept(m, b, x),
+    },
     {
       type: "text",
       value: `The slope of the line is ${m} and the y-intercept is ${b}.`,

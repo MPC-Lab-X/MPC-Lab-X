@@ -5,6 +5,7 @@
 
 const math = require("mathjs");
 const { randomInt, randomVariable } = require("../../../../utils/random");
+const expressionTemplates = require("../../../../utils/expressionTemplates");
 
 /**
  * @function generateProblem - Generate a linear equation problem with fractions.
@@ -26,7 +27,10 @@ const generateProblem = (options) => {
 
   const problem = [
     { type: "text", value: `Solve for ${x}:` },
-    { type: "formula", value: `\\frac{${a}${x}}{${b}} = ${c}` },
+    {
+      type: "formula",
+      value: expressionTemplates.equation.linear.withFractions(a, b, c, x),
+    },
   ];
 
   const steps = [
@@ -49,10 +53,11 @@ const generateProblem = (options) => {
   const denominator = a;
   const simplifiedFraction = math.fraction(numerator, denominator);
   const simplified = math.simplify(`${numerator}/${denominator}`);
-  const simplifiedString =
-    simplifiedFraction.d === 1
-      ? `${simplifiedFraction.s === -1 ? "-" : ""}${simplifiedFraction.n}`
-      : `\\frac{${simplifiedFraction.n}}{${simplifiedFraction.d}}`;
+  const simplifiedString = expressionTemplates.fraction(
+    simplifiedFraction.s,
+    simplifiedFraction.n,
+    simplifiedFraction.d
+  );
 
   steps.push({
     type: "formula",

@@ -5,6 +5,7 @@
 
 const math = require("mathjs");
 const { randomInt, randomVariable } = require("../../../../utils/random");
+const expressionTemplates = require("../../../../utils/expressionTemplates");
 
 /**
  * @function generateProblem - Generate a linear equation problem.
@@ -27,12 +28,12 @@ const generateProblem = (options) => {
 
   const x = randomVariable();
 
-  const bSign = b < 0 ? "-" : "+";
-  const absB = Math.abs(b);
-
   const problem = [
     { type: "text", value: `Solve for ${x}:` },
-    { type: "formula", value: `${a}${x} ${bSign} ${absB} = ${adjustedC}` },
+    {
+      type: "formula",
+      value: expressionTemplates.equation.linear.standard(a, b, adjustedC, x),
+    },
   ];
 
   const steps = [

@@ -5,6 +5,7 @@
 
 const math = require("mathjs");
 const { randomInt, randomVariable } = require("../../../../utils/random");
+const expressionTemplates = require("../../../../utils/expressionTemplates");
 
 /**
  * @function generateProblem - Generate a linear equation problem with parentheses.
@@ -26,7 +27,10 @@ const generateProblem = (options) => {
 
   const problem = [
     { type: "text", value: `Solve for ${x}:` },
-    { type: "formula", value: `${a}(${x} ${b > 0 ? "+" : ""} ${b}) = ${c}` },
+    {
+      type: "formula",
+      value: expressionTemplates.equation.linear.withParentheses(a, b, c, x),
+    },
   ];
 
   const steps = [
@@ -36,7 +40,7 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `${a}${x} ${a * b > 0 ? "+" : ""} ${a * b} = ${c}`,
+      value: `${a}${x} ${a * b < 0 ? "-" : "+"} ${Math.abs(a * b)} = ${c}`,
     },
     {
       type: "text",
@@ -57,10 +61,11 @@ const generateProblem = (options) => {
   const denominator = a;
   const simplifiedFraction = math.fraction(numerator, denominator);
   const simplified = math.simplify(`${numerator}/${denominator}`);
-  const simplifiedString =
-    simplifiedFraction.d === 1
-      ? simplifiedFraction.n
-      : `\\frac{${simplifiedFraction.n}}{${simplifiedFraction.d}}`;
+  const simplifiedString = expressionTemplates.fraction(
+    simplifiedFraction.s,
+    simplifiedFraction.n,
+    simplifiedFraction.d
+  );
 
   steps.push({
     type: "formula",

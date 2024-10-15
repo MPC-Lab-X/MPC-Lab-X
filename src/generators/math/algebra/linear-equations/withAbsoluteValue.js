@@ -5,6 +5,7 @@
 
 const math = require("mathjs");
 const { randomInt, randomVariable } = require("../../../../utils/random");
+const expressionTemplates = require("../../../../utils/expressionTemplates");
 
 /**
  * @function generateProblem - Generate a linear equation problem with absolute value.
@@ -26,7 +27,10 @@ const generateProblem = (options) => {
 
   const problem = [
     { type: "text", value: `Solve for ${x}:` },
-    { type: "formula", value: `|${a}${x} + ${b}| = ${c}` },
+    {
+      type: "formula",
+      value: expressionTemplates.equation.linear.withAbsoluteValue(a, b, c, x),
+    },
   ];
 
   const steps = [
@@ -39,7 +43,10 @@ const generateProblem = (options) => {
       value:
         "Case 1: The expression inside the absolute value is positive or zero.",
     },
-    { type: "formula", value: `${a}${x} + ${b} = ${c}` },
+    {
+      type: "formula",
+      value: `${a}${x} ${b < 0 ? "-" : "+"} ${Math.abs(b)} = ${c}`,
+    },
     {
       type: "text",
       value: "Subtract the constant term from both sides of the equation.",
@@ -56,18 +63,24 @@ const generateProblem = (options) => {
       type: "text",
       value: "Case 2: The expression inside the absolute value is negative.",
     },
-    { type: "formula", value: `${a}${x} + ${b} = -${c}` },
+    {
+      type: "formula",
+      value: `${a}${x} ${b < 0 ? "-" : "+"} ${Math.abs(b)} = -${c}`,
+    },
     {
       type: "text",
       value: "Subtract the constant term from both sides of the equation.",
     },
-    { type: "formula", value: `${a}${x} = -${c} - ${b}` },
+    { type: "formula", value: `${a}${x} = ${-c - b}` },
     {
       type: "text",
       value:
         "Divide both sides of the equation by the coefficient of the variable.",
     },
-    { type: "formula", value: `${x} = \\frac{-${c} - ${b}}{${a}}` },
+    {
+      type: "formula",
+      value: `${x} = \\frac{-${c} ${b < 0 ? "-" : "+"} ${Math.abs(b)}}{${a}}`,
+    },
     { type: "text", value: `Calculate the two possible values of ${x}.` },
   ];
 
@@ -76,14 +89,16 @@ const generateProblem = (options) => {
   const solution2 = math.simplify(`(-${c} - ${b})/${a}`).toString();
   const simplifiedFraction1 = math.fraction(c - b, a);
   const simplifiedFraction2 = math.fraction(-c - b, a);
-  const simplifiedString1 =
-    simplifiedFraction1.d === 1
-      ? simplifiedFraction1.n
-      : `\\frac{${simplifiedFraction1.n}}{${simplifiedFraction1.d}}`;
-  const simplifiedString2 =
-    simplifiedFraction2.d === 1
-      ? simplifiedFraction2.n
-      : `\\frac{${simplifiedFraction2.n}}{${simplifiedFraction2.d}}`;
+  const simplifiedString1 = expressionTemplates.fraction(
+    simplifiedFraction1.s,
+    simplifiedFraction1.n,
+    simplifiedFraction1.d
+  );
+  const simplifiedString2 = expressionTemplates.fraction(
+    simplifiedFraction2.s,
+    simplifiedFraction2.n,
+    simplifiedFraction2.d
+  );
 
   steps.push(
     { type: "formula", value: `${x} = ${simplifiedString1}` },

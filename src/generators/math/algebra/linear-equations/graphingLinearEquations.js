@@ -4,6 +4,7 @@
  */
 
 const { randomInt, randomElement } = require("../../../../utils/random");
+const expressionTemplates = require("../../../../utils/expressionTemplates");
 
 /**
  * @function generateProblem - Generate a problem for graphing a linear equation.
@@ -20,13 +21,6 @@ const generateProblem = (options) => {
   const x1 = randomInt(-5, 5);
   const y1 = randomInt(-10, 10);
 
-  const bSign = b < 0 ? "-" : "+";
-  const y1Sign = y1 < 0 ? "-" : "+";
-  const x1Sign = x1 < 0 ? "-" : "+";
-  const absB = Math.abs(b);
-  const absY1 = Math.abs(y1);
-  const absX1 = Math.abs(x1);
-
   const forms = [];
   if (options.includeStandard) forms.push("standard");
   if (options.includeSlopeIntercept) forms.push("slopeIntercept");
@@ -39,19 +33,24 @@ const generateProblem = (options) => {
   switch (selectedForm) {
     case "standard": {
       const a = randomInt(-5, 5);
-      equation = `${a}x ${bSign} ${absB}y = ${b * x1 + a * y1}`;
+      equation = expressionTemplates.equation.linear.standard(
+        a,
+        b,
+        b * x1 + a * y1,
+        "x"
+      );
       if (a !== 0) xIntercept = (b * x1 + a * y1) / a;
       if (b !== 0) yIntercept = (b * x1 + a * y1) / b;
       break;
     }
     case "slopeIntercept": {
-      equation = `y = ${m}x ${bSign} ${absB}`;
+      equation = expressionTemplates.equation.linear.slopeIntercept(m, b, "x");
       xIntercept = m !== 0 ? -b / m : null;
       yIntercept = b;
       break;
     }
     case "pointSlope": {
-      equation = `y ${y1Sign} ${absY1} = ${m}(x ${x1Sign} ${absX1})`;
+      equation = expressionTemplates.equation.linear.pointSlope(m, x1, y1, "x");
       xIntercept = m !== 0 ? (y1 - m * x1) / m : null;
       yIntercept = y1;
       break;

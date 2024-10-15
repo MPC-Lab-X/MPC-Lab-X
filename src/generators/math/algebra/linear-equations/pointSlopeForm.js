@@ -4,6 +4,7 @@
  */
 
 const { randomInt } = require("../../../../utils/random");
+const expressionTemplates = require("../../../../utils/expressionTemplates");
 
 /**
  * @function generateProblem - Generate a linear equation problem in point-slope form.
@@ -24,12 +25,7 @@ const generateProblem = (options) => {
   const x = "x";
   const y = "y";
 
-  const y1Sign = y1 < 0 ? "-" : "+";
-  const x1Sign = x1 < 0 ? "-" : "+";
-  const absY1 = Math.abs(y1);
-  const absX1 = Math.abs(x1);
-
-  let equation = `${y} ${y1Sign} ${absY1} = ${m}(${x} ${x1Sign} ${absX1})`;
+  let equation = expressionTemplates.equation.linear.pointSlope(m, x1, y1, x);
 
   const steps = [
     {
