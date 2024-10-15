@@ -42,10 +42,18 @@ describe("generateProblem", () => {
     const formula = problem.problem.find(
       (item) => item.type === "formula"
     ).value;
-    const match = formula.match(/\|(\d+)[a-z] \+ (-?\d+)\| = (\d+)/);
+    const match = formula.match(/\|(-?\d+)[a-z] ([+-]) (\d+)\| = (\d+)/);
 
     expect(match).not.toBeNull();
-    const [, a, b, c] = match.map(Number);
+    const [, aStr, sign, bStr, cStr] = match;
+
+    const a = parseInt(aStr, 10);
+    const b = parseInt(bStr, 10);
+    const c = parseInt(cStr, 10);
+
+    expect(!isNaN(a)).toBe(true);
+    expect(!isNaN(b)).toBe(true);
+    expect(!isNaN(c)).toBe(true);
 
     expect(a).toBeGreaterThanOrEqual(options.minCoefficient);
     expect(a).toBeLessThanOrEqual(options.maxCoefficient);
