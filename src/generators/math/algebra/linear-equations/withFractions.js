@@ -51,7 +51,7 @@ const generateProblem = (options) => {
   const simplified = math.simplify(`${numerator}/${denominator}`);
   const simplifiedString =
     simplifiedFraction.d === 1
-      ? simplifiedFraction.n
+      ? `${simplifiedFraction.s === -1 ? "-" : ""}${simplifiedFraction.n}`
       : `\\frac{${simplifiedFraction.n}}{${simplifiedFraction.d}}`;
 
   steps.push({
