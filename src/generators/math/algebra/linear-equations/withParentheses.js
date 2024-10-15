@@ -26,7 +26,7 @@ const generateProblem = (options) => {
 
   const problem = [
     { type: "text", value: `Solve for ${x}:` },
-    { type: "formula", value: `${a}(${x} + ${b}) = ${c}` },
+    { type: "formula", value: `${a}(${x} ${b > 0 ? "+" : ""} ${b}) = ${c}` },
   ];
 
   const steps = [
@@ -34,7 +34,10 @@ const generateProblem = (options) => {
       type: "text",
       value: "Distribute the coefficient a across the parentheses.",
     },
-    { type: "formula", value: `${a}${x} + ${a * b} = ${c}` },
+    {
+      type: "formula",
+      value: `${a}${x} ${a * b > 0 ? "+" : ""} ${a * b} = ${c}`,
+    },
     {
       type: "text",
       value: "Subtract the constant term from both sides of the equation.",
