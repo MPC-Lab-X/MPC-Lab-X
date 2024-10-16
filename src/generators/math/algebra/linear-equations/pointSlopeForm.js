@@ -18,9 +18,9 @@ const expressionTemplates = require("../../../../utils/expressionTemplates");
  * @returns {Object} - The linear equation problem in point-slope form.
  */
 const generateProblem = (options) => {
-  const m = randomInt(options.minSlope, options.maxSlope);
-  const x1 = randomInt(options.minPoint, options.maxPoint);
-  const y1 = randomInt(options.minPoint, options.maxPoint);
+  const m = randomInt(options.minSlope, options.maxSlope, true);
+  const x1 = randomInt(options.minPoint, options.maxPoint, true);
+  const y1 = randomInt(options.minPoint, options.maxPoint, true);
 
   const x = "x";
   const y = "y";

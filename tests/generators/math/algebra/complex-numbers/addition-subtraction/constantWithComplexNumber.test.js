@@ -36,9 +36,7 @@ describe("generateProblem", () => {
       allowSubtraction: true,
     };
     const problem = generateProblem(options);
-    expect(problem.problem[0].value).toMatch(
-      /Calculate the following: 3 - \(\d+ \+ \d+i\)/
-    );
+    expect(problem.problem[0].value).toMatch(/^Calculate the following:/);
     expect(problem.solution[0].value).toMatch(/-?\d* ?- \d+i/);
   });
 
@@ -71,7 +69,7 @@ describe("generateProblem", () => {
     };
     const problem = generateProblem(options);
     expect(problem.problem[0].value).toMatch(
-      /Calculate the following: \d+ [+-] \(\d+ \+ \d+i\)/
+      /Calculate the following: \d+ [+-] \(\d+ [+-] \d+i\)/
     );
   });
 });

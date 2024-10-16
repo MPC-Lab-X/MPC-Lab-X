@@ -63,6 +63,6 @@ describe("generateProblem", () => {
     const problem1 = generateProblem(options1);
     const problem2 = generateProblem(options2);
 
-    expect(problem1.problem[0].value).not.toBe(problem2.problem[0].value);
+    expect(problem1.problem).not.toEqual(problem2.problem);
   });
 });

@@ -43,8 +43,9 @@ describe("generateProblem", () => {
     expect(problem).toHaveProperty("steps");
     expect(problem).toHaveProperty("solution");
     expect(problem.problem[0].type).toBe("text");
-    expect(problem.problem[1].type).toBe("options");
-    expect(problem.problem[1].value).toHaveLength(4);
+    expect(problem.problem[1].type).toBe("formula");
+    expect(problem.problem[2].type).toBe("options");
+    expect(problem.problem[2].value).toHaveLength(4);
   });
 
   it("calculates the correct result for given inputs", () => {
@@ -76,7 +77,7 @@ describe("generateProblem", () => {
 
     const problem = generateProblem(options);
 
-    expect(problem.solution[0].value).toBe("+ 8i");
+    expect(problem.solution[0].value).toBe("8i");
   });
 
   it("formats the result correctly when imaginary part is zero", () => {

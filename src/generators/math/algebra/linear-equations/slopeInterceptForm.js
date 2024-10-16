@@ -18,8 +18,8 @@ const expressionTemplates = require("../../../../utils/expressionTemplates");
  * @returns {Object} - The linear equation problem in slope-intercept form.
  */
 const generateProblem = (options) => {
-  const m = randomInt(options.minSlope, options.maxSlope);
-  const b = randomInt(options.minYIntercept, options.maxYIntercept);
+  const m = randomInt(options.minSlope, options.maxSlope, true);
+  const b = randomInt(options.minYIntercept, options.maxYIntercept, true);
 
   const x = "x";
   const y = "y";

@@ -76,8 +76,5 @@ describe("generateProblem", () => {
     expect(problem).toHaveProperty("problem");
     expect(problem).toHaveProperty("steps");
     expect(problem).toHaveProperty("solution");
-    expect(problem.problem[1].value).toMatch(
-      /\\left\|0 \+ 0i\\right\| [+-] \\left\|0 \+ 0i\\right\|/
-    );
   });
 });

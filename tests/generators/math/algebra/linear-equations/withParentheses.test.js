@@ -41,26 +41,38 @@ describe("generateProblem", () => {
 
     const formula = problem.problem.find(
       (item) => item.type === "formula"
-    ).value;
-    const match = formula.match(/(\d+)\([a-z] [-+] \d+\) = ([-+]?\d+)/);
+    )?.value;
+    expect(formula).not.toBeUndefined();
 
+    const regex =
+      /([-+]?\d*)\s*\(\s*([a-zA-Z])\s*([-+])\s*(\d+)\s*\)\s*=\s*([-+]?\d+)/;
+    const match = formula.match(regex);
     expect(match).not.toBeNull();
 
-    const [_, aStr, cStr] = match;
-    const a = parseInt(aStr, 10);
-    const b = parseInt(formula.match(/[-+] (\d+)/)?.[1] || "0", 10);
-    const c = parseInt(cStr, 10);
+    const [
+      _,
+      coefficientStr,
+      variableStr,
+      operatorStr,
+      constantStr,
+      solutionStr,
+    ] = match;
 
-    expect(!isNaN(a)).toBe(true);
-    expect(!isNaN(b)).toBe(true);
-    expect(!isNaN(c)).toBe(true);
+    const parseCoefficient = (str) => (str ? parseInt(str, 10) : 1);
+    const coefficient = parseCoefficient(coefficientStr);
+    const constant = parseInt(constantStr, 10);
+    const solution = parseInt(solutionStr, 10);
 
-    expect(a).toBeGreaterThanOrEqual(options.minCoefficient);
-    expect(a).toBeLessThanOrEqual(options.maxCoefficient);
-    expect(b).toBeGreaterThanOrEqual(options.minConstant);
-    expect(b).toBeLessThanOrEqual(options.maxConstant);
-    expect(c).toBeGreaterThanOrEqual(options.minSolution);
-    expect(c).toBeLessThanOrEqual(options.maxSolution);
+    expect(!isNaN(coefficient)).toBe(true);
+    expect(!isNaN(constant)).toBe(true);
+    expect(!isNaN(solution)).toBe(true);
+
+    expect(coefficient).toBeGreaterThanOrEqual(options.minCoefficient);
+    expect(coefficient).toBeLessThanOrEqual(options.maxCoefficient);
+    expect(constant).toBeGreaterThanOrEqual(options.minConstant);
+    expect(constant).toBeLessThanOrEqual(options.maxConstant);
+    expect(solution).toBeGreaterThanOrEqual(options.minSolution);
+    expect(solution).toBeLessThanOrEqual(options.maxSolution);
   });
 
   it("should generate correct steps for solving the equation", () => {

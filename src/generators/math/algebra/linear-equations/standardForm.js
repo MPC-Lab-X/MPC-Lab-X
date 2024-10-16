@@ -20,8 +20,8 @@ const expressionTemplates = require("../../../../utils/expressionTemplates");
  */
 const generateProblem = (options) => {
   const a = randomInt(options.minCoefficient, options.maxCoefficient, true);
-  const b = randomInt(options.minConstant, options.maxConstant);
-  const c = randomInt(options.minSolution, options.maxSolution);
+  const b = randomInt(options.minConstant, options.maxConstant, true);
+  const c = randomInt(options.minSolution, options.maxSolution, true);
 
   // Adjust the constant term to ensure that the solution is an integer
   const adjustedC = b + a * Math.floor((c - b) / a);
