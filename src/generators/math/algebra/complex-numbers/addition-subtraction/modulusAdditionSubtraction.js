@@ -4,6 +4,7 @@
  */
 
 const { randomInt } = require("../../../../../utils/random");
+const formatSigned = require("../../../../../utils/formatSigned");
 
 /**
  * @function simplifySqrt - Simplifies the square root expression.
@@ -12,11 +13,7 @@ const { randomInt } = require("../../../../../utils/random");
  */
 const simplifySqrt = (value) => {
   const sqrtValue = Math.sqrt(value);
-  if (Number.isInteger(sqrtValue)) {
-    return `${sqrtValue}`;
-  } else {
-    return `\\sqrt{${value}}`;
-  }
+  return Number.isInteger(sqrtValue) ? `${sqrtValue}` : `\\sqrt{${value}}`;
 };
 
 /**
@@ -43,7 +40,7 @@ const generateProblem = (options) => {
     (options.allowAddition && options.allowSubtraction) ||
     (!options.allowAddition && !options.allowSubtraction)
   ) {
-    operation = Math.random() < 0.5 ? "addition" : "subtraction"; //
+    operation = Math.random() < 0.5 ? "addition" : "subtraction";
   } else if (options.allowAddition) {
     operation = "addition";
   } else if (options.allowSubtraction) {
@@ -57,16 +54,12 @@ const generateProblem = (options) => {
   // Create the problem statement
   const problemText =
     operation === "addition"
-      ? `\\left|${real1} ${imaginary1 < 0 ? "-" : "+"} ${Math.abs(
+      ? `\\left|${real1} ${formatSigned(
           imaginary1
-        )}i\\right| + \\left|${real2} ${imaginary2 < 0 ? "-" : "+"} ${Math.abs(
-          imaginary2
-        )}i\\right|`
-      : `\\left|${real1} ${imaginary1 < 0 ? "-" : "+"} ${Math.abs(
+        )}i\\right| + \\left|${real2} ${formatSigned(imaginary2)}i\\right|`
+      : `\\left|${real1} ${formatSigned(
           imaginary1
-        )}i\\right| - \\left|${real2} ${imaginary2 < 0 ? "-" : "+"} ${Math.abs(
-          imaginary2
-        )}i\\right|`;
+        )}i\\right| - \\left|${real2} ${formatSigned(imaginary2)}i\\right|`;
 
   // Calculate the square root of the modulus for each complex number
   const modulus1 = simplifySqrt(modulusSquared1);
@@ -80,13 +73,13 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `\\left|${real1} ${imaginary1 < 0 ? "-" : "+"} ${Math.abs(
+      value: `\\left|${real1} ${formatSigned(
         imaginary1
       )}i\\right| = \\sqrt{${real1}^2 + ${imaginary1}^2} = \\sqrt{${modulusSquared1}} = ${modulus1}`,
     },
     {
       type: "formula",
-      value: `\\left|${real2} ${imaginary2 < 0 ? "-" : "+"} ${Math.abs(
+      value: `\\left|${real2} ${formatSigned(
         imaginary2
       )}i\\right| = \\sqrt{${real2}^2 + ${imaginary2}^2} = \\sqrt{${modulusSquared2}} = ${modulus2}`,
     },
@@ -136,7 +129,7 @@ const generateProblem = (options) => {
     // Shuffle the choices
     const shuffledChoices = choices
       .sort(() => Math.random() - 0.5)
-      .map((value, index) => ({
+      .map((value) => ({
         type: "formula",
         value: value,
         correct: value === correctAnswer,
@@ -147,10 +140,7 @@ const generateProblem = (options) => {
         type: "text",
         value: `Calculate the following:`,
       },
-      {
-        type: "formula",
-        value: problemText,
-      },
+      { type: "formula", value: problemText },
       { type: "options", value: shuffledChoices },
     ];
 

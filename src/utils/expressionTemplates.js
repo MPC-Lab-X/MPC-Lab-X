@@ -1,40 +1,42 @@
 /**
  * @file src/utils/expressionTemplates.js
- * @description Expression templates for formatting math expressions.
+ * @description Expression templates for formatting math expressions and helper functions.
  */
 
+const formatSigned = require("./formatSigned");
+
+/**
+ * Templates for various mathematical expressions.
+ */
 const expressionTemplates = {
   equation: {
     linear: {
-      standard: (a, b, c, x) => {
-        const bStr = b === 0 ? "" : `${b < 0 ? "-" : "+"} ${Math.abs(b)}`;
-        return `${a}${x} ${bStr} = ${c}`;
-      },
-      slopeIntercept: (m, b, x) => {
-        const bStr = b === 0 ? "" : `${b < 0 ? "-" : "+"} ${Math.abs(b)}`;
-        return `y = ${m}${x} ${bStr}`;
-      },
-      pointSlope: (m, x1, y1, x) => {
-        return `y ${y1 < 0 ? "+" : "-"} ${Math.abs(y1)} = ${m}(${x} ${
-          x1 < 0 ? "+" : "-"
-        } ${Math.abs(x1)})`;
-      },
-      withAbsoluteValue: (a, b, c, x) => {
-        return `|${a}${x} ${b < 0 ? "-" : "+"} ${Math.abs(b)}| = ${c}`;
-      },
-      withFractions: (a, b, c, x) => {
-        return `\\frac{${a}${x}}{${b}} = ${c}`;
-      },
-      withParentheses: (a, b, c, x) => {
-        return `${a}(${x} ${b < 0 ? "-" : "+"} ${Math.abs(b)}) = ${c}`;
-      },
+      standard: (a, b, c, x) => `${a}${x} ${formatSigned(b)} = ${c}`,
+
+      slopeIntercept: (m, b, x) => `y = ${m}${x} ${formatSigned(b)}`,
+
+      pointSlope: (m, x1, y1, x) =>
+        `y ${formatSigned(-y1)} = ${m}(${x} ${formatSigned(-x1)})`,
+
+      withAbsoluteValue: (a, b, c, x) => `|${a}${x} ${formatSigned(b)}| = ${c}`,
+
+      withFractions: (a, b, c, x) => `\\frac{${a}${x}}{${b}} = ${c}`,
+
+      withParentheses: (a, b, c, x) => `${a}(${x} ${formatSigned(b)}) = ${c}`,
     },
   },
-  fraction: (s, n, d) => {
-    return d === 1
-      ? `${s < 0 ? "-" : ""}${n}`
-      : `${s < 0 ? "-" : ""}\\frac{${n}}{${d}}`;
-  },
+
+  /**
+   * @function fraction - Format a fraction expression.
+   * @param {number} sign - Sign of the fraction (-1, 0, or 1).
+   * @param {number} numerator - Numerator of the fraction.
+   * @param {number} denominator - Denominator of the fraction.
+   * @returns {string} - Formatted fraction expression.
+   */
+  fraction: (sign, numerator, denominator) =>
+    denominator === 1
+      ? `${sign < 0 ? "-" : ""}${numerator}`
+      : `${sign < 0 ? "-" : ""}\\frac{${numerator}}{${denominator}}`,
 };
 
 module.exports = expressionTemplates;

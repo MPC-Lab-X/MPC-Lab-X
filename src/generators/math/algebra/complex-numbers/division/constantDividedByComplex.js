@@ -5,6 +5,7 @@
 
 const { fraction } = require("mathjs");
 const { randomInt } = require("../../../../../utils/random");
+const formatSigned = require("../../../../../utils/formatSigned");
 
 /**
  * @function generateProblem - Generate a problem involving the division of a constant by a complex number.
@@ -29,7 +30,7 @@ const generateProblem = (options) => {
 
   // Format the complex number as a string
   const formatComplex = (real, imaginary) =>
-    `${real} ${imaginary < 0 ? "-" : "+"} ${Math.abs(imaginary)}i`;
+    `${real} ${formatSigned(imaginary)} i`;
 
   // Create the problem statement
   const problemText = `${constant < 0 ? "-" : ""}\\frac{${Math.abs(

@@ -4,6 +4,7 @@
  */
 
 const { randomInt } = require("../../../../../utils/random");
+const formatSigned = require("../../../../../utils/formatSigned");
 
 /**
  * @function generateProblem - Generate a problem involving the addition and subtraction of multiple complex numbers.
@@ -46,10 +47,7 @@ const generateProblem = (options) => {
 
   // Generate the problem text
   const problemText = complexNumbers
-    .map((cn, index) => {
-      const sign = cn.imaginary < 0 ? "-" : "+";
-      return `(${cn.real} ${sign} ${Math.abs(cn.imaginary)}i)`;
-    })
+    .map((cn) => `(${cn.real} ${formatSigned(cn.imaginary)}i)`)
     .reduce((acc, val, index) => {
       return index === 0 ? val : `${acc} ${operations[index - 1]} ${val}`;
     }, "");
@@ -74,11 +72,9 @@ const generateProblem = (options) => {
       type: "text",
       value: `To solve this problem, we combine the real and imaginary parts of the complex numbers step by step.`,
     },
-    ...complexNumbers.map((cn, index) => ({
+    ...complexNumbers.map((cn) => ({
       type: "formula",
-      value: `(${cn.real} ${cn.imaginary < 0 ? "-" : "+"} ${Math.abs(
-        cn.imaginary
-      )}i)`,
+      value: `(${cn.real} ${formatSigned(cn.imaginary)}i)`,
     })),
     {
       type: "text",
@@ -98,12 +94,12 @@ const generateProblem = (options) => {
       return "0";
     }
     if (real === 0) {
-      return `${imaginary < 0 ? "-" : "+"} ${Math.abs(imaginary)}i`;
+      return `${formatSigned(imaginary)}i`;
     }
     if (imaginary === 0) {
       return `${real}`;
     }
-    return `${real} ${imaginary < 0 ? "-" : "+"} ${Math.abs(imaginary)}i`;
+    return `${real} ${formatSigned(imaginary)}i`;
   };
 
   const solution = [
@@ -139,8 +135,8 @@ const generateProblem = (options) => {
     // Shuffle the choices
     const shuffledChoices = choices
       .sort(() => Math.random() - 0.5)
-      .map((value, index) => ({
-        type: "text",
+      .map((value) => ({
+        type: "formula",
         value: value,
         correct: value === correctAnswer,
       }));

@@ -4,6 +4,7 @@
  */
 
 const { randomInt } = require("../../../../../utils/random");
+const formatSigned = require("../../../../../utils/formatSigned");
 
 /**
  * @function generateProblem - Generate a problem involving the expansion of a complex number raised to a power.
@@ -22,7 +23,7 @@ const generateProblem = (options) => {
   const power = options.power || 2; // Default to square if not provided
 
   const formatComplex = (real, imaginary) =>
-    `(${real} ${imaginary < 0 ? "-" : "+"} ${Math.abs(imaginary)}i)`;
+    `(${real} ${formatSigned(imaginary)}i)`;
 
   const problemText = `${formatComplex(real, imaginary)}^${power}`;
 
@@ -44,7 +45,7 @@ const generateProblem = (options) => {
     if (real === 0 && imaginary === 0) return "0";
     if (real === 0) return `${imaginary < 0 ? "-" : ""}${Math.abs(imaginary)}i`;
     if (imaginary === 0) return `${real}`;
-    return `${real} ${imaginary < 0 ? "-" : "+"} ${Math.abs(imaginary)}i`;
+    return `${real} ${formatSigned(imaginary)}i`;
   };
 
   const correctAnswer = formatResult(result.real, result.imaginary);
@@ -84,7 +85,7 @@ const generateProblem = (options) => {
       { type: "formula", value: problemText },
       {
         type: "options",
-        value: choices.map((value) => ({ type: "text", value })),
+        value: choices.map((value) => ({ type: "formula", value })),
       },
     ];
 

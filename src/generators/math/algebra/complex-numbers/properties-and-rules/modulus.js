@@ -5,6 +5,7 @@
 
 const math = require("mathjs");
 const { randomInt } = require("../../../../../utils/random");
+const formatSigned = require("../../../../../utils/formatSigned");
 
 /**
  * @function generateProblem - Generate a modulus problem for complex numbers.
@@ -22,9 +23,9 @@ const generateProblem = (options) => {
   const problem = [
     {
       type: "text",
-      value: `Find the modulus of (${a} ${b < 0 ? "-" : "+"} ${Math.abs(b)}i).`,
+      value: `Find the modulus of ${a} ${formatSigned(b)}i.`,
     },
-    { type: "formula", value: `|${a} ${b < 0 ? "-" : "+"} ${Math.abs(b)}i|` },
+    { type: "formula", value: `|${a} ${formatSigned(b)}i|` },
   ];
 
   // Calculate modulus of the complex number
@@ -41,9 +42,7 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `|${a} ${b < 0 ? "-" : "+"} ${Math.abs(b)}i| = \\sqrt{${a}^2 ${
-        b < 0 ? "-" : "+"
-      } ${Math.abs(b)}^2}`,
+      value: `|${a} ${formatSigned(b)}i| = \\sqrt{${a}^2 ${formatSigned(b)}^2}`,
     },
     {
       type: "formula",

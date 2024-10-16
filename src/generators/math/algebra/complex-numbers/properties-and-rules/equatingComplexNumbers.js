@@ -4,6 +4,7 @@
  */
 
 const { randomInt } = require("../../../../../utils/random");
+const formatSigned = require("../../../../../utils/formatSigned");
 
 /**
  * @function generateProblem - Generate a complex number equality problem.
@@ -24,15 +25,13 @@ const generateProblem = (options) => {
   const problem = [
     {
       type: "text",
-      value: `If (${a} ${b < 0 ? "-" : "+"} ${Math.abs(b)}i) = (${c} ${
-        d < 0 ? "-" : "+"
-      } ${Math.abs(d)}i), find the values of a, b, c, and d.`,
+      value: `If (${a} ${formatSigned(b)}i) = (${c} ${formatSigned(
+        d
+      )}i), find the values of a, b, c, and d.`,
     },
     {
       type: "formula",
-      value: `(${a} ${b < 0 ? "-" : "+"} ${Math.abs(b)}i) = (${c} ${
-        d < 0 ? "-" : "+"
-      } ${Math.abs(d)}i)`,
+      value: `${a} ${formatSigned(b)}i = ${c} ${formatSigned(d)}i`,
     },
   ];
 
@@ -43,7 +42,7 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `a = c and b = d`,
+      value: `a = c \\text{ and } b = d`,
     },
   ];
 
@@ -88,9 +87,7 @@ const generateProblem = (options) => {
       },
       {
         type: "formula",
-        value: `(${a} ${b < 0 ? "-" : "+"} ${Math.abs(b)}i) = (${c} ${
-          d < 0 ? "-" : "+"
-        } ${Math.abs(d)}i)`,
+        value: `${a} ${formatSigned(b)}i = ${c} ${formatSigned(d)}i`,
       },
       { type: "options", value: choices },
     ];

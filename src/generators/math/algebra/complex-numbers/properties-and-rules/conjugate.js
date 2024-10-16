@@ -4,6 +4,7 @@
  */
 
 const { randomInt } = require("../../../../../utils/random");
+const formatSigned = require("../../../../../utils/formatSigned");
 
 /**
  * @function generateProblem - Generate a complex conjugate problem.
@@ -21,11 +22,9 @@ const generateProblem = (options) => {
   const problem = [
     {
       type: "text",
-      value: `Find the complex conjugate of (${a} ${
-        b < 0 ? "-" : "+"
-      } ${Math.abs(b)}i).`,
+      value: `Find the complex conjugate of (${a} ${formatSigned(b)}i).`,
     },
-    { type: "formula", value: `(${a} ${b < 0 ? "-" : "+"} ${Math.abs(b)}i)` },
+    { type: "formula", value: `(${a} ${formatSigned(b)}i)` },
   ];
 
   // Determine the sign for the conjugate based on the sign of b (imaginary part)
@@ -40,9 +39,7 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `(${a} ${b < 0 ? "-" : "+"} ${Math.abs(
-        b
-      )}i) \\Rightarrow (${a} ${bSign} ${absB}i)`,
+      value: `(${a} ${formatSigned(b)}i) \\Rightarrow (${a} ${bSign} ${absB}i)`,
     },
   ];
 

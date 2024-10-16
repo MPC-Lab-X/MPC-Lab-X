@@ -127,7 +127,7 @@ class ProblemGenerator {
             topicOptions[key] = parameters[key].default;
           }
 
-          if (topicOptions[key].type === "number") {
+          if (parameters[key].type === "number") {
             if (topicOptions[key] < parameters[key].min) {
               topicOptions[key] = parameters[key].min;
             }

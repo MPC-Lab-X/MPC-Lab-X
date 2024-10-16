@@ -4,6 +4,7 @@
  */
 
 const { randomInt } = require("../../../../../utils/random");
+const formatSigned = require("../../../../../utils/formatSigned");
 
 /**
  * @function generateProblem - Generate a problem involving the multiplication of multiple complex numbers.
@@ -30,8 +31,7 @@ const generateProblem = (options) => {
   // Create the problem statement
   const problemText = complexNumbers
     .map((cn) => {
-      const sign = cn.imaginary < 0 ? "-" : "+";
-      return `(${cn.real} ${sign} ${Math.abs(cn.imaginary)}i)`;
+      return `(${cn.real} ${formatSigned(cn.imaginary)}i)`;
     })
     .join(" \\cdot ");
 
@@ -64,9 +64,7 @@ const generateProblem = (options) => {
     },
     ...complexNumbers.map((cn) => ({
       type: "formula",
-      value: `(${cn.real} ${cn.imaginary < 0 ? "-" : "+"} ${Math.abs(
-        cn.imaginary
-      )}i)`,
+      value: `(${cn.real} ${formatSigned(cn.imaginary)}i)`,
     })),
     {
       type: "text",
@@ -78,11 +76,9 @@ const generateProblem = (options) => {
   for (let i = 1; i < numComplexNumbers; i++) {
     steps.push({
       type: "text",
-      value: `Multiplying (${complexNumbers[i - 1].real} ${
-        complexNumbers[i - 1].imaginary < 0 ? "-" : "+"
-      } ${Math.abs(complexNumbers[i - 1].imaginary)}i) * (${
-        complexNumbers[i].real
-      } ${complexNumbers[i].imaginary < 0 ? "-" : "+"} ${Math.abs(
+      value: `Multiplying (${complexNumbers[i - 1].real} ${formatSigned(
+        complexNumbers[i - 1].imaginary
+      )}i) * (${complexNumbers[i].real} ${formatSigned(
         complexNumbers[i].imaginary
       )}i)`,
     });
@@ -92,9 +88,7 @@ const generateProblem = (options) => {
     );
     steps.push({
       type: "formula",
-      value: `= ${tempResult.real} ${
-        tempResult.imaginary < 0 ? "-" : "+"
-      } ${Math.abs(tempResult.imaginary)}i`,
+      value: `= ${tempResult.real} ${formatSigned(tempResult.imaginary)}i`,
     });
   }
 
@@ -104,12 +98,12 @@ const generateProblem = (options) => {
       return "0";
     }
     if (real === 0) {
-      return `${imaginary < 0 ? "-" : "+"} ${Math.abs(imaginary)}i`;
+      return `${imaginary}i`;
     }
     if (imaginary === 0) {
       return `${real}`;
     }
-    return `${real} ${imaginary < 0 ? "-" : "+"} ${Math.abs(imaginary)}i`;
+    return `${real} ${formatSigned(imaginary)}i`;
   };
 
   const solution = [
@@ -145,8 +139,8 @@ const generateProblem = (options) => {
     // Shuffle the choices
     const shuffledChoices = choices
       .sort(() => Math.random() - 0.5)
-      .map((value, index) => ({
-        type: "text",
+      .map((value) => ({
+        type: "formula",
         value: value,
         correct: value === correctAnswer,
       }));

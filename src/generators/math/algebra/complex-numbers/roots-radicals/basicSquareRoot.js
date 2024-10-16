@@ -4,6 +4,7 @@
  */
 
 const { randomInt } = require("../../../../../utils/random");
+const formatSigned = require("../../../../../utils/formatSigned");
 
 /**
  * @function generateProblem - Generate a problem involving the square root of a complex or negative number.
@@ -21,7 +22,7 @@ const generateProblem = (options) => {
   const imaginary = randomInt(options.minImaginary, options.maxImaginary);
 
   const formatComplex = (real, imaginary) =>
-    `(${real} ${imaginary < 0 ? "-" : "+"} ${Math.abs(imaginary)}i)`;
+    `(${real} ${formatSigned(imaginary)}i)`;
 
   const problemText =
     imaginary === 0 && real < 0
@@ -46,9 +47,9 @@ const generateProblem = (options) => {
   const formatResult = (real, imaginary) => {
     if (real === 0) return `${imaginary < 0 ? "-" : ""}${Math.abs(imaginary)}i`;
     if (imaginary === 0) return `${real}`;
-    return `${real.toFixed(options.decimalPlaces)} ${
-      imaginary < 0 ? "-" : "+"
-    } ${Math.abs(imaginary).toFixed(options.decimalPlaces)}i`;
+    return `${real.toFixed(options.decimalPlaces)} ${formatSigned(
+      imaginary.toFixed(options.decimalPlaces)
+    )}i`;
   };
 
   const correctAnswer = `${formatResult(
@@ -98,7 +99,7 @@ const generateProblem = (options) => {
       { type: "formula", value: problemText },
       {
         type: "options",
-        value: choices.map((value) => ({ type: "text", value })),
+        value: choices.map((value) => ({ type: "formula", value })),
       },
     ];
 

@@ -5,6 +5,7 @@
 
 const { fraction } = require("mathjs");
 const { randomInt } = require("../../../../../utils/random");
+const formatSigned = require("../../../../../utils/formatSigned");
 
 /**
  * @function generateProblem - Generate a problem involving the rationalization of complex numbers.
@@ -22,7 +23,7 @@ const generateProblem = (options) => {
 
   // Format the complex number as a string
   const formatComplex = (real, imaginary) =>
-    `${real} ${imaginary < 0 ? "-" : "+"} ${Math.abs(imaginary)}i`;
+    `${real} ${formatSigned(imaginary)} i`;
 
   // Create the problem statement
   const problemText = `\\frac{1}{${formatComplex(real, imaginary)}}`;
@@ -59,7 +60,8 @@ const generateProblem = (options) => {
     if (imaginary.n === 0) return realFormatted;
     if (real.n === 0) return `${imaginaryAbs}i`;
 
-    return `${realFormatted} ${imaginarySign} ${imaginaryAbs}i`;
+    const realSign = real.s < 0 ? "-" : "";
+    return `${realSign}${realFormatted} ${imaginarySign} ${imaginaryAbs}i`;
   };
 
   // Format the correct answer

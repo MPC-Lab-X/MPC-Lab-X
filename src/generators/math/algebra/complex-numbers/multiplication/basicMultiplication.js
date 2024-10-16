@@ -4,6 +4,7 @@
  */
 
 const { randomInt } = require("../../../../../utils/random");
+const formatSigned = require("../../../../../utils/formatSigned");
 
 /**
  * @function generateProblem - Generate a problem involving the multiplication of complex numbers.
@@ -22,11 +23,9 @@ const generateProblem = (options) => {
   const imaginary2 = randomInt(options.minImaginary, options.maxImaginary);
 
   // Create the problem statement
-  const problemText = `(${real1} ${imaginary1 < 0 ? "-" : "+"} ${Math.abs(
+  const problemText = `(${real1} ${formatSigned(
     imaginary1
-  )}i) \\cdot (${real2} ${imaginary2 < 0 ? "-" : "+"} ${Math.abs(
-    imaginary2
-  )}i)`;
+  )}i) \\cdot (${real2} ${formatSigned(imaginary2)}i)`;
 
   // Calculate the result using the formula (a + bi)(c + di) = ac + adi + bci + bdi^2
   const resultReal = real1 * real2 - imaginary1 * imaginary2; // ac - bd
@@ -40,11 +39,9 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `${real1} ${imaginary1 < 0 ? "-" : "+"} ${Math.abs(
+      value: `${real1} ${formatSigned(
         imaginary1
-      )}i \\cdot ${real2} ${imaginary2 < 0 ? "-" : "+"} ${Math.abs(
-        imaginary2
-      )}i`,
+      )}i \\cdot ${real2} ${formatSigned(imaginary2)}i`,
     },
     {
       type: "text",
@@ -58,9 +55,7 @@ const generateProblem = (options) => {
   const solution = [
     {
       type: "formula",
-      value: `${resultReal} ${resultImaginary < 0 ? "-" : "+"} ${Math.abs(
-        resultImaginary
-      )}i`,
+      value: `${formatSigned(resultReal)} ${formatSigned(resultImaginary)}i`,
     },
   ];
 
@@ -81,31 +76,27 @@ const generateProblem = (options) => {
     // Generate multiple choice options
     const choices = [
       {
-        type: "text",
-        value: `${resultReal} ${resultImaginary < 0 ? "-" : "+"} ${Math.abs(
-          resultImaginary
-        )}i`,
+        type: "formula",
+        value: `${resultReal} ${formatSigned(resultImaginary)}i`,
         correct: true,
       },
       {
-        type: "text",
-        value: `${resultReal + randomInt(1, 3)} ${
-          resultImaginary < 0 ? "-" : "+"
-        } ${Math.abs(resultImaginary + randomInt(1, 3))}i`,
+        type: "formula",
+        value: `${resultReal + randomInt(1, 3)} ${formatSigned(
+          resultImaginary + randomInt(1, 3)
+        )}i`,
         correct: false,
       },
       {
-        type: "text",
-        value: `${resultReal - randomInt(1, 3)} ${
-          resultImaginary < 0 ? "-" : "+"
-        } ${Math.abs(resultImaginary - randomInt(1, 3))}i`,
+        type: "formula",
+        value: `${resultReal - randomInt(1, 3)} ${formatSigned(
+          resultImaginary - randomInt(1, 3)
+        )}i`,
         correct: false,
       },
       {
-        type: "text",
-        value: `${resultReal * -1} ${
-          resultImaginary < 0 ? "-" : "+"
-        } ${Math.abs(resultImaginary * -1)}i`,
+        type: "formula",
+        value: `${resultReal * -1} ${formatSigned(resultImaginary * -1)}i`,
         correct: false,
       },
     ];

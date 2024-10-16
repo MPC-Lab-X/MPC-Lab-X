@@ -4,6 +4,7 @@
  */
 
 const { randomInt } = require("../../../../../utils/random");
+const formatSigned = require("../../../../../utils/formatSigned");
 
 /**
  * @function generateProblem - Generate a problem involving the multiplication of a real constant with a complex number.
@@ -23,9 +24,7 @@ const generateProblem = (options) => {
   const imaginary = randomInt(options.minImaginary, options.maxImaginary);
 
   // Create the problem statement
-  const problemText = `${constant} * (${real} ${
-    imaginary < 0 ? "-" : "+"
-  } ${Math.abs(imaginary)}i)`;
+  const problemText = `${constant} * (${real} ${formatSigned(imaginary)}i)`;
 
   // Calculate the result
   const resultReal = constant * real;
@@ -39,9 +38,7 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `${constant} \\cdot (${real} ${
-        imaginary < 0 ? "-" : "+"
-      } ${Math.abs(imaginary)}i)`,
+      value: `${constant} \\cdot (${real} ${formatSigned(imaginary)}i)`,
     },
     {
       type: "text",
@@ -53,9 +50,9 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `${constant} \\cdot ${imaginary}i = ${
-        resultImaginary < 0 ? "-" : "+"
-      } ${Math.abs(resultImaginary)}i`,
+      value: `${constant} \\cdot ${imaginary}i = ${formatSigned(
+        resultImaginary
+      )}i`,
     },
     {
       type: "text",
@@ -63,19 +60,16 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `${resultReal} ${resultImaginary < 0 ? "-" : "+"} ${Math.abs(
-        resultImaginary
-      )}i`,
+      value: `${resultReal} ${formatSigned(resultImaginary)}i`,
     },
   ];
 
   // Format the result
   const formatResult = (real, imaginary) => {
     if (real === 0 && imaginary === 0) return "0";
-    if (real === 0)
-      return `${imaginary < 0 ? "-" : "+"} ${Math.abs(imaginary)}i`;
+    if (real === 0) return `${imaginary}i`;
     if (imaginary === 0) return `${real}`;
-    return `${real} ${imaginary < 0 ? "-" : "+"} ${Math.abs(imaginary)}i`;
+    return `${real} ${formatSigned(imaginary)}i`;
   };
 
   const solution = [
@@ -99,7 +93,7 @@ const generateProblem = (options) => {
     const shuffledChoices = choices
       .sort(() => Math.random() - 0.5)
       .map((value) => ({
-        type: "text",
+        type: "formula",
         value: value,
         correct: value === correctAnswer,
       }));
@@ -109,6 +103,10 @@ const generateProblem = (options) => {
         {
           type: "text",
           value: `Calculate the product of the following constant and complex number: ${problemText}`,
+        },
+        {
+          type: "formula",
+          value: problemText.replace(/\*/g, "\\cdot "),
         },
         { type: "options", value: shuffledChoices },
       ],
@@ -121,11 +119,16 @@ const generateProblem = (options) => {
       ],
     };
   } else {
+    // If the problem is not multiple choice, return the problem, steps, and solution
     return {
       problem: [
         {
           type: "text",
           value: `Calculate the product of the following constant and complex number: ${problemText}`,
+        },
+        {
+          type: "formula",
+          value: problemText.replace(/\*/g, "\\cdot "),
         },
         { type: "formula", value: problemText },
       ],

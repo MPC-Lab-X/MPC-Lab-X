@@ -4,6 +4,7 @@
  */
 
 const { randomInt } = require("../../../../../utils/random");
+const formatSigned = require("../../../../../utils/formatSigned");
 
 /**
  * @function generateProblem - Generate a problem for solving complex equations.
@@ -30,44 +31,34 @@ const generateProblem = (options) => {
   const problem = [
     {
       type: "text",
-      value: `Solve for z in z + (${constantReal} ${
-        constantImaginary < 0 ? "-" : "+"
-      } ${Math.abs(constantImaginary)}i) = ${targetReal} ${
-        targetImaginary < 0 ? "-" : "+"
-      } ${Math.abs(targetImaginary)}i.`,
+      value: `Solve for z in the equation:`,
     },
     {
       type: "formula",
-      value: `z + (${constantReal} ${
-        constantImaginary < 0 ? "-" : "+"
-      } ${Math.abs(constantImaginary)}i) = ${targetReal} ${
-        targetImaginary < 0 ? "-" : "+"
-      } ${Math.abs(targetImaginary)}i`,
+      value: `z + (${constantReal} ${formatSigned(
+        constantImaginary
+      )}i) = ${targetReal} ${formatSigned(targetImaginary)}i`,
     },
   ];
 
   // Calculate the solution
   const zReal = targetReal - constantReal;
   const zImaginary = targetImaginary - constantImaginary;
-  const solution = `${zReal} ${zImaginary < 0 ? "-" : "+"} ${Math.abs(
-    zImaginary
-  )}i`;
+  const solution = `${zReal} ${formatSigned(zImaginary)}i`;
 
   // Steps to solve the equation
   const steps = [
     {
       type: "text",
-      value: `To solve for z, isolate z by subtracting (${constantReal} ${
-        constantImaginary < 0 ? "-" : "+"
-      } ${Math.abs(constantImaginary)}i) from both sides.`,
+      value: `To solve for z, isolate z by subtracting (${constantReal} ${formatSigned(
+        constantImaginary
+      )}i) from both sides.`,
     },
     {
       type: "formula",
-      value: `z = (${targetReal} ${targetImaginary < 0 ? "-" : "+"} ${Math.abs(
+      value: `z = ${targetReal} ${formatSigned(
         targetImaginary
-      )}i) - (${constantReal} ${constantImaginary < 0 ? "-" : "+"} ${Math.abs(
-        constantImaginary
-      )}i)`,
+      )}i - (${constantReal} ${formatSigned(constantImaginary)}i)`,
     },
     {
       type: "text",
@@ -80,27 +71,25 @@ const generateProblem = (options) => {
     return {
       problem,
       steps,
-      solution: [{ type: "text", value: `Solution: z = ${solution}` }],
+      solution: [{ type: "formula", value: solution }],
     };
   } else {
     // Generate multiple choice options
     const solutionChoices = [
       solution,
-      `${zReal + randomInt(1, 3)} ${zImaginary < 0 ? "-" : "+"} ${Math.abs(
+      `${zReal + randomInt(1, 3)} ${formatSigned(
         zImaginary + randomInt(1, 3)
       )}i`,
-      `${zReal - randomInt(1, 3)} ${zImaginary < 0 ? "-" : "+"} ${Math.abs(
+      `${zReal} ${formatSigned(zImaginary + randomInt(1, 3))}i`,
+      `${zReal - randomInt(1, 3)} ${formatSigned(
         zImaginary - randomInt(1, 3)
-      )}i`,
-      `${zReal * -1} ${zImaginary < 0 ? "-" : "+"} ${Math.abs(
-        zImaginary * -1
       )}i`,
     ];
 
     let choices = [];
     for (let i = 0; i < 4; i++) {
       choices.push({
-        type: "text",
+        type: "formula",
         value: `z = ${solutionChoices[i]}`,
         correct: i === 0,
       });
@@ -116,11 +105,9 @@ const generateProblem = (options) => {
       },
       {
         type: "formula",
-        value: `z + (${constantReal} ${
-          constantImaginary < 0 ? "-" : "+"
-        } ${Math.abs(constantImaginary)}i) = ${targetReal} ${
-          targetImaginary < 0 ? "-" : "+"
-        } ${Math.abs(targetImaginary)}i`,
+        value: `z + (${constantReal} ${formatSigned(
+          constantImaginary
+        )}i) = ${targetReal} ${formatSigned(targetImaginary)}i`,
       },
       { type: "options", value: choices },
     ];

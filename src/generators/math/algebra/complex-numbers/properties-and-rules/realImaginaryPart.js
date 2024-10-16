@@ -4,6 +4,7 @@
  */
 
 const { randomInt } = require("../../../../../utils/random");
+const formatSigned = require("../../../../../utils/formatSigned");
 
 /**
  * @function generateProblem - Generate a problem involving real and imaginary parts of a complex number.
@@ -22,15 +23,13 @@ const generateProblem = (options) => {
   const problem = [
     {
       type: "text",
-      value: `Identify the real and imaginary parts of the complex number (${realPart} ${
-        imaginaryPart < 0 ? "-" : "+"
-      } ${Math.abs(imaginaryPart)}i).`,
+      value: `Identify the real and imaginary parts of the complex number (${realPart} ${formatSigned(
+        imaginaryPart
+      )}i).`,
     },
     {
       type: "formula",
-      value: `(${realPart} ${imaginaryPart < 0 ? "-" : "+"} ${Math.abs(
-        imaginaryPart
-      )}i)`,
+      value: `(${realPart} ${formatSigned(imaginaryPart)}i)`,
     },
   ];
 
@@ -41,9 +40,9 @@ const generateProblem = (options) => {
     },
     {
       type: "text",
-      value: `Thus, for the complex number (${realPart} ${
-        imaginaryPart < 0 ? "-" : "+"
-      } ${Math.abs(imaginaryPart)}i):`,
+      value: `Thus, for the complex number (${realPart} ${formatSigned(
+        imaginaryPart
+      )}i):`,
     },
   ];
 
@@ -96,9 +95,7 @@ const generateProblem = (options) => {
       },
       {
         type: "formula",
-        value: `(${realPart} ${imaginaryPart < 0 ? "-" : "+"} ${Math.abs(
-          imaginaryPart
-        )}i)`,
+        value: `(${realPart} ${formatSigned(imaginaryPart)}i)`,
       },
       { type: "options", value: choices },
     ];
