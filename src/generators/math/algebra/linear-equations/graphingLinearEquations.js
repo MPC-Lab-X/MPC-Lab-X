@@ -16,10 +16,10 @@ const expressionTemplates = require("../../../../utils/expressionTemplates");
  */
 const generateProblem = (options) => {
   let equation;
-  const m = randomInt(-5, 5);
-  const b = randomInt(-10, 10);
-  const x1 = randomInt(-5, 5);
-  const y1 = randomInt(-10, 10);
+  const m = randomInt(-5, 5, true);
+  const b = randomInt(-10, 10, true);
+  const x1 = randomInt(-5, 5, true);
+  const y1 = randomInt(-10, 10, true);
 
   const forms = [];
   if (options.includeStandard) forms.push("standard");
