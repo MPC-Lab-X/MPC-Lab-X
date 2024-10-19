@@ -23,7 +23,7 @@ const generateProblem = (options) => {
   const power = options.power || 2; // Default to square if not provided
 
   const formatComplex = (real, imaginary) =>
-    `(${real} ${formatSigned(imaginary)}i)`;
+    `(${real} ${formatSigned(`${imaginary}i`)})`;
 
   const problemText = `${formatComplex(real, imaginary)}^${power}`;
 
@@ -43,9 +43,9 @@ const generateProblem = (options) => {
   // Format the result
   const formatResult = (real, imaginary) => {
     if (real === 0 && imaginary === 0) return "0";
-    if (real === 0) return `${imaginary < 0 ? "-" : ""}${Math.abs(imaginary)}i`;
+    if (real === 0) return `${formatSigned(`${imaginary}i`, true)}`;
     if (imaginary === 0) return `${real}`;
-    return `${real} ${formatSigned(imaginary)}i`;
+    return `${real} ${formatSigned(`${imaginary}i`)}`;
   };
 
   const correctAnswer = formatResult(result.real, result.imaginary);

@@ -14,8 +14,6 @@ const formatSigned = require("../../../../../utils/formatSigned");
  * @param {number} options.maxReal - The maximum value for the real part.
  * @param {number} options.minImaginary - The minimum value for the imaginary part.
  * @param {number} options.maxImaginary - The maximum value for the imaginary part.
- * @param {boolean} options.allowAddition - Whether to allow addition.
- * @param {boolean} options.allowSubtraction - Whether to allow subtraction.
  * @returns {Object} - The addition or subtraction problem for complex numbers.
  */
 const generateProblem = (options) => {
@@ -24,28 +22,18 @@ const generateProblem = (options) => {
   const real2 = randomInt(options.minReal, options.maxReal);
   const imaginary2 = randomInt(options.minImaginary, options.maxImaginary);
 
-  let operation;
-  // Determine the operation based on the parameters
-  if (
-    (options.allowAddition && options.allowSubtraction) ||
-    (!options.allowAddition && !options.allowSubtraction)
-  ) {
-    operation = Math.random() < 0.5 ? "addition" : "subtraction";
-  } else if (options.allowAddition) {
-    operation = "addition";
-  } else if (options.allowSubtraction) {
-    operation = "subtraction";
-  }
+  // Randomly determine the operation
+  const operation = Math.random() < 0.5 ? "addition" : "subtraction";
 
   // Create the problem statement using formatSigned
   const problemText =
     operation === "addition"
-      ? `(${real1} ${formatSigned(imaginary1)}i) + (${real2} ${formatSigned(
-          imaginary2
-        )}i)`
-      : `(${real1} ${formatSigned(imaginary1)}i) - (${real2} ${formatSigned(
-          imaginary2
-        )}i)`;
+      ? `(${real1} ${formatSigned(
+          `${imaginary1}i`
+        )}) + (${real2} ${formatSigned(`${imaginary2}i`)})`
+      : `(${real1} ${formatSigned(
+          `${imaginary1}i`
+        )}) - (${real2} ${formatSigned(`${imaginary2}i`)})`;
 
   // Calculate the result based on the operation
   const resultReal = operation === "addition" ? real1 + real2 : real1 - real2;
@@ -62,9 +50,9 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `${real1} ${formatSigned(imaginary1)}i ${
+      value: `${real1} ${formatSigned(`${imaginary1}i`)} ${
         operation === "addition" ? "+" : "-"
-      } (${real2} ${formatSigned(imaginary2)}i)`,
+      } (${real2} ${formatSigned(`${imaginary2}i`)})`,
     },
     {
       type: "text",
@@ -74,40 +62,28 @@ const generateProblem = (options) => {
 
   // Prepare the solution with checks
   const formatResult = (real, imaginary) => {
-    if (real === 0 && imaginary === 0) {
-      return "0";
-    }
-    if (real === 0) {
-      return `${formatSigned(imaginary)}i`;
-    }
-    if (imaginary === 0) {
-      return `${real}`;
-    }
-    return `${real} ${formatSigned(imaginary)}i`;
+    if (real === 0 && imaginary === 0) return "0";
+    if (real === 0) return `${formatSigned(`${imaginary}i`, true)}`;
+    if (imaginary === 0) return `${real}`;
+    return `${real} ${formatSigned(`${imaginary}i`)}`;
   };
 
   const solution = [
-    {
-      type: "formula",
-      value: formatResult(resultReal, resultImaginary),
-    },
+    { type: "formula", value: formatResult(resultReal, resultImaginary) },
   ];
 
-  // If the problem is not multiple choice, return the problem, steps, and solution
+  // If not multiple choice, return the problem, steps, and solution
   if (!options.isMCQ) {
     return {
       problem: [
-        {
-          type: "text",
-          value: `Calculate the following: ${problemText}`,
-        },
+        { type: "text", value: `Calculate the following: ${problemText}` },
         { type: "formula", value: problemText },
       ],
       steps,
       solution,
     };
   } else {
-    // Generate multiple choice options for the result
+    // Generate multiple choice options
     const correctAnswer = formatResult(resultReal, resultImaginary);
     const choices = [
       correctAnswer,
@@ -119,21 +95,15 @@ const generateProblem = (options) => {
     // Shuffle the choices
     const shuffledChoices = choices
       .sort(() => Math.random() - 0.5)
-      .map((value, index) => ({
+      .map((value) => ({
         type: "formula",
-        value: value,
+        value,
         correct: value === correctAnswer,
       }));
 
     const mcqProblem = [
-      {
-        type: "text",
-        value: `Calculate the following: ${problemText}`,
-      },
-      {
-        type: "formula",
-        value: problemText,
-      },
+      { type: "text", value: `Calculate the following: ${problemText}` },
+      { type: "formula", value: problemText },
       { type: "options", value: shuffledChoices },
     ];
 

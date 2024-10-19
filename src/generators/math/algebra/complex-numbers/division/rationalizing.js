@@ -18,12 +18,12 @@ const formatSigned = require("../../../../../utils/formatSigned");
  * @returns {Object} - A problem involving the rationalization of complex numbers.
  */
 const generateProblem = (options) => {
-  const real = randomInt(options.minReal, options.maxReal);
-  const imaginary = randomInt(options.minImaginary, options.maxImaginary);
+  const real = randomInt(options.minReal, options.maxReal, true);
+  const imaginary = randomInt(options.minImaginary, options.maxImaginary, true);
 
   // Format the complex number as a string
   const formatComplex = (real, imaginary) =>
-    `${real} ${formatSigned(imaginary)} i`;
+    `${real} ${formatSigned(`${imaginary}i`)}`;
 
   // Create the problem statement
   const problemText = `\\frac{1}{${formatComplex(real, imaginary)}}`;

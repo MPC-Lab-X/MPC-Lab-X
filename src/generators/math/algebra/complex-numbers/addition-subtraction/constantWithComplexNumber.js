@@ -40,8 +40,8 @@ const generateProblem = (options) => {
   // Generate the problem text
   const problemText =
     operation === "addition"
-      ? `${constant} + (${real} ${formatSigned(imaginary)}i)`
-      : `${constant} - (${real} ${formatSigned(-imaginary)}i)`;
+      ? `${constant} + (${real} ${formatSigned(`${imaginary}i`)})`
+      : `${constant} - (${real} ${formatSigned(`${imaginary}i`)})`;
 
   // Calculate the result
   const resultReal =
@@ -56,9 +56,9 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `${constant} ${
-        operation === "addition" ? "+" : "-"
-      } ${real} ${formatSigned(imaginary)}i`,
+      value: `${constant} ${formatSigned(real)} ${formatSigned(
+        `${imaginary}i`
+      )}`,
     },
     {
       type: "text",
@@ -72,12 +72,12 @@ const generateProblem = (options) => {
       return "0";
     }
     if (real === 0) {
-      return `${formatSigned(imaginary)}i`;
+      return `${formatSigned(`${imaginary}i`, true)}`;
     }
     if (imaginary === 0) {
       return `${real}`;
     }
-    return `${real} ${formatSigned(imaginary)}i`;
+    return `${real} ${formatSigned(`${imaginary}i`)}`;
   };
 
   const solution = [
@@ -113,7 +113,7 @@ const generateProblem = (options) => {
     // Shuffle the choices
     const shuffledChoices = choices
       .sort(() => Math.random() - 0.5)
-      .map((value, index) => ({
+      .map((value) => ({
         type: "formula",
         value: value,
         correct: value === correctAnswer,

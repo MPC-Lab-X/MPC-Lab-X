@@ -14,6 +14,8 @@ const randomInt = (min, max, noZero = false) => {
   let result;
   do {
     result = Math.floor(Math.random() * (max - min + 1)) + min;
+    min--;
+    max++;
   } while (noZero && result === 0);
   return result;
 };

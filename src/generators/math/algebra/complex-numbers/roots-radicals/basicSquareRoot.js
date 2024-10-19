@@ -19,10 +19,10 @@ const formatSigned = require("../../../../../utils/formatSigned");
  */
 const generateProblem = (options) => {
   const real = randomInt(options.minReal, options.maxReal);
-  const imaginary = randomInt(options.minImaginary, options.maxImaginary);
+  const imaginary = randomInt(options.minImaginary, options.maxImaginary, true);
 
   const formatComplex = (real, imaginary) =>
-    `(${real} ${formatSigned(imaginary)}i)`;
+    `(${real} ${formatSigned(`${imaginary}i`)})`;
 
   const problemText =
     imaginary === 0 && real < 0
@@ -48,14 +48,14 @@ const generateProblem = (options) => {
     if (real === 0) return `${imaginary < 0 ? "-" : ""}${Math.abs(imaginary)}i`;
     if (imaginary === 0) return `${real}`;
     return `${real.toFixed(options.decimalPlaces)} ${formatSigned(
-      imaginary.toFixed(options.decimalPlaces)
-    )}i`;
+      `${imaginary.toFixed(options.decimalPlaces)}i`
+    )}`;
   };
 
-  const correctAnswer = `${formatResult(
-    result.real,
-    result.imaginary
-  )}, ${formatResult(-result.real, -result.imaginary)}`;
+  let correctAnswer = `${formatResult(result.real, result.imaginary)}`;
+  if (result.real !== 0 || result.imaginary !== 0) {
+    correctAnswer += `, ${formatResult(-result.real, -result.imaginary)}`;
+  }
 
   // Create steps
   const steps = [
@@ -89,9 +89,18 @@ const generateProblem = (options) => {
     // Generate multiple choice options
     const choices = [
       correctAnswer,
-      formatResult(result.real + randomInt(1, 3), result.imaginary),
-      formatResult(result.real, result.imaginary + randomInt(1, 3)),
-      formatResult(-result.real, -result.imaginary + randomInt(1, 3)),
+      `${formatResult(
+        result.real + randomInt(1, 3),
+        result.imaginary
+      )}, ${formatResult(-result.real - randomInt(1, 3), -result.imaginary)}`,
+      `${formatResult(
+        result.real,
+        result.imaginary + randomInt(1, 3)
+      )}, ${formatResult(-result.real, -result.imaginary - randomInt(1, 3))}`,
+      `${formatResult(
+        -result.real,
+        -result.imaginary + randomInt(1, 3)
+      )}, ${formatResult(result.real + randomInt(1, 3), result.imaginary)}`,
     ].sort(() => Math.random() - 0.5); // Shuffle choices
 
     const mcqProblem = [

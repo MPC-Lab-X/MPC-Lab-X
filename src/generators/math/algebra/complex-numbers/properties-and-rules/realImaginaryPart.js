@@ -17,19 +17,23 @@ const formatSigned = require("../../../../../utils/formatSigned");
  * @returns {Object} - The problem involving real and imaginary parts of a complex number.
  */
 const generateProblem = (options) => {
-  const realPart = randomInt(options.minReal, options.maxReal);
-  const imaginaryPart = randomInt(options.minImaginary, options.maxImaginary);
+  const realPart = randomInt(options.minReal, options.maxReal, true);
+  const imaginaryPart = randomInt(
+    options.minImaginary,
+    options.maxImaginary,
+    true
+  );
 
   const problem = [
     {
       type: "text",
       value: `Identify the real and imaginary parts of the complex number (${realPart} ${formatSigned(
-        imaginaryPart
-      )}i).`,
+        `${imaginaryPart}i`
+      )}).`,
     },
     {
       type: "formula",
-      value: `(${realPart} ${formatSigned(imaginaryPart)}i)`,
+      value: `(${realPart} ${formatSigned(`${imaginaryPart}i`)})`,
     },
   ];
 
@@ -41,8 +45,8 @@ const generateProblem = (options) => {
     {
       type: "text",
       value: `Thus, for the complex number (${realPart} ${formatSigned(
-        imaginaryPart
-      )}i):`,
+        `${imaginaryPart}i`
+      )}), the real part is ${realPart} and the imaginary part is ${imaginaryPart}.`,
     },
   ];
 
@@ -95,7 +99,7 @@ const generateProblem = (options) => {
       },
       {
         type: "formula",
-        value: `(${realPart} ${formatSigned(imaginaryPart)}i)`,
+        value: `(${realPart} ${formatSigned(`${imaginaryPart}i`)})`,
       },
       { type: "options", value: choices },
     ];

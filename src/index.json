@@ -616,18 +616,6 @@
                                                 "default": 20,
                                                 "min": -10000,
                                                 "max": 10000
-                                            },
-                                            "allowAddition": {
-                                                "type": "boolean",
-                                                "name": "Allow Addition",
-                                                "description": "Whether to allow addition.",
-                                                "default": true
-                                            },
-                                            "allowSubtraction": {
-                                                "type": "boolean",
-                                                "name": "Allow Subtraction",
-                                                "description": "Whether to allow subtraction.",
-                                                "default": true
                                             }
                                         }
                                     },
@@ -680,18 +668,6 @@
                                                 "default": 3,
                                                 "min": 2,
                                                 "max": 5
-                                            },
-                                            "allowAddition": {
-                                                "type": "boolean",
-                                                "name": "Allow Addition",
-                                                "description": "Whether to allow addition.",
-                                                "default": true
-                                            },
-                                            "allowSubtraction": {
-                                                "type": "boolean",
-                                                "name": "Allow Subtraction",
-                                                "description": "Whether to allow subtraction.",
-                                                "default": true
                                             }
                                         }
                                     },
@@ -744,6 +720,18 @@
                                                 "default": null,
                                                 "min": -10000,
                                                 "max": 10000
+                                            },
+                                            "allowAddition": {
+                                                "type": "boolean",
+                                                "name": "Allow Addition",
+                                                "description": "Whether to allow addition.",
+                                                "default": true
+                                            },
+                                            "allowSubtraction": {
+                                                "type": "boolean",
+                                                "name": "Allow Subtraction",
+                                                "description": "Whether to allow subtraction.",
+                                                "default": true
                                             }
                                         }
                                     },
@@ -788,18 +776,6 @@
                                                 "default": 20,
                                                 "min": -10000,
                                                 "max": 10000
-                                            },
-                                            "allowAddition": {
-                                                "type": "boolean",
-                                                "name": "Allow Addition",
-                                                "description": "Whether to allow addition.",
-                                                "default": true
-                                            },
-                                            "allowSubtraction": {
-                                                "type": "boolean",
-                                                "name": "Allow Subtraction",
-                                                "description": "Whether to allow subtraction.",
-                                                "default": true
                                             }
                                         }
                                     }

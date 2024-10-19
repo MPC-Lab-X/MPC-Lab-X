@@ -24,8 +24,6 @@ const simplifySqrt = (value) => {
  * @param {number} options.maxReal - The maximum value for the real part of the complex numbers.
  * @param {number} options.minImaginary - The minimum value for the imaginary part of the complex numbers.
  * @param {number} options.maxImaginary - The maximum value for the imaginary part of the complex numbers.
- * @param {boolean} options.allowAddition - Whether to allow addition.
- * @param {boolean} options.allowSubtraction - Whether to allow subtraction.
  * @returns {Object} - The problem involving modulus addition and subtraction of complex numbers.
  */
 const generateProblem = (options) => {
@@ -34,18 +32,8 @@ const generateProblem = (options) => {
   const real2 = randomInt(options.minReal, options.maxReal);
   const imaginary2 = randomInt(options.minImaginary, options.maxImaginary);
 
-  let operation;
-  // Choose addition or subtraction based on options
-  if (
-    (options.allowAddition && options.allowSubtraction) ||
-    (!options.allowAddition && !options.allowSubtraction)
-  ) {
-    operation = Math.random() < 0.5 ? "addition" : "subtraction";
-  } else if (options.allowAddition) {
-    operation = "addition";
-  } else if (options.allowSubtraction) {
-    operation = "subtraction";
-  }
+  // Randomly choose addition or subtraction
+  const operation = Math.random() < 0.5 ? "addition" : "subtraction";
 
   // Calculate the square of the modulus for each complex number
   const modulusSquared1 = real1 ** 2 + imaginary1 ** 2;
@@ -55,13 +43,13 @@ const generateProblem = (options) => {
   const problemText =
     operation === "addition"
       ? `\\left|${real1} ${formatSigned(
-          imaginary1
-        )}i\\right| + \\left|${real2} ${formatSigned(imaginary2)}i\\right|`
+          `${imaginary1}i`
+        )}\\right| + \\left|${real2} ${formatSigned(`${imaginary2}i`)}\\right|`
       : `\\left|${real1} ${formatSigned(
-          imaginary1
-        )}i\\right| - \\left|${real2} ${formatSigned(imaginary2)}i\\right|`;
+          `${imaginary1}i`
+        )}\\right| - \\left|${real2} ${formatSigned(`${imaginary2}i`)}\\right|`;
 
-  // Calculate the square root of the modulus for each complex number
+  // Calculate the modulus for each complex number
   const modulus1 = simplifySqrt(modulusSquared1);
   const modulus2 = simplifySqrt(modulusSquared2);
 
@@ -74,14 +62,14 @@ const generateProblem = (options) => {
     {
       type: "formula",
       value: `\\left|${real1} ${formatSigned(
-        imaginary1
-      )}i\\right| = \\sqrt{${real1}^2 + ${imaginary1}^2} = \\sqrt{${modulusSquared1}} = ${modulus1}`,
+        `${imaginary1}i`
+      )}\\right| = \\sqrt{${real1}^2 + ${imaginary1}^2} = \\sqrt{${modulusSquared1}} = ${modulus1}`,
     },
     {
       type: "formula",
       value: `\\left|${real2} ${formatSigned(
-        imaginary2
-      )}i\\right| = \\sqrt{${real2}^2 + ${imaginary2}^2} = \\sqrt{${modulusSquared2}} = ${modulus2}`,
+        `${imaginary2}i`
+      )}\\right| = \\sqrt{${real2}^2 + ${imaginary2}^2} = \\sqrt{${modulusSquared2}} = ${modulus2}`,
     },
     {
       type: "text",
@@ -101,14 +89,11 @@ const generateProblem = (options) => {
     },
   ];
 
-  // Return the problem, steps, and solution
+  // If not multiple choice, return the problem, steps, and solution
   if (!options.isMCQ) {
     return {
       problem: [
-        {
-          type: "text",
-          value: `Calculate the following:`,
-        },
+        { type: "text", value: `Calculate the following:` },
         { type: "formula", value: problemText },
       ],
       steps,
@@ -131,15 +116,12 @@ const generateProblem = (options) => {
       .sort(() => Math.random() - 0.5)
       .map((value) => ({
         type: "formula",
-        value: value,
+        value,
         correct: value === correctAnswer,
       }));
 
     const mcqProblem = [
-      {
-        type: "text",
-        value: `Calculate the following:`,
-      },
+      { type: "text", value: `Calculate the following:` },
       { type: "formula", value: problemText },
       { type: "options", value: shuffledChoices },
     ];

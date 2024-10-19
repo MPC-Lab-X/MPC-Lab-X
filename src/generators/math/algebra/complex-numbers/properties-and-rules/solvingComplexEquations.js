@@ -36,29 +36,29 @@ const generateProblem = (options) => {
     {
       type: "formula",
       value: `z + (${constantReal} ${formatSigned(
-        constantImaginary
-      )}i) = ${targetReal} ${formatSigned(targetImaginary)}i`,
+        `${constantImaginary}i`
+      )}) = ${targetReal} ${formatSigned(`${targetImaginary}i`)}`,
     },
   ];
 
   // Calculate the solution
   const zReal = targetReal - constantReal;
   const zImaginary = targetImaginary - constantImaginary;
-  const solution = `${zReal} ${formatSigned(zImaginary)}i`;
+  const solution = `${zReal} ${formatSigned(`${zImaginary}i`)}`;
 
   // Steps to solve the equation
   const steps = [
     {
       type: "text",
       value: `To solve for z, isolate z by subtracting (${constantReal} ${formatSigned(
-        constantImaginary
-      )}i) from both sides.`,
+        `${constantImaginary}i`
+      )}) from both sides.`,
     },
     {
       type: "formula",
       value: `z = ${targetReal} ${formatSigned(
-        targetImaginary
-      )}i - (${constantReal} ${formatSigned(constantImaginary)}i)`,
+        `${targetImaginary}i`
+      )} - (${constantReal} ${formatSigned(`${constantImaginary}i`)})`,
     },
     {
       type: "text",
@@ -78,12 +78,12 @@ const generateProblem = (options) => {
     const solutionChoices = [
       solution,
       `${zReal + randomInt(1, 3)} ${formatSigned(
-        zImaginary + randomInt(1, 3)
-      )}i`,
-      `${zReal} ${formatSigned(zImaginary + randomInt(1, 3))}i`,
+        `${zImaginary + randomInt(1, 3)}i`
+      )}`,
+      `${zReal} ${formatSigned(`${zImaginary + randomInt(1, 3)}i`)}`,
       `${zReal - randomInt(1, 3)} ${formatSigned(
-        zImaginary - randomInt(1, 3)
-      )}i`,
+        `${zImaginary - randomInt(1, 3)}i`
+      )}`,
     ];
 
     let choices = [];
@@ -106,8 +106,8 @@ const generateProblem = (options) => {
       {
         type: "formula",
         value: `z + (${constantReal} ${formatSigned(
-          constantImaginary
-        )}i) = ${targetReal} ${formatSigned(targetImaginary)}i`,
+          `${constantImaginary}i`
+        )}) = ${targetReal} ${formatSigned(`${targetImaginary}i`)}`,
       },
       { type: "options", value: choices },
     ];

@@ -24,8 +24,8 @@ const generateProblem = (options) => {
 
   // Create the problem statement
   const problemText = `(${real1} ${formatSigned(
-    imaginary1
-  )}i) \\cdot (${real2} ${formatSigned(imaginary2)}i)`;
+    `${imaginary1}i`
+  )}) \\cdot (${real2} ${formatSigned(`${imaginary2}i`)})`;
 
   // Calculate the result using the formula (a + bi)(c + di) = ac + adi + bci + bdi^2
   const resultReal = real1 * real2 - imaginary1 * imaginary2; // ac - bd
@@ -39,15 +39,15 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `${real1} ${formatSigned(
-        imaginary1
-      )}i \\cdot ${real2} ${formatSigned(imaginary2)}i`,
+      value: `${problemText}`,
     },
     {
       type: "text",
-      value: `Combine the real and imaginary parts: ${resultReal} + ${
-        resultImaginary < 0 ? "-" : "+"
-      } ${Math.abs(resultImaginary)}i.`,
+      value: `Combine the real and imaginary parts:`,
+    },
+    {
+      type: "formula",
+      value: `${resultReal} ${formatSigned(`${resultImaginary}i`)}`,
     },
   ];
 
@@ -55,7 +55,7 @@ const generateProblem = (options) => {
   const solution = [
     {
       type: "formula",
-      value: `${formatSigned(resultReal)} ${formatSigned(resultImaginary)}i`,
+      value: `${resultReal} ${formatSigned(`${resultImaginary}i`)}`,
     },
   ];
 
@@ -77,26 +77,26 @@ const generateProblem = (options) => {
     const choices = [
       {
         type: "formula",
-        value: `${resultReal} ${formatSigned(resultImaginary)}i`,
+        value: `${resultReal} ${formatSigned(`${resultImaginary}i`)}`,
         correct: true,
       },
       {
         type: "formula",
         value: `${resultReal + randomInt(1, 3)} ${formatSigned(
-          resultImaginary + randomInt(1, 3)
-        )}i`,
+          `${resultImaginary + randomInt(1, 3)}i`
+        )}`,
         correct: false,
       },
       {
         type: "formula",
         value: `${resultReal - randomInt(1, 3)} ${formatSigned(
-          resultImaginary - randomInt(1, 3)
-        )}i`,
+          `${resultImaginary - randomInt(1, 3)}i`
+        )}`,
         correct: false,
       },
       {
         type: "formula",
-        value: `${resultReal * -1} ${formatSigned(resultImaginary * -1)}i`,
+        value: `${resultReal * -1} ${formatSigned(`${resultImaginary * -1}i`)}`,
         correct: false,
       },
     ];

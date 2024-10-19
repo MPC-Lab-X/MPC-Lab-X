@@ -35,7 +35,7 @@ const generateProblem = (options) => {
 
   // Format the complex number as a string
   const formatComplex = (real, imaginary) =>
-    `${real} ${formatSigned(imaginary)} i`;
+    `${real} ${formatSigned(`${imaginary}i`)}`;
 
   // Create the problem statement
   const problemText = `\\frac{${formatComplex(
@@ -115,10 +115,13 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `${formatComplex(
+      value: `\\frac{${formatComplex(
         realNumerator,
         imaginaryNumerator
-      )} \\cdot \\frac{${formatComplex(
+      )}}{${formatComplex(
+        realDenominator,
+        imaginaryDenominator
+      )}} \\cdot \\frac{${formatComplex(
         realDenominator,
         -imaginaryDenominator
       )}}{${formatComplex(realDenominator, -imaginaryDenominator)}}`,
@@ -126,7 +129,16 @@ const generateProblem = (options) => {
     { type: "text", value: `This gives:` },
     {
       type: "formula",
-      value: `\\frac{(${realNumerator} \\cdot ${realDenominator} + ${imaginaryNumerator} \\cdot ${imaginaryDenominator}) + (${imaginaryNumerator} \\cdot ${realDenominator} - ${realNumerator} \\cdot ${imaginaryDenominator})i}{${realDenominator}^2 + ${imaginaryDenominator}^2}`,
+      value: `\\frac{(${formatComplex(
+        realNumerator,
+        imaginaryNumerator
+      )})(${formatComplex(
+        realDenominator,
+        -imaginaryDenominator
+      )})}{(${formatComplex(
+        realDenominator,
+        imaginaryDenominator
+      )})(${formatComplex(realDenominator, -imaginaryDenominator)})}`,
     },
     { type: "text", value: `Final result:` },
     { type: "formula", value: correctAnswer },

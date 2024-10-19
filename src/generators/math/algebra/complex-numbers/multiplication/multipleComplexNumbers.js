@@ -31,7 +31,7 @@ const generateProblem = (options) => {
   // Create the problem statement
   const problemText = complexNumbers
     .map((cn) => {
-      return `(${cn.real} ${formatSigned(cn.imaginary)}i)`;
+      return `(${cn.real} ${formatSigned(`${cn.imaginary}i`)})`;
     })
     .join(" \\cdot ");
 
@@ -64,7 +64,7 @@ const generateProblem = (options) => {
     },
     ...complexNumbers.map((cn) => ({
       type: "formula",
-      value: `(${cn.real} ${formatSigned(cn.imaginary)}i)`,
+      value: `(${cn.real} ${formatSigned(`${cn.imaginary}i`)})`,
     })),
     {
       type: "text",
@@ -77,10 +77,10 @@ const generateProblem = (options) => {
     steps.push({
       type: "text",
       value: `Multiplying (${complexNumbers[i - 1].real} ${formatSigned(
-        complexNumbers[i - 1].imaginary
-      )}i) * (${complexNumbers[i].real} ${formatSigned(
-        complexNumbers[i].imaginary
-      )}i)`,
+        `${complexNumbers[i - 1].imaginary}i`
+      )}) * (${complexNumbers[i].real} ${formatSigned(
+        `${complexNumbers[i].imaginary}i`
+      )})`,
     });
     const tempResult = multiplyComplexNumbers(
       complexNumbers[i - 1],
@@ -88,7 +88,7 @@ const generateProblem = (options) => {
     );
     steps.push({
       type: "formula",
-      value: `= ${tempResult.real} ${formatSigned(tempResult.imaginary)}i`,
+      value: `= ${tempResult.real} ${formatSigned(`${tempResult.imaginary}i`)}`,
     });
   }
 
@@ -98,12 +98,12 @@ const generateProblem = (options) => {
       return "0";
     }
     if (real === 0) {
-      return `${imaginary}i`;
+      return `${formatSigned(`${imaginary}i`, true)}`;
     }
     if (imaginary === 0) {
       return `${real}`;
     }
-    return `${real} ${formatSigned(imaginary)}i`;
+    return `${real} ${formatSigned(`${imaginary}i`)}`;
   };
 
   const solution = [

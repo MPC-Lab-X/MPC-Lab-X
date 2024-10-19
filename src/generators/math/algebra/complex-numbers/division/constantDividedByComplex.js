@@ -30,7 +30,7 @@ const generateProblem = (options) => {
 
   // Format the complex number as a string
   const formatComplex = (real, imaginary) =>
-    `${real} ${formatSigned(imaginary)} i`;
+    `${real} ${formatSigned(`${imaginary}i`)}`;
 
   // Create the problem statement
   const problemText = `${constant < 0 ? "-" : ""}\\frac{${Math.abs(

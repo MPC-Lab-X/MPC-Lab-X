@@ -11,16 +11,20 @@ const formatSigned = require("./formatSigned");
 const expressionTemplates = {
   equation: {
     linear: {
-      standard: (a, b, c, x) => `${a}${x} ${formatSigned(b)} = ${c}`,
+      standard: (a, b, c, x) =>
+        `${formatSigned(`${a}${x}`, true)} ${formatSigned(b)} = ${c}`,
 
-      slopeIntercept: (m, b, x) => `y = ${m}${x} ${formatSigned(b)}`,
+      slopeIntercept: (m, b, x) =>
+        `y = ${formatSigned(`${m}${x}`, true)} ${formatSigned(b)}`,
 
       pointSlope: (m, x1, y1, x) =>
         `y ${formatSigned(-y1)} = ${m}(${x} ${formatSigned(-x1)})`,
 
-      withAbsoluteValue: (a, b, c, x) => `|${a}${x} ${formatSigned(b)}| = ${c}`,
+      withAbsoluteValue: (a, b, c, x) =>
+        `|${formatSigned(`${a}${x}`, true)} ${formatSigned(b)}| = ${c}`,
 
-      withFractions: (a, b, c, x) => `\\frac{${a}${x}}{${b}} = ${c}`,
+      withFractions: (a, b, c, x) =>
+        `\\frac{${formatSigned(`${a}${x}`, true)}}{${b}} = ${c}`,
 
       withParentheses: (a, b, c, x) => `${a}(${x} ${formatSigned(b)}) = ${c}`,
     },

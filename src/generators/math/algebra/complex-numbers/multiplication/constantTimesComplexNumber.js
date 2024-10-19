@@ -24,7 +24,9 @@ const generateProblem = (options) => {
   const imaginary = randomInt(options.minImaginary, options.maxImaginary);
 
   // Create the problem statement
-  const problemText = `${constant} * (${real} ${formatSigned(imaginary)}i)`;
+  const problemText = `${constant} * (${real} ${formatSigned(
+    `${imaginary}i`
+  )})`;
 
   // Calculate the result
   const resultReal = constant * real;
@@ -38,7 +40,7 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `${constant} \\cdot (${real} ${formatSigned(imaginary)}i)`,
+      value: `${constant} \\cdot (${real} ${formatSigned(`${imaginary}i`)})`,
     },
     {
       type: "text",
@@ -51,8 +53,8 @@ const generateProblem = (options) => {
     {
       type: "formula",
       value: `${constant} \\cdot ${imaginary}i = ${formatSigned(
-        resultImaginary
-      )}i`,
+        `${resultImaginary}i`
+      )}`,
     },
     {
       type: "text",
@@ -60,16 +62,16 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `${resultReal} ${formatSigned(resultImaginary)}i`,
+      value: `${resultReal} ${formatSigned(`${resultImaginary}i`)}`,
     },
   ];
 
   // Format the result
   const formatResult = (real, imaginary) => {
     if (real === 0 && imaginary === 0) return "0";
-    if (real === 0) return `${imaginary}i`;
+    if (real === 0) return `${formatSigned(`${imaginary}i`, true)}`;
     if (imaginary === 0) return `${real}`;
-    return `${real} ${formatSigned(imaginary)}i`;
+    return `${real} ${formatSigned(`${imaginary}i`)}`;
   };
 
   const solution = [

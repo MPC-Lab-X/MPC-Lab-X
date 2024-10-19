@@ -23,9 +23,9 @@ const generateProblem = (options) => {
   const problem = [
     {
       type: "text",
-      value: `Find the modulus of ${a} ${formatSigned(b)}i.`,
+      value: `Find the modulus of ${a} ${formatSigned(`${b}i`)}.`,
     },
-    { type: "formula", value: `|${a} ${formatSigned(b)}i|` },
+    { type: "formula", value: `|${a} ${formatSigned(`${b}i`)}|` },
   ];
 
   // Calculate modulus of the complex number
@@ -42,7 +42,11 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `|${a} ${formatSigned(b)}i| = \\sqrt{${a}^2 ${formatSigned(b)}^2}`,
+      value: `|${a} ${formatSigned(`${b}i`)}| = \\sqrt{${a}^2 ${formatSigned(
+        b,
+        false,
+        "plus"
+      )}^2}`,
     },
     {
       type: "formula",

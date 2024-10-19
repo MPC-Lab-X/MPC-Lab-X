@@ -25,13 +25,13 @@ const generateProblem = (options) => {
   const problem = [
     {
       type: "text",
-      value: `If (${a} ${formatSigned(b)}i) = (${c} ${formatSigned(
-        d
-      )}i), find the values of a, b, c, and d.`,
+      value: `If (${a} ${formatSigned(`${b}i`)}) = (${c} ${formatSigned(
+        `${d}i`
+      )}), find the values of a, b, c, and d.`,
     },
     {
       type: "formula",
-      value: `${a} ${formatSigned(b)}i = ${c} ${formatSigned(d)}i`,
+      value: `${a} ${formatSigned(`${b}i`)} = ${c} ${formatSigned(`${d}i`)}`,
     },
   ];
 
@@ -87,7 +87,7 @@ const generateProblem = (options) => {
       },
       {
         type: "formula",
-        value: `${a} ${formatSigned(b)}i = ${c} ${formatSigned(d)}i`,
+        value: `${a} ${formatSigned(`${b}i`)} = ${c} ${formatSigned(`${d}i`)}`,
       },
       { type: "options", value: choices },
     ];

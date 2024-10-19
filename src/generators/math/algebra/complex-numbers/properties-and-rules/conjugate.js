@@ -17,20 +17,25 @@ const formatSigned = require("../../../../../utils/formatSigned");
  */
 const generateProblem = (options) => {
   const a = randomInt(options.minReal, options.maxReal);
-  const b = randomInt(options.minImaginary, options.maxImaginary);
+  const b = randomInt(options.minImaginary, options.maxImaginary, true);
 
+  const realPart = a !== 0 ? `${a} ` : "";
   const problem = [
     {
       type: "text",
-      value: `Find the complex conjugate of (${a} ${formatSigned(b)}i).`,
+      value: `Find the complex conjugate of (${realPart}${formatSigned(
+        `${b}i`,
+        realPart === ""
+      )}).`,
     },
-    { type: "formula", value: `(${a} ${formatSigned(b)}i)` },
+    {
+      type: "formula",
+      value: `(${realPart}${formatSigned(`${b}i`, realPart === "")})`,
+    },
   ];
 
   // Determine the sign for the conjugate based on the sign of b (imaginary part)
-  const bSign = b < 0 ? "+" : "-";
-  const absB = Math.abs(b);
-  const conjugate = `${a} ${bSign} ${absB}i`;
+  const conjugate = `${realPart}${formatSigned(`${-b}i`, realPart === "")}`;
 
   const steps = [
     {
@@ -39,7 +44,10 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `(${a} ${formatSigned(b)}i) \\Rightarrow (${a} ${bSign} ${absB}i)`,
+      value: `(${realPart}${formatSigned(
+        `${b}i`,
+        realPart === ""
+      )}) \\Rightarrow (${conjugate})`,
     },
   ];
 
