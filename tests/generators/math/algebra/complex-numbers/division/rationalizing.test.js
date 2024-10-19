@@ -6,7 +6,7 @@
 const generateProblem = require("../../../../../../src/generators/math/algebra/complex-numbers/division/rationalizing");
 
 describe("generateProblem", () => {
-  it("should generate a problem with correct structure for non-MCQ", () => {
+  it("generates a problem with correct structure for non-MCQ", () => {
     const options = {
       isMCQ: false,
       minReal: 1,
@@ -14,18 +14,18 @@ describe("generateProblem", () => {
       minImaginary: 1,
       maxImaginary: 5,
     };
-
     const problem = generateProblem(options);
 
     expect(problem).toHaveProperty("problem");
     expect(problem).toHaveProperty("steps");
     expect(problem).toHaveProperty("solution");
+
     expect(problem.problem).toBeInstanceOf(Array);
     expect(problem.steps).toBeInstanceOf(Array);
     expect(problem.solution).toBeInstanceOf(Array);
   });
 
-  it("should generate a problem with correct structure for MCQ", () => {
+  it("generates a problem with correct structure for MCQ", () => {
     const options = {
       isMCQ: true,
       minReal: 1,
@@ -33,37 +33,58 @@ describe("generateProblem", () => {
       minImaginary: 1,
       maxImaginary: 5,
     };
-
     const problem = generateProblem(options);
 
     expect(problem).toHaveProperty("problem");
     expect(problem).toHaveProperty("steps");
     expect(problem).toHaveProperty("solution");
+
     expect(problem.problem).toBeInstanceOf(Array);
     expect(problem.steps).toBeInstanceOf(Array);
     expect(problem.solution).toBeInstanceOf(Array);
+
+    const optionsField = problem.problem.find(
+      (item) => item.type === "options"
+    );
+    expect(optionsField).toBeDefined();
+    expect(optionsField.value).toBeInstanceOf(Array);
+    expect(optionsField.value.length).toBe(4);
   });
 
-  it("should generate different problems for different options", () => {
-    const options1 = {
+  it("generates a problem with valid complex number", () => {
+    const options = {
       isMCQ: false,
       minReal: 1,
       maxReal: 5,
       minImaginary: 1,
       maxImaginary: 5,
     };
+    const problem = generateProblem(options);
 
-    const options2 = {
+    const problemText = problem.problem.find(
+      (item) => item.type === "formula"
+    ).value;
+
+    expect(problemText).toMatch(/\\frac\{1\}\{\d+\s*\+\s*(\d+)?i\}/);
+  });
+
+  it("generates correct steps for rationalizing complex number", () => {
+    const options = {
       isMCQ: false,
-      minReal: 6,
-      maxReal: 10,
-      minImaginary: 6,
-      maxImaginary: 10,
+      minReal: 1,
+      maxReal: 5,
+      minImaginary: 1,
+      maxImaginary: 5,
     };
+    const problem = generateProblem(options);
 
-    const problem1 = generateProblem(options1);
-    const problem2 = generateProblem(options2);
-
-    expect(problem1.problem).not.toEqual(problem2.problem);
+    const steps = problem.steps.map((step) => step.value);
+    expect(steps).toContain("Identify the complex denominator:");
+    expect(steps).toContain("Multiply by the conjugate:");
+    expect(steps).toContain("Simplify the denominator:");
+    expect(steps).toContain(
+      "Divide each part of the numerator by the denominator to get:"
+    );
+    expect(steps).toContain("Final simplified form:");
   });
 });

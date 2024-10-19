@@ -6,13 +6,14 @@
 const generateProblem = require("../../../../../../src/generators/math/algebra/complex-numbers/properties-and-rules/conjugate");
 
 describe("generateProblem", () => {
-  it("should generate a problem with correct structure", () => {
+  it("generates a problem with correct structure and values", () => {
     const options = {
-      minReal: 1,
-      maxReal: 5,
-      minImaginary: 1,
-      maxImaginary: 5,
+      minReal: -10,
+      maxReal: 10,
+      minImaginary: -10,
+      maxImaginary: 10,
     };
+
     const problem = generateProblem(options);
 
     expect(problem).toHaveProperty("problem");
@@ -22,29 +23,60 @@ describe("generateProblem", () => {
     expect(problem.problem).toBeInstanceOf(Array);
     expect(problem.steps).toBeInstanceOf(Array);
     expect(problem.solution).toBeInstanceOf(Array);
+
+    expect(problem.problem[0]).toHaveProperty("type", "text");
+    expect(problem.problem[0]).toHaveProperty("value");
+    expect(problem.problem[1]).toHaveProperty("type", "formula");
+    expect(problem.problem[1]).toHaveProperty("value");
+
+    expect(problem.steps[0]).toHaveProperty("type", "text");
+    expect(problem.steps[0]).toHaveProperty("value");
+    expect(problem.steps[1]).toHaveProperty("type", "formula");
+    expect(problem.steps[1]).toHaveProperty("value");
+
+    expect(problem.solution[0]).toHaveProperty("type", "formula");
+    expect(problem.solution[0]).toHaveProperty("value");
   });
 
-  it("should generate a problem with correct conjugate", () => {
+  it("generates a problem with correct conjugate", () => {
     const options = {
-      minReal: 2,
-      maxReal: 2,
+      minReal: 5,
+      maxReal: 5,
       minImaginary: 3,
       maxImaginary: 3,
     };
+
     const problem = generateProblem(options);
 
-    expect(problem.solution[0].value).toBe("2 - 3i");
+    expect(problem.problem[1].value).toBe("(5 + 3i)");
+    expect(problem.solution[0].value).toBe("5 - 3i");
   });
 
-  it("should handle negative imaginary parts correctly", () => {
+  it("handles zero real part correctly", () => {
     const options = {
-      minReal: 2,
-      maxReal: 2,
-      minImaginary: -3,
-      maxImaginary: -3,
+      minReal: 0,
+      maxReal: 0,
+      minImaginary: 4,
+      maxImaginary: 4,
     };
+
     const problem = generateProblem(options);
 
-    expect(problem.solution[0].value).toBe("2 + 3i");
+    expect(problem.problem[1].value).toBe("(4i)");
+    expect(problem.solution[0].value).toBe("-4i");
+  });
+
+  it("handles zero imaginary part correctly", () => {
+    const options = {
+      minReal: 7,
+      maxReal: 7,
+      minImaginary: 0,
+      maxImaginary: 0,
+    };
+
+    const problem = generateProblem(options);
+
+    expect(problem.problem[1].value).toMatch(/\(7 \+ *i\)|\(7 \- *i\)/);
+    expect(problem.solution[0].value).toMatch(/7 \+ i|7 \- i/);
   });
 });

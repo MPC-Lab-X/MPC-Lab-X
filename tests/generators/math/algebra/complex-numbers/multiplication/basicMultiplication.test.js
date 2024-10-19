@@ -6,7 +6,7 @@
 const generateProblem = require("../../../../../../src/generators/math/algebra/complex-numbers/multiplication/basicMultiplication");
 
 describe("generateProblem", () => {
-  it("should generate a problem with correct structure for non-MCQ", () => {
+  it("generates a problem with correct structure for non-MCQ", () => {
     const options = {
       isMCQ: false,
       minReal: 1,
@@ -24,7 +24,7 @@ describe("generateProblem", () => {
     expect(problem.solution).toBeInstanceOf(Array);
   });
 
-  it("should generate a problem with correct structure for MCQ", () => {
+  it("generates a problem with correct structure for MCQ", () => {
     const options = {
       isMCQ: true,
       minReal: 1,
@@ -42,24 +42,47 @@ describe("generateProblem", () => {
     expect(problem.solution).toBeInstanceOf(Array);
   });
 
-  it("should generate different problems for different options", () => {
-    const options1 = {
+  it("generates correct problem text for non-MCQ", () => {
+    const options = {
       isMCQ: false,
       minReal: 1,
-      maxReal: 5,
+      maxReal: 1,
       minImaginary: 1,
-      maxImaginary: 5,
+      maxImaginary: 1,
     };
-    const options2 = {
-      isMCQ: false,
-      minReal: 6,
-      maxReal: 10,
-      minImaginary: 6,
-      maxImaginary: 10,
-    };
-    const problem1 = generateProblem(options1);
-    const problem2 = generateProblem(options2);
+    const problem = generateProblem(options);
 
-    expect(problem1.problem).not.toEqual(problem2.problem);
+    expect(problem.problem[0].value).toContain(
+      "Calculate the following: (1 + i) \\cdot (1 + i)"
+    );
+  });
+
+  it("generates correct solution for non-MCQ", () => {
+    const options = {
+      isMCQ: false,
+      minReal: 1,
+      maxReal: 1,
+      minImaginary: 1,
+      maxImaginary: 1,
+    };
+    const problem = generateProblem(options);
+
+    expect(problem.solution[0].value).toBe("0 + 2i");
+  });
+
+  it("generates correct choices for MCQ", () => {
+    const options = {
+      isMCQ: true,
+      minReal: 1,
+      maxReal: 1,
+      minImaginary: 1,
+      maxImaginary: 1,
+    };
+    const problem = generateProblem(options);
+
+    const correctChoice = problem.problem[2].value.find(
+      (choice) => choice.correct
+    );
+    expect(correctChoice.value).toBe("0 + 2i");
   });
 });

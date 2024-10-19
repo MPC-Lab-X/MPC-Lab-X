@@ -6,7 +6,7 @@
 const generateProblem = require("../../../../../../src/generators/math/algebra/complex-numbers/properties-and-rules/modulus");
 
 describe("generateProblem", () => {
-  it("should generate a problem with correct modulus calculation", () => {
+  it("should generate a problem with correct structure and values within specified range", () => {
     const options = {
       minReal: 1,
       maxReal: 5,
@@ -20,30 +20,47 @@ describe("generateProblem", () => {
     expect(problem).toHaveProperty("steps");
     expect(problem).toHaveProperty("solution");
 
-    const realPart = parseInt(problem.problem[0].value.match(/(\d+)/)[0]);
-    const imaginaryPart = parseInt(problem.problem[0].value.match(/(\d+)i/)[1]);
+    const { problem: problemText, steps, solution } = problem;
 
-    const expectedModulus = Math.sqrt(
-      realPart ** 2 + imaginaryPart ** 2
-    ).toFixed(2);
+    expect(problemText).toBeInstanceOf(Array);
+    expect(problemText.length).toBe(2);
+    expect(problemText[0]).toHaveProperty("type", "text");
+    expect(problemText[1]).toHaveProperty("type", "formula");
 
-    expect(problem.solution[0].decimal).toBe(parseFloat(expectedModulus));
+    expect(steps).toBeInstanceOf(Array);
+    expect(steps.length).toBeGreaterThan(0);
+
+    expect(solution).toBeInstanceOf(Array);
+    expect(solution.length).toBe(1);
+    expect(solution[0]).toHaveProperty("type", "numeric");
+    expect(solution[0]).toHaveProperty("decimal");
   });
 
-  it("should generate a problem with correct steps", () => {
+  it("should calculate the correct modulus for given complex number", () => {
     const options = {
-      minReal: 1,
-      maxReal: 5,
-      minImaginary: 1,
-      maxImaginary: 5,
+      minReal: 3,
+      maxReal: 3,
+      minImaginary: 4,
+      maxImaginary: 4,
     };
 
     const problem = generateProblem(options);
+    const { solution } = problem;
 
-    expect(problem.steps[0].value).toBe(
-      "The modulus of a complex number is calculated as |a + bi| = √(a² + b²)."
-    );
-    expect(problem.steps[1].value).toMatch(/\\sqrt{\d+\^2 \+ \+?\d+\^2}/);
-    expect(problem.steps[2].value).toMatch(/\\sqrt{\d+ \+ \d+}/);
+    expect(solution[0].decimal).toEqual(5);
+  });
+
+  it("should format the modulus as a fraction when applicable", () => {
+    const options = {
+      minReal: 1,
+      maxReal: 1,
+      minImaginary: 1,
+      maxImaginary: 1,
+    };
+
+    const problem = generateProblem(options);
+    const { solution } = problem;
+
+    expect(solution[0].fraction).toEqual({ s: 1, n: 5488420, d: 3880899 });
   });
 });

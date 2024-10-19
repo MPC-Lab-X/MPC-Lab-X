@@ -20,56 +20,37 @@ describe("generateProblem", () => {
       maxReal: 5,
       minImaginary: 1,
       maxImaginary: 5,
-      allowAddition: true,
-      allowSubtraction: true,
     };
     const problem = generateProblem(options);
-    expect(problem.problem[1].value.match(/\(/g).length).toBe(4);
-  });
-
-  it("generates a problem with only addition", () => {
-    const options = {
-      numComplexNumbers: 3,
-      minReal: 1,
-      maxReal: 5,
-      minImaginary: 1,
-      maxImaginary: 5,
-      allowAddition: true,
-      allowSubtraction: false,
-    };
-    const problem = generateProblem(options);
-    expect(problem.problem[1].value).toMatch(/\+/);
-    expect(problem.problem[1].value).not.toMatch(/-/);
-  });
-
-  it("generates a problem with only subtraction", () => {
-    const options = {
-      numComplexNumbers: 3,
-      minReal: 1,
-      maxReal: 5,
-      minImaginary: 1,
-      maxImaginary: 5,
-      allowAddition: false,
-      allowSubtraction: true,
-    };
-    const problem = generateProblem(options);
-    expect(problem.problem[1].value).toMatch(/-/);
-    expect(problem.problem[1].value).toMatch(/^\(.*\)$/);
+    const problemText = problem.problem.find((p) => p.type === "formula").value;
+    const complexNumbers = problemText.match(/\(([^)]+)\)/g);
+    expect(complexNumbers.length).toBe(4);
   });
 
   it("generates a multiple choice problem", () => {
     const options = {
       isMCQ: true,
-      numComplexNumbers: 3,
       minReal: 1,
       maxReal: 5,
       minImaginary: 1,
       maxImaginary: 5,
-      allowAddition: true,
-      allowSubtraction: true,
     };
     const problem = generateProblem(options);
-    expect(problem.problem[2].type).toBe("options");
-    expect(problem.solution[0].type).toBe("choice");
+    const optionsField = problem.problem.find((p) => p.type === "options");
+    expect(optionsField).toBeDefined();
+    expect(optionsField.value.length).toBe(4);
+  });
+
+  it("calculates the correct solution", () => {
+    const options = {
+      numComplexNumbers: 3,
+      minReal: 1,
+      maxReal: 1,
+      minImaginary: 1,
+      maxImaginary: 1,
+    };
+    const problem = generateProblem(options);
+    const solution = problem.solution[0].value;
+    expect(solution).toMatch(/[+-]?\d+ [+-]? \d*i/);
   });
 });

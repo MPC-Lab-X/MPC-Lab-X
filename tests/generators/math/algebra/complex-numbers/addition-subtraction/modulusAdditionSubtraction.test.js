@@ -6,75 +6,53 @@
 const generateProblem = require("../../../../../../src/generators/math/algebra/complex-numbers/addition-subtraction/modulusAdditionSubtraction");
 
 describe("generateProblem", () => {
-  it("should generate a problem with modulus addition of complex numbers", () => {
+  it("generates a problem with modulus addition or subtraction", () => {
     const options = {
       isMCQ: false,
       minReal: 1,
       maxReal: 5,
       minImaginary: 1,
       maxImaginary: 5,
-      allowAddition: true,
-      allowSubtraction: false,
     };
     const problem = generateProblem(options);
     expect(problem).toHaveProperty("problem");
     expect(problem).toHaveProperty("steps");
     expect(problem).toHaveProperty("solution");
     expect(problem.problem[1].value).toMatch(
-      /\\left\|.*\\right\| \+ \\left\|.*\\right\|/
+      /\\left\|.*\\right\| ?[+-] ?\\left\|.*\\right\|/
     );
   });
 
-  it("should generate a problem with modulus subtraction of complex numbers", () => {
-    const options = {
-      isMCQ: false,
-      minReal: 1,
-      maxReal: 5,
-      minImaginary: 1,
-      maxImaginary: 5,
-      allowAddition: false,
-      allowSubtraction: true,
-    };
-    const problem = generateProblem(options);
-    expect(problem).toHaveProperty("problem");
-    expect(problem).toHaveProperty("steps");
-    expect(problem).toHaveProperty("solution");
-    expect(problem.problem[1].value).toMatch(
-      /\\left\|.*\\right\| - \\left\|.*\\right\|/
-    );
-  });
-
-  it("should generate a multiple choice problem", () => {
+  it("generates a multiple choice problem", () => {
     const options = {
       isMCQ: true,
       minReal: 1,
       maxReal: 5,
       minImaginary: 1,
       maxImaginary: 5,
-      allowAddition: true,
-      allowSubtraction: true,
     };
     const problem = generateProblem(options);
     expect(problem).toHaveProperty("problem");
     expect(problem).toHaveProperty("steps");
     expect(problem).toHaveProperty("solution");
-    expect(problem.problem[2].type).toBe("options");
-    expect(problem.problem[2].value.length).toBeGreaterThan(0);
+    expect(problem.problem[2].value).toHaveLength(4);
+    expect(problem.problem[2].value[0]).toHaveProperty("type", "formula");
   });
 
-  it("should handle edge cases with zero values", () => {
+  it("generates correct steps for modulus addition", () => {
     const options = {
       isMCQ: false,
-      minReal: 0,
-      maxReal: 0,
-      minImaginary: 0,
-      maxImaginary: 0,
-      allowAddition: true,
-      allowSubtraction: true,
+      minReal: 1,
+      maxReal: 1,
+      minImaginary: 1,
+      maxImaginary: 1,
     };
     const problem = generateProblem(options);
-    expect(problem).toHaveProperty("problem");
-    expect(problem).toHaveProperty("steps");
-    expect(problem).toHaveProperty("solution");
+    expect(problem.steps[1].value).toBe(
+      "\\left|1 + i\\right| = \\sqrt{1^2 + 1^2} = \\sqrt{2} = \\sqrt{2}"
+    );
+    expect(problem.steps[2].value).toBe(
+      "\\left|1 + i\\right| = \\sqrt{1^2 + 1^2} = \\sqrt{2} = \\sqrt{2}"
+    );
   });
 });

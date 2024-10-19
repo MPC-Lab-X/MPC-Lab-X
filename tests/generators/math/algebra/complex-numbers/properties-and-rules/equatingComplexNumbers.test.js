@@ -10,63 +10,58 @@ describe("generateProblem", () => {
     const options = {
       isMCQ: false,
       minReal: 1,
-      maxReal: 10,
+      maxReal: 5,
       minImaginary: 1,
-      maxImaginary: 10,
+      maxImaginary: 5,
     };
+    const problem = generateProblem(options);
 
-    const result = generateProblem(options);
+    expect(problem).toHaveProperty("problem");
+    expect(problem).toHaveProperty("steps");
+    expect(problem).toHaveProperty("solution");
 
-    expect(result).toHaveProperty("problem");
-    expect(result).toHaveProperty("steps");
-    expect(result).toHaveProperty("solution");
-    expect(result.problem).toBeInstanceOf(Array);
-    expect(result.steps).toBeInstanceOf(Array);
-    expect(result.solution).toBeInstanceOf(Array);
+    expect(problem.problem).toBeInstanceOf(Array);
+    expect(problem.steps).toBeInstanceOf(Array);
+    expect(problem.solution).toBeInstanceOf(Array);
   });
 
   it("should generate a problem with correct structure when isMCQ is true", () => {
     const options = {
       isMCQ: true,
       minReal: 1,
-      maxReal: 10,
+      maxReal: 5,
       minImaginary: 1,
-      maxImaginary: 10,
+      maxImaginary: 5,
     };
+    const problem = generateProblem(options);
 
-    const result = generateProblem(options);
+    expect(problem).toHaveProperty("problem");
+    expect(problem).toHaveProperty("steps");
+    expect(problem).toHaveProperty("solution");
 
-    expect(result).toHaveProperty("problem");
-    expect(result).toHaveProperty("steps");
-    expect(result).toHaveProperty("solution");
-    expect(result.problem).toBeInstanceOf(Array);
-    expect(result.steps).toBeInstanceOf(Array);
-    expect(result.solution).toBeInstanceOf(Array);
-    expect(result.problem[2]).toHaveProperty("value");
-    expect(result.problem[2].value).toBeInstanceOf(Array);
-    expect(result.problem[2].value.length).toBe(4);
+    expect(problem.problem).toBeInstanceOf(Array);
+    expect(problem.steps).toBeInstanceOf(Array);
+    expect(problem.solution).toBeInstanceOf(Array);
+
+    const mcqProblem = problem.problem.find((item) => item.type === "options");
+    expect(mcqProblem).toBeDefined();
+    expect(mcqProblem.value).toBeInstanceOf(Array);
+    expect(mcqProblem.value.length).toBe(4);
   });
 
-  it("should generate different problems for different options", () => {
-    const options1 = {
+  it("should generate correct values for a, b, c, and d", () => {
+    const options = {
       isMCQ: false,
       minReal: 1,
-      maxReal: 10,
+      maxReal: 1,
       minImaginary: 1,
-      maxImaginary: 10,
+      maxImaginary: 1,
     };
+    const problem = generateProblem(options);
 
-    const options2 = {
-      isMCQ: true,
-      minReal: 5,
-      maxReal: 15,
-      minImaginary: 5,
-      maxImaginary: 15,
-    };
-
-    const result1 = generateProblem(options1);
-    const result2 = generateProblem(options2);
-
-    expect(result1.problem).not.toEqual(result2.problem);
+    const solutionText = problem.solution.find(
+      (item) => item.type === "text"
+    ).value;
+    expect(solutionText).toBe("a = 1, b = 1, c = 1, d = 1.");
   });
 });

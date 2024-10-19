@@ -6,21 +6,20 @@
 const generateProblem = require("../../../../../../src/generators/math/algebra/complex-numbers/division/complexDivision");
 
 describe("generateProblem", () => {
-  it("should generate a problem with correct structure for non-MCQ", () => {
-    const options = {
-      isMCQ: false,
-      minReal: 1,
-      maxReal: 5,
-      minImaginary: 1,
-      maxImaginary: 5,
-      minDenomReal: 1,
-      maxDenomReal: 5,
-      minDenomImaginary: 1,
-      maxDenomImaginary: 5,
-    };
+  const options = {
+    isMCQ: false,
+    minReal: -10,
+    maxReal: 10,
+    minImaginary: -10,
+    maxImaginary: 10,
+    minDenomReal: -10,
+    maxDenomReal: 10,
+    minDenomImaginary: -10,
+    maxDenomImaginary: 10,
+  };
 
+  it("should generate a problem with correct structure", () => {
     const problem = generateProblem(options);
-
     expect(problem).toHaveProperty("problem");
     expect(problem).toHaveProperty("steps");
     expect(problem).toHaveProperty("solution");
@@ -29,57 +28,36 @@ describe("generateProblem", () => {
     expect(problem.solution).toBeInstanceOf(Array);
   });
 
-  it("should generate a problem with correct structure for MCQ", () => {
-    const options = {
-      isMCQ: true,
-      minReal: 1,
-      maxReal: 5,
-      minImaginary: 1,
-      maxImaginary: 5,
-      minDenomReal: 1,
-      maxDenomReal: 5,
-      minDenomImaginary: 1,
-      maxDenomImaginary: 5,
-    };
-
-    const problem = generateProblem(options);
-
+  it("should generate a multiple choice problem when isMCQ is true", () => {
+    const mcqOptions = { ...options, isMCQ: true };
+    const problem = generateProblem(mcqOptions);
     expect(problem).toHaveProperty("problem");
     expect(problem).toHaveProperty("steps");
     expect(problem).toHaveProperty("solution");
     expect(problem.problem).toBeInstanceOf(Array);
     expect(problem.steps).toBeInstanceOf(Array);
     expect(problem.solution).toBeInstanceOf(Array);
+    expect(
+      problem.problem.find((item) => item.type === "options")
+    ).toBeTruthy();
   });
 
-  it("should generate different problems for different options", () => {
-    const options1 = {
-      isMCQ: false,
-      minReal: 1,
-      maxReal: 5,
-      minImaginary: 1,
-      maxImaginary: 5,
-      minDenomReal: 1,
-      maxDenomReal: 5,
-      minDenomImaginary: 1,
-      maxDenomImaginary: 5,
-    };
-
-    const options2 = {
-      isMCQ: false,
-      minReal: 6,
-      maxReal: 10,
-      minImaginary: 6,
-      maxImaginary: 10,
-      minDenomReal: 6,
-      maxDenomReal: 10,
-      minDenomImaginary: 6,
-      maxDenomImaginary: 10,
-    };
-
-    const problem1 = generateProblem(options1);
-    const problem2 = generateProblem(options2);
-
-    expect(problem1.problem).not.toEqual(problem2.problem);
+  it("should generate a problem with valid LaTeX formulas", () => {
+    const problem = generateProblem(options);
+    problem.problem.forEach((item) => {
+      if (item.type === "formula") {
+        expect(item.value).toMatch(/\\frac|\\cdot|\\div|i/);
+      }
+    });
+    problem.steps.forEach((item) => {
+      if (item.type === "formula") {
+        expect(item.value).toMatch(/\\frac|\\cdot|\\div|i/);
+      }
+    });
+    problem.solution.forEach((item) => {
+      if (item.type === "formula") {
+        expect(item.value).toMatch(/\\frac|\\cdot|\\div|i/);
+      }
+    });
   });
 });
