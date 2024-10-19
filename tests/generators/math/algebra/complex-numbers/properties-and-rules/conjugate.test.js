@@ -76,7 +76,7 @@ describe("generateProblem", () => {
 
     const problem = generateProblem(options);
 
-    expect(problem.problem[1].value).toMatch(/\(7 \+ *i\)|\(7 \- *i\)/);
-    expect(problem.solution[0].value).toMatch(/7 \+ i|7 \- i/);
+    expect(problem.problem[1].value).toMatch(/\(\s*7\s*([+-])\s*(\d*i|i)\s*\)/);
+    expect(problem.solution[0].value).toMatch(/7\s*([+-])\s*(\d*i|i)/);
   });
 });

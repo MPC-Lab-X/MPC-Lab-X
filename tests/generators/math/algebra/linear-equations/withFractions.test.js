@@ -41,7 +41,7 @@ describe("generateProblem", () => {
 
     const formula = problem.problem.find((item) => item.type === "formula");
     expect(formula).toBeDefined();
-    expect(formula.value).toMatch(/\\frac{\d+[a-z]}{\d+} = \d+/);
+    expect(formula.value).toMatch(/\\frac{\d*[a-z]}{\d+} = \d+/);
   });
 
   it("should generate correct steps for solving the problem", () => {

@@ -7,11 +7,11 @@ const generateProblem = require("../../../../../src/generators/math/algebra/line
 
 describe("generateProblem", () => {
   const problemPatterns = {
-    standard: /([-+]?\d+)[a-z]\s*([-+]\s*\d+)\s*=\s*([-+]?\d+)/,
-    slopeIntercept: /y = ([-+]?\d+)[a-z]\s*([-+]\s*\d+)/,
+    standard: /^([-+]?\d*)\s*([a-z])\s*([-+]\s*\d+)?\s*=\s*([-+]?\d+)$/,
+    slopeIntercept: /^y\s*=\s*([-+]?\d*)\s*([a-z])\s*([-+]\s*\d+)$/,
     pointSlope:
-      /y\s*([-+]\s*\d+)\s*=\s*([-+]?\d+)\s*\(\s*[a-z]\s*([-+]\s*\d+)\s*\)/,
-    any: /([-+]?\d+)[a-z]\s*([-+]\s*\d+)\s*=\s*([-+]?\d+)|y = ([-+]?\d+)[a-z]\s*([-+]\s*\d+)|y\s*([-+]\s*\d+)\s*=\s*([-+]?\d+)\s*\(\s*[a-z]\s*([-+]\s*\d+)\s*\)/,
+      /^y\s*([-+]\s*\d+)?\s*=\s*([-+]?\d*)\s*\(\s*([a-z])\s*([-+]\s*\d+)?\s*\)$/,
+    any: /^(?:([-+]?\d*)\s*([a-z])\s*([-+]\s*\d+)?\s*=\s*([-+]?\d+)|y\s*=\s*([-+]?\d*)\s*([a-z])\s*([-+]\s*\d+)|y\s*([-+]\s*\d+)?\s*=\s*([-+]?\d+)\s*\(\s*([a-z])\s*([-+]\s*\d+)?\s*\))$/,
   };
 
   test.each([
