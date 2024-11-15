@@ -1,4 +1,4 @@
-# MPC-Lab-X
+# MPC-Lab-X [![npm version](https://badge.fury.io/js/mpclab.svg)](https://npmjs.com/package/mpclab) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Issues](https://img.shields.io/github/issues/MPC-Lab-X/MPC-Lab-X)](https://github.com/MPC-Lab-X/MPC-Lab-X/issues) [![PRs](https://img.shields.io/github/issues-pr/MPC-Lab-X/MPC-Lab-X)](https://github.com/MPC-Lab-X/MPC-Lab-X/pulls)
 
 MPC-Lab-X is a powerful problem generation module for educational purposes. It enables developers and educators to create, customize, and generate a variety of problems in subjects like mathematics, physics, and chemistry. With flexible, dynamic generation and parameterized controls, it scales easily from simple exercises to complex assessments.
 
