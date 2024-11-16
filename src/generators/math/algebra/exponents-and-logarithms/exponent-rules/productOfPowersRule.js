@@ -95,10 +95,16 @@ const generateProblem = (options) => {
     choices.sort(() => Math.random() - 0.5);
 
     // Add the choices to the problem
-    problem.push({
-      type: "options",
-      value: choices,
-    });
+    problem.push(
+      {
+        type: "text",
+        value: "Choose the correct answer.",
+      },
+      {
+        type: "options",
+        value: choices,
+      }
+    );
 
     // Determine the correct choice
     const solution = [

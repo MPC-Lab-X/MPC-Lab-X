@@ -38,8 +38,8 @@ describe("generateProblem", () => {
       withVariable: false,
     };
     const problem = generateProblem(options);
-    expect(problem.problem[2].type).toBe("options");
-    expect(problem.problem[2].value.length).toBe(4);
+    expect(problem.problem[3].type).toBe("options");
+    expect(problem.problem[3].value.length).toBe(4);
     expect(problem.solution[0].type).toBe("choice");
   });
 
