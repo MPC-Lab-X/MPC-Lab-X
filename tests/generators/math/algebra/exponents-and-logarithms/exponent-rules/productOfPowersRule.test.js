@@ -14,8 +14,10 @@ describe("generateProblem", () => {
       withVariable: true,
     };
     const problem = generateProblem(options);
-    expect(problem.problem[1].value).toMatch(/\([a-z]\^\d\)\([a-z]\^\d\)/);
-    expect(problem.solution[0].value).toMatch(/[a-z]\^\d+/);
+    expect(problem.problem[1].value).toMatch(
+      /\([a-z]\^\{\d\}\)\([a-z]\^\{\d\}\)/
+    );
+    expect(problem.solution[0].value).toMatch(/[a-z]\^\{\d+\}/);
   });
 
   it("generates a problem with a numeric base", () => {
@@ -26,8 +28,8 @@ describe("generateProblem", () => {
       withVariable: false,
     };
     const problem = generateProblem(options);
-    expect(problem.problem[1].value).toMatch(/\(\d+\^\d\)\(\d+\^\d\)/);
-    expect(problem.solution[0].value).toMatch(/\d+\^\d+/);
+    expect(problem.problem[1].value).toMatch(/\(\d+\^\{\d\}\)\(\d+\^\{\d\}\)/);
+    expect(problem.solution[0].value).toMatch(/\d+\^\{\d+\}/);
   });
 
   it("generates a multiple choice problem", () => {
@@ -38,8 +40,8 @@ describe("generateProblem", () => {
       withVariable: false,
     };
     const problem = generateProblem(options);
-    expect(problem.problem[3].type).toBe("options");
-    expect(problem.problem[3].value.length).toBe(4);
+    expect(problem.problem[2].type).toBe("options");
+    expect(problem.problem[2].value.length).toBe(4);
     expect(problem.solution[0].type).toBe("choice");
   });
 
@@ -52,8 +54,8 @@ describe("generateProblem", () => {
     };
     const problem = generateProblem(options);
     const exponents = problem.problem[1].value
-      .match(/\d+\^\d+/g)
-      .map((exp) => parseInt(exp.split("^")[1]));
+      .match(/\d+\^\{\d+\}/g)
+      .map((exp) => parseInt(exp.split("^")[1].replace(/[{}]/g, "")));
     const resultExponent = parseInt(exponents[0]) + parseInt(exponents[1]);
     expect(problem.steps[2].value).toBe(
       `Add the exponents: ${exponents[0]} + ${exponents[1]} = ${resultExponent}.`
@@ -70,8 +72,8 @@ describe("generateProblem", () => {
     const problem = generateProblem(options);
     const base = parseInt(problem.problem[1].value.match(/\d+/)[0]);
     const exponents = problem.problem[1].value
-      .match(/\d+\^\d+/g)
-      .map((exp) => parseInt(exp.split("^")[1]));
+      .match(/\d+\^\{\d+\}/g)
+      .map((exp) => parseInt(exp.split("^")[1].replace(/[{}]/g, "")));
     expect(base).toBeGreaterThanOrEqual(options.baseRange.min);
     expect(base).toBeLessThanOrEqual(options.baseRange.max);
     exponents.forEach((exp) => {

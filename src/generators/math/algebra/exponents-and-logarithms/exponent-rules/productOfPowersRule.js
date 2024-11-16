@@ -35,11 +35,11 @@ const generateProblem = (options) => {
       type: "text",
       value: `Simplify the following expression${
         options.withVariable ? "" : ", keeping the base the same"
-      }.`,
+      }:`,
     },
     {
       type: "formula",
-      value: `(${base}^${exponent1})(${base}^${exponent2})`,
+      value: `(${base}^{${exponent1}})(${base}^{${exponent2}})`,
     },
   ];
 
@@ -50,11 +50,11 @@ const generateProblem = (options) => {
   const steps = [
     {
       type: "text",
-      value: `To multiply the powers, add the exponents.`,
+      value: `To multiply the powers, add the exponents:`,
     },
     {
       type: "formula",
-      value: `(${base}^${exponent1})(${base}^${exponent2})`,
+      value: `(${base}^{${exponent1}})(${base}^{${exponent2}})`,
     },
     {
       type: "text",
@@ -68,26 +68,26 @@ const generateProblem = (options) => {
     const choices = [
       {
         type: "formula",
-        value: `${base}^${resultExponent}`,
+        value: `${base}^{${resultExponent}}`,
         correct: true,
       },
       {
         type: "formula",
-        value: `${base}^${exponent1 * exponent2}`,
+        value: `${base}^{${exponent1 * exponent2}}`,
       },
       {
         type: "formula",
-        value: `${base}^${
+        value: `${base}^{${
           resultExponent +
           randomInt(options.exponentRange.min, options.exponentRange.max, true)
-        }`,
+        }}`,
       },
       {
         type: "formula",
-        value: `${base}^${
+        value: `${base}^{${
           resultExponent -
           randomInt(options.exponentRange.min, options.exponentRange.max, true)
-        }`,
+        }}`,
       },
     ];
 
@@ -95,16 +95,10 @@ const generateProblem = (options) => {
     choices.sort(() => Math.random() - 0.5);
 
     // Add the choices to the problem
-    problem.push(
-      {
-        type: "text",
-        value: "Choose the correct answer.",
-      },
-      {
-        type: "options",
-        value: choices,
-      }
-    );
+    problem.push({
+      type: "options",
+      value: choices,
+    });
 
     // Determine the correct choice
     const solution = [
@@ -113,7 +107,7 @@ const generateProblem = (options) => {
         choice: choices.findIndex((choice) => {
           if (choice.correct) {
             delete choice.correct;
-            return choice.correct;
+            return true;
           }
         }),
       },
@@ -129,7 +123,7 @@ const generateProblem = (options) => {
     const solution = [
       {
         type: "formula",
-        value: `${base}^${resultExponent}`,
+        value: `${base}^{${resultExponent}}`,
       },
     ];
 
