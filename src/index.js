@@ -134,6 +134,16 @@ class ProblemGenerator {
             if (topicOptions[key] > parameters[key].max) {
               topicOptions[key] = parameters[key].max;
             }
+          } else if (parameters[key].type === "range") {
+            if (parameters[key].min > parameters[key].max) {
+              parameters[key].max = parameters[key].min;
+            }
+            if (topicOptions[key].min < parameters[key].min) {
+              topicOptions[key].min = parameters[key].min;
+            }
+            if (topicOptions[key].max > parameters[key].max) {
+              topicOptions[key].max = parameters[key].max;
+            }
           }
         }
 
