@@ -7,6 +7,58 @@
                 "name": "Algebra",
                 "description": "Algebra problems, including including expressions, equations, and more.",
                 "topics": {
+                    "exponents-and-logarithms": {
+                        "name": "Exponents and Logarithms",
+                        "description": "Problems involving exponents and logarithms.",
+                        "topics": {
+                            "exponent-rules": {
+                                "name": "Exponent Rules",
+                                "description": "Problems involving the basic rules of exponents, including multiplication, division, power of a power, negative exponents, and more.",
+                                "topics": {
+                                    "productOfPowersRule": {
+                                        "name": "Product of Powers Rule",
+                                        "description": "Problems involving the product of powers rule, which states that a^m * a^n = a^(m+n).",
+                                        "parameters": {
+                                            "isMCQ": {
+                                                "type": "boolean",
+                                                "name": "Multiple Choice",
+                                                "description": "Whether the problem is multiple choice.",
+                                                "default": true
+                                            },
+                                            "baseRange": {
+                                                "type": "range",
+                                                "name": "Base Range",
+                                                "description": "The range of values for the base a.",
+                                                "default": {
+                                                    "min": 2,
+                                                    "max": 10
+                                                },
+                                                "min": 2,
+                                                "max": 100
+                                            },
+                                            "exponentRange": {
+                                                "type": "range",
+                                                "name": "Exponent Range",
+                                                "description": "The range of values for the exponents m and n.",
+                                                "default": {
+                                                    "min": 1,
+                                                    "max": 10
+                                                },
+                                                "min": 1,
+                                                "max": 100
+                                            },
+                                            "withVariable": {
+                                                "type": "boolean",
+                                                "name": "With Variable",
+                                                "description": "Whether the base is a variable.",
+                                                "default": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
                     "linear-equations": {
                         "name": "Linear Equations",
                         "description": "Problems involving linear equations.",
