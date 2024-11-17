@@ -54,6 +54,46 @@
                                                 "default": false
                                             }
                                         }
+                                    },
+                                    "quotientOfPowersRule": {
+                                        "name": "Quotient of Powers Rule",
+                                        "description": "Problems involving the quotient of powers rule, which states that a^m / a^n = a^(m-n).",
+                                        "parameters": {
+                                            "isMCQ": {
+                                                "type": "boolean",
+                                                "name": "Multiple Choice",
+                                                "description": "Whether the problem is multiple choice.",
+                                                "default": true
+                                            },
+                                            "baseRange": {
+                                                "type": "range",
+                                                "name": "Base Range",
+                                                "description": "The range of values for the base a.",
+                                                "default": {
+                                                    "min": 2,
+                                                    "max": 10
+                                                },
+                                                "min": 2,
+                                                "max": 100
+                                            },
+                                            "exponentRange": {
+                                                "type": "range",
+                                                "name": "Exponent Range",
+                                                "description": "The range of values for the exponents m and n.",
+                                                "default": {
+                                                    "min": 1,
+                                                    "max": 10
+                                                },
+                                                "min": 1,
+                                                "max": 100
+                                            },
+                                            "withVariable": {
+                                                "type": "boolean",
+                                                "name": "With Variable",
+                                                "description": "Whether the base is a variable.",
+                                                "default": false
+                                            }
+                                        }
                                     }
                                 }
                             }
