@@ -134,6 +134,65 @@
                                                 "default": false
                                             }
                                         }
+                                    },
+                                    "powerOfProductRule": {
+                                        "name": "Power of Product Rule",
+                                        "description": "Problems involving the power of a product rule, which states that (ab)^n = a^n * b^n.",
+                                        "parameters": {
+                                            "isMCQ": {
+                                                "type": "boolean",
+                                                "name": "Multiple Choice",
+                                                "description": "Whether the problem is multiple choice.",
+                                                "default": true
+                                            },
+                                            "baseRange": {
+                                                "type": "range",
+                                                "name": "Base Range",
+                                                "description": "The range of values for the base a and b.",
+                                                "default": {
+                                                    "min": 2,
+                                                    "max": 10
+                                                },
+                                                "min": 2,
+                                                "max": 100
+                                            },
+                                            "exponentRange": {
+                                                "type": "range",
+                                                "name": "Exponent Range",
+                                                "description": "The range of values for the exponent n.",
+                                                "default": {
+                                                    "min": 1,
+                                                    "max": 10
+                                                },
+                                                "min": 1,
+                                                "max": 100
+                                            },
+                                            "innerExponentRange": {
+                                                "type": "range",
+                                                "name": "Inner Exponent Range",
+                                                "description": "The range of values for the inner exponent n.",
+                                                "default": {
+                                                    "min": 1,
+                                                    "max": 10
+                                                },
+                                                "min": 1,
+                                                "max": 100
+                                            },
+                                            "withVariable": {
+                                                "type": "boolean",
+                                                "name": "With Variable",
+                                                "description": "Whether the base is a variable.",
+                                                "default": false
+                                            },
+                                            "numFactors": {
+                                                "type": "number",
+                                                "name": "Number of Factors",
+                                                "description": "The number of factors in the product.",
+                                                "default": 2,
+                                                "min": 2,
+                                                "max": 10
+                                            }
+                                        }
                                     }
                                 }
                             }

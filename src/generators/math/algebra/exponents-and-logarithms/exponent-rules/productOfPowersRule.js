@@ -11,7 +11,7 @@ const { randomInt, randomVariable } = require("../../../../../utils/random");
  * @param {boolean} options.isMCQ - Whether the problem is multiple choice.
  * @param {object} options.baseRange - The range of the base of the powers.
  * @param {object} options.exponentRange - The range of the exponents of the powers.
- * @param {number} options.withVariable - Whether to include a variable in the base.
+ * @param {boolean} options.withVariable - Whether to include a variable in the base.
  * @returns {Object} - The problem involving the product of powers rule.
  */
 const generateProblem = (options) => {
@@ -113,11 +113,7 @@ const generateProblem = (options) => {
       },
     ];
 
-    return {
-      problem,
-      steps,
-      solution,
-    };
+    return { problem, steps, solution };
   } else {
     // Calculate the result
     const solution = [
@@ -127,11 +123,7 @@ const generateProblem = (options) => {
       },
     ];
 
-    return {
-      problem,
-      steps,
-      solution,
-    };
+    return { problem, steps, solution };
   }
 };
 
