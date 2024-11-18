@@ -30,6 +30,24 @@ const expressionTemplates = {
     },
   },
 
+  exponent: {
+    power: function (base, exponent) {
+      return exponent === 1 ? `${base}` : `${base}^{${exponent}}`;
+    },
+
+    productOfPowers: function (base, exp1, exp2) {
+      return `${this.power(base, exp1)} \\cdot ${this.power(base, exp2)}`;
+    },
+
+    quotientOfPowers: function (base, exp1, exp2) {
+      return `\\frac{${this.power(base, exp1)}}{${this.power(base, exp2)}}`;
+    },
+
+    productOfExponents: function (base, exp1, exp2) {
+      return `${base}^{${exp1} \\times ${exp2}}`;
+    },
+  },
+
   /**
    * @function fraction - Format a fraction expression.
    * @param {number} sign - Sign of the fraction (-1, 0, or 1).

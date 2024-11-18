@@ -72,6 +72,39 @@ describe("expressionTemplates", () => {
     });
   });
 
+  describe("exponent.power", () => {
+    it("should format a power expression correctly when exponent is 1", () => {
+      const result = expressionTemplates.exponent.power(2, 1);
+      expect(result).toBe("2");
+    });
+
+    it("should format a power expression correctly when exponent is greater than 1", () => {
+      const result = expressionTemplates.exponent.power(2, 3);
+      expect(result).toBe("2^{3}");
+    });
+  });
+
+  describe("exponent.productOfPowers", () => {
+    it("should format a product of powers expression correctly", () => {
+      const result = expressionTemplates.exponent.productOfPowers(2, 3, 4);
+      expect(result).toBe("2^{3} \\cdot 2^{4}");
+    });
+  });
+
+  describe("exponent.quotientOfPowers", () => {
+    it("should format a quotient of powers expression correctly", () => {
+      const result = expressionTemplates.exponent.quotientOfPowers(2, 3, 4);
+      expect(result).toBe("\\frac{2^{3}}{2^{4}}");
+    });
+  });
+
+  describe("exponent.productOfExponents", () => {
+    it("should format a product of exponents expression correctly", () => {
+      const result = expressionTemplates.exponent.productOfExponents(2, 3, 4);
+      expect(result).toBe("2^{3 \\times 4}");
+    });
+  });
+
   describe("fraction", () => {
     it("should format a fraction correctly when denominator is 1", () => {
       const result = expressionTemplates.fraction(1, 3, 1);
