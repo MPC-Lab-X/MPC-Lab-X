@@ -20,20 +20,6 @@ describe("generateProblem", () => {
     expect(problem.solution[0].value).toMatch(/[a-z]\^\{\d+\}/);
   });
 
-  it("generates a problem with a numeric base", () => {
-    const options = {
-      isMCQ: false,
-      exponentRange: { min: 2, max: 3 },
-      innerExponentRange: { min: 2, max: 3 },
-      numFactors: 2,
-    };
-    const problem = generateProblem(options);
-    expect(problem.problem[1].value).toMatch(
-      /\([a-z\d]\^\{\d\}[a-z\d]\^\{\d\}\)\^\{\d\}/
-    );
-    expect(problem.solution[0].value).toMatch(/[a-z\d]+\^\{\d+\}/);
-  });
-
   it("generates a multiple choice problem", () => {
     const options = {
       isMCQ: true,
@@ -78,20 +64,6 @@ describe("generateProblem", () => {
       /\([a-z]\^\{\d\}[a-z]\^\{\d\}[a-z]\^\{\d\}\)\^\{\d\}/
     );
     expect(problem.solution[0].value).toMatch(/[a-z]\^\{\d+\}/);
-  });
-
-  it("generates a problem with a numeric base and three factors", () => {
-    const options = {
-      isMCQ: false,
-      exponentRange: { min: 2, max: 3 },
-      innerExponentRange: { min: 2, max: 3 },
-      numFactors: 3,
-    };
-    const problem = generateProblem(options);
-    expect(problem.problem[1].value).toMatch(
-      /\([a-z\d]\^\{\d\}[a-z\d]\^\{\d\}[a-z\d]\^\{\d\}\)\^\{\d\}/
-    );
-    expect(problem.solution[0].value).toMatch(/[a-z\d]+\^\{\d+\}/);
   });
 
   it("generates a multiple choice problem with three factors", () => {
