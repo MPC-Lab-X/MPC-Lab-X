@@ -9,10 +9,8 @@ const { randomInt, randomVariable } = require("../../../../../utils/random");
  * @function generateProblem - Generate a problem involving the power of a product rule.
  * @param {Object} options - The options for generating the problem.
  * @param {boolean} options.isMCQ - Whether the problem is multiple choice.
- * @param {object} options.baseRange - The range of the base of the powers.
  * @param {object} options.exponentRange - The range of the the outer exponent of the power.
  * @param {object} options.innerExponentRange - The range of the inner exponents of the powers.
- * @param {boolean} options.withVariable - Whether to include a variable in the base.
  * @param {number} options.numFactors - The number of factors in the product.
  * @returns {Object} - The problem involving the power of a product rule.
  */
@@ -26,9 +24,10 @@ const generateProblem = (options) => {
 
   // Generate random factors
   for (let i = 0; i < options.numFactors; i++) {
-    const base = options.withVariable
-      ? randomVariable()
-      : randomInt(options.baseRange.min, options.baseRange.max, true);
+    let base;
+    do {
+      base = randomVariable();
+    } while (factors.some((factor) => factor.base === base));
     const exponent = randomInt(
       options.innerExponentRange.min,
       options.innerExponentRange.max,
@@ -41,9 +40,7 @@ const generateProblem = (options) => {
   const problem = [
     {
       type: "text",
-      value: `Simplify the following expression${
-        options.withVariable ? "" : ", keeping the base the same"
-      }:`,
+      value: `Simplify the following expression:`,
     },
     {
       type: "formula",
