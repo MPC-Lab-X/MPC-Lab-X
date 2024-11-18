@@ -98,10 +98,48 @@ describe("expressionTemplates", () => {
     });
   });
 
+  describe("exponent.quotientOfDifferentBases", () => {
+    it("should format a quotient of different bases expression correctly", () => {
+      const result = expressionTemplates.exponent.quotientOfDifferentBases(
+        2,
+        3,
+        4,
+        5
+      );
+      expect(result).toBe("\\frac{2^{4}}{3^{5}}");
+    });
+  });
+
+  describe("exponent.powerOfQuotient", () => {
+    it("should format a power of quotient expression correctly", () => {
+      const result = expressionTemplates.exponent.powerOfQuotient(
+        2,
+        3,
+        4,
+        1,
+        2
+      );
+      expect(result).toBe("\\left(\\frac{2}{3^{2}}\\right)^{4}");
+    });
+  });
+
   describe("exponent.productOfExponents", () => {
     it("should format a product of exponents expression correctly", () => {
       const result = expressionTemplates.exponent.productOfExponents(2, 3, 4);
       expect(result).toBe("2^{3 \\times 4}");
+    });
+  });
+
+  describe("exponent.quotientOfProducts", () => {
+    it("should format a quotient of products expression correctly", () => {
+      const result = expressionTemplates.exponent.quotientOfProducts(
+        2,
+        3,
+        4,
+        5,
+        6
+      );
+      expect(result).toBe("\\frac{2^{5 \\times 4}}{3^{6 \\times 4}}");
     });
   });
 

@@ -43,8 +43,30 @@ const expressionTemplates = {
       return `\\frac{${this.power(base, exp1)}}{${this.power(base, exp2)}}`;
     },
 
+    quotientOfDifferentBases: function (base1, base2, exp1, exp2) {
+      return `\\frac{${this.power(base1, exp1)}}{${this.power(base2, exp2)}}`;
+    },
+
+    powerOfQuotient: function (numerator, denominator, exp, numExp, denExp) {
+      return this.power(
+        `\\left(\\frac{${this.power(numerator, numExp)}}{${this.power(
+          denominator,
+          denExp
+        )}}\\right)`,
+        exp
+      );
+    },
+
     productOfExponents: function (base, exp1, exp2) {
       return `${base}^{${exp1} \\times ${exp2}}`;
+    },
+
+    quotientOfProducts: function (numBase, denBase, exp, numExp, denExp) {
+      return `\\frac{${this.productOfExponents(
+        numBase,
+        numExp,
+        exp
+      )}}{${this.productOfExponents(denBase, denExp, exp)}}`;
     },
   },
 
