@@ -10,7 +10,7 @@ describe("generateProblem", () => {
     const options = {
       isMCQ: false,
       baseRange: { min: 2, max: 5 },
-      exponentRange: { min: 1, max: 3 },
+      exponentRange: { min: 2, max: 3 },
       withVariable: true,
     };
     const problem = generateProblem(options);
@@ -22,7 +22,7 @@ describe("generateProblem", () => {
     const options = {
       isMCQ: false,
       baseRange: { min: 2, max: 5 },
-      exponentRange: { min: 1, max: 3 },
+      exponentRange: { min: 2, max: 3 },
       withVariable: false,
     };
     const problem = generateProblem(options);
@@ -59,7 +59,9 @@ describe("generateProblem", () => {
     expect(problem.steps[2].value).toBe(
       `= ${base}^{${exponents[0]} \\times ${exponents[1]}}`
     );
-    expect(problem.steps[3].value).toBe(`= ${base}^{${resultExponent}}`);
+    expect(problem.steps[3].value).toBe(
+      `= ${base}${resultExponent > 1 ? "^{" + resultExponent + "}" : ""}`
+    );
   });
 
   it("validates the range of base and exponents", () => {

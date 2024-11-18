@@ -4,6 +4,7 @@
  */
 
 const { randomInt, randomVariable } = require("../../../../../utils/random");
+const expressionTemplates = require("../../../../../utils/expressionTemplates");
 
 /**
  * @function generateProblem - Generate a problem involving the power of a power rule.
@@ -58,11 +59,15 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `= ${base}^{${exponent1} \\times ${exponent2}}`,
+      value: `= ${expressionTemplates.exponent.productOfExponents(
+        base,
+        exponent1,
+        exponent2
+      )}`,
     },
     {
       type: "formula",
-      value: `= ${base}^{${resultExponent}}`,
+      value: `= ${expressionTemplates.exponent.power(base, resultExponent)}`,
     },
   ];
 
@@ -71,26 +76,36 @@ const generateProblem = (options) => {
     const choices = [
       {
         type: "formula",
-        value: `${base}^{${resultExponent}}`,
+        value: expressionTemplates.exponent.power(base, resultExponent),
         correct: true,
       },
       {
         type: "formula",
-        value: `${base}^{${exponent1 + exponent2}}`,
+        value: expressionTemplates.exponent.power(base, exponent1 + exponent2),
       },
       {
         type: "formula",
-        value: `${base}^{${
+        value: expressionTemplates.exponent.power(
+          base,
           resultExponent +
-          randomInt(options.exponentRange.min, options.exponentRange.max, true)
-        }}`,
+            randomInt(
+              options.exponentRange.min,
+              options.exponentRange.max,
+              true
+            )
+        ),
       },
       {
         type: "formula",
-        value: `${base}^{${
+        value: expressionTemplates.exponent.power(
+          base,
           resultExponent -
-          randomInt(options.exponentRange.min, options.exponentRange.max, true)
-        }}`,
+            randomInt(
+              options.exponentRange.min,
+              options.exponentRange.max,
+              true
+            )
+        ),
       },
     ];
 
@@ -122,7 +137,7 @@ const generateProblem = (options) => {
     const solution = [
       {
         type: "formula",
-        value: `${base}^{${resultExponent}}`,
+        value: expressionTemplates.exponent.power(base, resultExponent),
       },
     ];
 

@@ -10,12 +10,12 @@ describe("generateProblem", () => {
     const options = {
       isMCQ: false,
       baseRange: { min: 2, max: 5 },
-      exponentRange: { min: 1, max: 3 },
+      exponentRange: { min: 2, max: 3 },
       withVariable: true,
     };
     const problem = generateProblem(options);
     expect(problem.problem[1].value).toMatch(
-      /\([a-z]\^\{\d\}\)\([a-z]\^\{\d\}\)/
+      /[a-z]\^\{\d\} \\cdot [a-z]\^\{\d\}/
     );
     expect(problem.solution[0].value).toMatch(/[a-z]\^\{\d+\}/);
   });
@@ -24,11 +24,11 @@ describe("generateProblem", () => {
     const options = {
       isMCQ: false,
       baseRange: { min: 2, max: 5 },
-      exponentRange: { min: 1, max: 3 },
+      exponentRange: { min: 2, max: 3 },
       withVariable: false,
     };
     const problem = generateProblem(options);
-    expect(problem.problem[1].value).toMatch(/\(\d+\^\{\d\}\)\(\d+\^\{\d\}\)/);
+    expect(problem.problem[1].value).toMatch(/\d+\^\{\d\} \\cdot \d+\^\{\d\}/);
     expect(problem.solution[0].value).toMatch(/\d+\^\{\d+\}/);
   });
 
@@ -36,7 +36,7 @@ describe("generateProblem", () => {
     const options = {
       isMCQ: true,
       baseRange: { min: 2, max: 5 },
-      exponentRange: { min: 1, max: 3 },
+      exponentRange: { min: 2, max: 3 },
       withVariable: false,
     };
     const problem = generateProblem(options);
@@ -49,7 +49,7 @@ describe("generateProblem", () => {
     const options = {
       isMCQ: false,
       baseRange: { min: 2, max: 5 },
-      exponentRange: { min: 1, max: 3 },
+      exponentRange: { min: 2, max: 3 },
       withVariable: false,
     };
     const problem = generateProblem(options);
@@ -66,7 +66,7 @@ describe("generateProblem", () => {
     const options = {
       isMCQ: false,
       baseRange: { min: 2, max: 5 },
-      exponentRange: { min: 1, max: 3 },
+      exponentRange: { min: 2, max: 3 },
       withVariable: false,
     };
     const problem = generateProblem(options);
@@ -80,5 +80,17 @@ describe("generateProblem", () => {
       expect(exp).toBeGreaterThanOrEqual(options.exponentRange.min);
       expect(exp).toBeLessThanOrEqual(options.exponentRange.max);
     });
+  });
+
+  it("does not generate a power of 1", () => {
+    const options = {
+      isMCQ: false,
+      baseRange: { min: 2, max: 5 },
+      exponentRange: { min: 1, max: 1 },
+      withVariable: false,
+    };
+    const problem = generateProblem(options);
+    expect(problem.problem[1].value).not.toMatch(/\^\{1\}/);
+    expect(problem.solution[0].value).not.toMatch(/\^\{1\}/);
   });
 });

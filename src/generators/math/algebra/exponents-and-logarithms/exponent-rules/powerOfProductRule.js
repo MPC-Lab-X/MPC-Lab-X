@@ -4,6 +4,7 @@
  */
 
 const { randomInt, randomVariable } = require("../../../../../utils/random");
+const expressionTemplates = require("../../../../../utils/expressionTemplates");
 
 /**
  * @function generateProblem - Generate a problem involving the power of a product rule.
@@ -44,9 +45,14 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `(${factors
-        .map(({ base, exponent }) => `${base}^{${exponent}}`)
-        .join("")})^{${exponent}}`,
+      value: expressionTemplates.exponent.power(
+        `(${factors
+          .map(({ base, exponent }) =>
+            expressionTemplates.exponent.power(base, exponent)
+          )
+          .join("")})`,
+        exponent
+      ),
     },
   ];
 
@@ -63,14 +69,21 @@ const generateProblem = (options) => {
     },
     {
       type: "formula",
-      value: `(${factors
-        .map(({ base, exponent }) => `${base}^{${exponent}}`)
-        .join("")})^{${exponent}}`,
+      value: expressionTemplates.exponent.power(
+        `(${factors
+          .map(({ base, exponent }) =>
+            expressionTemplates.exponent.power(base, exponent)
+          )
+          .join("")})`,
+        exponent
+      ),
     },
     {
       type: "formula",
       value: `= ${resultFactors
-        .map(({ base, exponent }) => `${base}^{${exponent}}`)
+        .map(({ base, exponent }) =>
+          expressionTemplates.exponent.power(base, exponent)
+        )
         .join("")}`,
     },
   ];
@@ -80,37 +93,60 @@ const generateProblem = (options) => {
     const choices = [
       {
         type: "formula",
-        value: `${resultFactors
-          .map(({ base, exponent }) => `${base}^{${exponent}}`)
-          .join("")}`,
+        value: resultFactors
+          .map(({ base, exponent }) =>
+            expressionTemplates.exponent.power(base, exponent)
+          )
+          .join(""),
         correct: true,
       },
       {
         type: "formula",
-        value: `${factors
-          .map(
-            ({ base, exponent: innerExponent }) =>
-              `${base}^{${innerExponent - exponent}}`
+        value: resultFactors
+          .map(({ base, exponent }) =>
+            expressionTemplates.exponent.power(
+              base,
+              exponent +
+                randomInt(
+                  options.exponentRange.min,
+                  options.exponentRange.max,
+                  true
+                )
+            )
           )
-          .join("")}`,
+          .join(""),
       },
       {
         type: "formula",
-        value: `${factors
-          .map(
-            ({ base, exponent: innerExponent }) =>
-              `${base}^{${innerExponent + exponent}}`
+        value: resultFactors
+          .map(({ base, exponent }) =>
+            expressionTemplates.exponent.power(
+              base,
+              exponent -
+                randomInt(
+                  options.innerExponentRange.min,
+                  options.innerExponentRange.max,
+                  true
+                )
+            )
           )
-          .join("")}`,
+          .join(""),
       },
       {
         type: "formula",
-        value: `${factors
-          .map(
-            ({ base, exponent: innerExponent }) =>
-              `${base}^{${innerExponent}^{${exponent}}}`
+        value: resultFactors
+          .map(({ base, exponent }) =>
+            expressionTemplates.exponent.power(
+              base,
+              exponent +
+                randomInt(
+                  options.innerExponentRange.min,
+                  options.innerExponentRange.max,
+                  true
+                )
+            )
           )
-          .join("")}`,
+          .join(""),
       },
     ];
 
@@ -142,9 +178,11 @@ const generateProblem = (options) => {
     const solution = [
       {
         type: "formula",
-        value: `${resultFactors
-          .map(({ base, exponent }) => `${base}^{${exponent}}`)
-          .join("")}`,
+        value: resultFactors
+          .map(({ base, exponent }) =>
+            expressionTemplates.exponent.power(base, exponent)
+          )
+          .join(""),
       },
     ];
 

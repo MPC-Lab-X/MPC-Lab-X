@@ -15,9 +15,9 @@ describe("generateProblem", () => {
     };
     const problem = generateProblem(options);
     expect(problem.problem[1].value).toMatch(
-      /\\frac{[a-z]\^\{\d\}}{[a-z]\^\{\d\}}/
+      /\\frac{[a-z](\^\{\d+\})?}{[a-z](\^\{\d+\})?}/
     );
-    expect(problem.solution[0].value).toMatch(/[a-z]\^\{-?\d+\}/);
+    expect(problem.solution[0].value).toMatch(/[a-z](\^\{-?\d+\})?/);
   });
 
   it("generates a problem with a numeric base", () => {
@@ -29,9 +29,9 @@ describe("generateProblem", () => {
     };
     const problem = generateProblem(options);
     expect(problem.problem[1].value).toMatch(
-      /\\frac{\d+\^\{\d\}}{\d+\^\{\d\}}/
+      /\\frac{\d+(\^\{\d+\})?}{\d+(\^\{\d+\})?}/
     );
-    expect(problem.solution[0].value).toMatch(/\d+\^\{-?\d+\}/);
+    expect(problem.solution[0].value).toMatch(/\d+(\^\{-?\d+\})?/);
   });
 
   it("generates a multiple choice problem", () => {
@@ -51,7 +51,7 @@ describe("generateProblem", () => {
     const options = {
       isMCQ: false,
       baseRange: { min: 2, max: 5 },
-      exponentRange: { min: 1, max: 3 },
+      exponentRange: { min: 2, max: 3 },
       withVariable: false,
     };
     const problem = generateProblem(options);
@@ -68,7 +68,7 @@ describe("generateProblem", () => {
     const options = {
       isMCQ: false,
       baseRange: { min: 2, max: 5 },
-      exponentRange: { min: 1, max: 3 },
+      exponentRange: { min: 2, max: 3 },
       withVariable: false,
     };
     const problem = generateProblem(options);
