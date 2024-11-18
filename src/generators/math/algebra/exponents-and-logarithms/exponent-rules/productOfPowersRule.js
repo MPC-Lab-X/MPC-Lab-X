@@ -73,7 +73,6 @@ const generateProblem = (options) => {
 
   // If the problem is multiple choice
   if (options.isMCQ) {
-    // Generate multiple choices
     const choices = [
       {
         type: "formula",
@@ -134,7 +133,7 @@ const generateProblem = (options) => {
 
     return { problem, steps, solution };
   } else {
-    // Calculate the result
+    // Prepare solution
     const solution = [
       {
         type: "formula",

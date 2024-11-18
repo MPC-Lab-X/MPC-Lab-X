@@ -133,7 +133,7 @@ const generateProblem = (options) => {
 
     return { problem, steps, solution };
   } else {
-    // Calculate the result
+    // Prepare solution
     const solution = [
       {
         type: "formula",

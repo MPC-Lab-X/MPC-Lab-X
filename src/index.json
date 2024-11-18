@@ -176,6 +176,40 @@
                                                 "max": 10
                                             }
                                         }
+                                    },
+                                    "powerOfQuotientRule": {
+                                        "name": "Power of Quotient Rule",
+                                        "description": "Problems involving the power of a quotient rule, which states that (a/b)^n = a^n / b^n.",
+                                        "parameters": {
+                                            "isMCQ": {
+                                                "type": "boolean",
+                                                "name": "Multiple Choice",
+                                                "description": "Whether the problem is multiple choice.",
+                                                "default": true
+                                            },
+                                            "exponentRange": {
+                                                "type": "range",
+                                                "name": "Exponent Range",
+                                                "description": "The range of values for the exponent n.",
+                                                "default": {
+                                                    "min": 1,
+                                                    "max": 10
+                                                },
+                                                "min": 1,
+                                                "max": 100
+                                            },
+                                            "innerExponentRange": {
+                                                "type": "range",
+                                                "name": "Inner Exponent Range",
+                                                "description": "The range of values for the inner exponent n.",
+                                                "default": {
+                                                    "min": 1,
+                                                    "max": 10
+                                                },
+                                                "min": 1,
+                                                "max": 100
+                                            }
+                                        }
                                     }
                                 }
                             }
