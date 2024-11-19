@@ -21,6 +21,14 @@ const randomInt = (min, max, noZero = false) => {
 };
 
 /**
+ * @function randomBool - Generate a random boolean.
+ * @returns {boolean} - A random boolean.
+ */
+const randomBool = () => {
+  return Math.random() < 0.5;
+};
+
+/**
  * @function randomVariable - Generate a random variable. (a-z)
  * @param {boolean} isUpperCase - Whether the variable should be uppercase. (A-Z)
  * @returns {string} - A random variable.
@@ -40,4 +48,4 @@ const randomElement = (array) => {
   return array[randomInt(0, array.length - 1)];
 };
 
-module.exports = { randomInt, randomVariable, randomElement };
+module.exports = { randomInt, randomVariable, randomBool, randomElement };
