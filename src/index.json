@@ -250,6 +250,35 @@
                                                 "default": false
                                             }
                                         }
+                                    },
+                                    "zeroExponentRule": {
+                                        "name": "Zero Exponent Rule",
+                                        "description": "Problems involving the zero exponent rule, which states that a^0 = 1.",
+                                        "parameters": {
+                                            "isMCQ": {
+                                                "type": "boolean",
+                                                "name": "Multiple Choice",
+                                                "description": "Whether the problem is multiple choice.",
+                                                "default": true
+                                            },
+                                            "baseRange": {
+                                                "type": "range",
+                                                "name": "Base Range",
+                                                "description": "The range of values for the base a.",
+                                                "default": {
+                                                    "min": 2,
+                                                    "max": 10
+                                                },
+                                                "min": 2,
+                                                "max": 100
+                                            },
+                                            "withVariable": {
+                                                "type": "boolean",
+                                                "name": "With Variable",
+                                                "description": "Whether the base is a variable.",
+                                                "default": false
+                                            }
+                                        }
                                     }
                                 }
                             }
