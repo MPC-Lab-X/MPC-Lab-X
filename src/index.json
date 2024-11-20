@@ -279,6 +279,57 @@
                                                 "default": false
                                             }
                                         }
+                                    },
+                                    "fractionalExponents": {
+                                        "name": "Fractional Exponents",
+                                        "description": "Problems involving simplifying expressions with fractional exponents. Example: Simplify a^(m/n) = n√(a^m).",
+                                        "parameters": {
+                                            "isMCQ": {
+                                                "type": "boolean",
+                                                "name": "Multiple Choice",
+                                                "description": "Whether the problem is multiple choice.",
+                                                "default": true
+                                            },
+                                            "baseRange": {
+                                                "type": "range",
+                                                "name": "Base Range",
+                                                "description": "The range of values for the base a.",
+                                                "default": {
+                                                    "min": 2,
+                                                    "max": 10
+                                                },
+                                                "min": 2,
+                                                "max": 100
+                                            },
+                                            "numeratorExponentRange": {
+                                                "type": "range",
+                                                "name": "Numerator Exponent Range",
+                                                "description": "The range of values for the numerator exponent m.",
+                                                "default": {
+                                                    "min": 1,
+                                                    "max": 10
+                                                },
+                                                "min": 1,
+                                                "max": 100
+                                            },
+                                            "denominatorExponentRange": {
+                                                "type": "range",
+                                                "name": "Denominator Exponent Range",
+                                                "description": "The range of values for the denominator exponent n.",
+                                                "default": {
+                                                    "min": 2,
+                                                    "max": 10
+                                                },
+                                                "min": 2,
+                                                "max": 100
+                                            },
+                                            "withVariable": {
+                                                "type": "boolean",
+                                                "name": "With Variable",
+                                                "description": "Whether the base is a variable.",
+                                                "default": false
+                                            }
+                                        }
                                     }
                                 }
                             }
