@@ -57,6 +57,10 @@ const expressionTemplates = {
       );
     },
 
+    zeroExponent: function (base) {
+      return this.power(base, 0);
+    },
+
     productOfExponents: function (base, exp1, exp2) {
       return `${base}^{${exp1} \\times ${exp2}}`;
     },

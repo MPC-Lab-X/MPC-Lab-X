@@ -123,6 +123,13 @@ describe("expressionTemplates", () => {
     });
   });
 
+  describe("exponent.zeroExponent", () => {
+    it("should format a zero exponent expression correctly", () => {
+      const result = expressionTemplates.exponent.zeroExponent(2);
+      expect(result).toBe("2^{0}");
+    });
+  });
+
   describe("exponent.productOfExponents", () => {
     it("should format a product of exponents expression correctly", () => {
       const result = expressionTemplates.exponent.productOfExponents(2, 3, 4);
