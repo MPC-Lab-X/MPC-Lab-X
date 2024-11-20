@@ -65,12 +65,22 @@ const expressionTemplates = {
       return `${base}^{${exp1} \\times ${exp2}}`;
     },
 
+    fractionOfExponents: function (base, exp1, exp2) {
+      return `${base}^{\\frac{${exp1}}{${exp2}}}`;
+    },
+
     quotientOfProducts: function (numBase, denBase, exp, numExp, denExp) {
       return `\\frac{${this.productOfExponents(
         numBase,
         numExp,
         exp
       )}}{${this.productOfExponents(denBase, denExp, exp)}}`;
+    },
+  },
+
+  radical: {
+    root: function (index, radicand) {
+      return `\\sqrt[${index}]{${radicand}}`;
     },
   },
 

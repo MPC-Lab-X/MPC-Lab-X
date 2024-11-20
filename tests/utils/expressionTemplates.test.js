@@ -137,6 +137,13 @@ describe("expressionTemplates", () => {
     });
   });
 
+  describe("exponent.fractionOfExponents", () => {
+    it("should format a fraction of exponents expression correctly", () => {
+      const result = expressionTemplates.exponent.fractionOfExponents(2, 3, 4);
+      expect(result).toBe("2^{\\frac{3}{4}}");
+    });
+  });
+
   describe("exponent.quotientOfProducts", () => {
     it("should format a quotient of products expression correctly", () => {
       const result = expressionTemplates.exponent.quotientOfProducts(
@@ -147,6 +154,18 @@ describe("expressionTemplates", () => {
         6
       );
       expect(result).toBe("\\frac{2^{5 \\times 4}}{3^{6 \\times 4}}");
+    });
+  });
+
+  describe("radical.root", () => {
+    it("should format a square root expression correctly", () => {
+      const result = expressionTemplates.radical.root(2, 16);
+      expect(result).toBe("\\sqrt[2]{16}");
+    });
+
+    it("should format a cube root expression correctly", () => {
+      const result = expressionTemplates.radical.root(3, 27);
+      expect(result).toBe("\\sqrt[3]{27}");
     });
   });
 

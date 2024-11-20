@@ -48,8 +48,8 @@ const generateProblem = (options) => {
       type: "text",
       value: `${
         isOpposite
-          ? "Convert the following expression with a negative exponent"
-          : "Simplify the following expression with a reciprocal (using the negative exponent rule)"
+          ? "Convert the following expression to a negative exponent"
+          : "Convert the following expression to a reciprocal"
       }${options.withVariable ? "" : ", keeping the base the same"}:`,
     },
     {
@@ -62,11 +62,9 @@ const generateProblem = (options) => {
   const steps = [
     {
       type: "text",
-      value: `${
-        isOpposite
-          ? "To simplify a reciprocal with a negative exponent, move the base to the opposite side of the fraction bar and change the sign of the exponent:"
-          : "To convert a negative exponent to a reciprocal, move the base to the opposite side of the fraction bar and change the sign of the exponent:"
-      }`,
+      value: isOpposite
+        ? "To convert a reciprocal to a negative exponent, move the base to the opposite side of the fraction bar and change the sign of the exponent:"
+        : "To convert a negative exponent to a reciprocal, move the base to the opposite side of the fraction bar and change the sign of the exponent:",
     },
     {
       type: "formula",
