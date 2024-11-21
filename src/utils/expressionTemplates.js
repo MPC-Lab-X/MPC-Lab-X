@@ -30,6 +30,60 @@ const expressionTemplates = {
     },
   },
 
+  exponent: {
+    power: function (base, exponent) {
+      return exponent === 1 ? `${base}` : `${base}^{${exponent}}`;
+    },
+
+    productOfPowers: function (base, exp1, exp2) {
+      return `${this.power(base, exp1)} \\cdot ${this.power(base, exp2)}`;
+    },
+
+    quotientOfPowers: function (base, exp1, exp2) {
+      return `\\frac{${this.power(base, exp1)}}{${this.power(base, exp2)}}`;
+    },
+
+    quotientOfDifferentBases: function (base1, base2, exp1, exp2) {
+      return `\\frac{${this.power(base1, exp1)}}{${this.power(base2, exp2)}}`;
+    },
+
+    powerOfQuotient: function (numerator, denominator, exp, numExp, denExp) {
+      return this.power(
+        `\\left(\\frac{${this.power(numerator, numExp)}}{${this.power(
+          denominator,
+          denExp
+        )}}\\right)`,
+        exp
+      );
+    },
+
+    zeroExponent: function (base) {
+      return this.power(base, 0);
+    },
+
+    productOfExponents: function (base, exp1, exp2) {
+      return `${base}^{${exp1} \\times ${exp2}}`;
+    },
+
+    fractionOfExponents: function (base, exp1, exp2) {
+      return `${base}^{\\frac{${exp1}}{${exp2}}}`;
+    },
+
+    quotientOfProducts: function (numBase, denBase, exp, numExp, denExp) {
+      return `\\frac{${this.productOfExponents(
+        numBase,
+        numExp,
+        exp
+      )}}{${this.productOfExponents(denBase, denExp, exp)}}`;
+    },
+  },
+
+  radical: {
+    root: function (index, radicand) {
+      return `\\sqrt[${index}]{${radicand}}`;
+    },
+  },
+
   /**
    * @function fraction - Format a fraction expression.
    * @param {number} sign - Sign of the fraction (-1, 0, or 1).

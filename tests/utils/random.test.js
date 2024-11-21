@@ -6,6 +6,7 @@
 const {
   randomInt,
   randomVariable,
+  randomBool,
   randomElement,
 } = require("../../src/utils/random");
 
@@ -76,6 +77,35 @@ describe("randomVariable", () => {
       results.add(randomVariable(true));
     }
     expect(results.size).toBeGreaterThan(1);
+  });
+});
+
+describe("randomBool", () => {
+  it("should return a boolean value", () => {
+    const result = randomBool();
+    expect(typeof result).toBe("boolean");
+  });
+
+  it("should return true or false", () => {
+    const results = new Set();
+    for (let i = 0; i < 1000; i++) {
+      results.add(randomBool());
+    }
+    expect(results.has(true)).toBe(true);
+    expect(results.has(false)).toBe(true);
+  });
+
+  it("should return true approximately 50% of the time", () => {
+    let trueCount = 0;
+    const iterations = 10000;
+    for (let i = 0; i < iterations; i++) {
+      if (randomBool()) {
+        trueCount++;
+      }
+    }
+    const truePercentage = (trueCount / iterations) * 100;
+    expect(truePercentage).toBeGreaterThan(45);
+    expect(truePercentage).toBeLessThan(55);
   });
 });
 
