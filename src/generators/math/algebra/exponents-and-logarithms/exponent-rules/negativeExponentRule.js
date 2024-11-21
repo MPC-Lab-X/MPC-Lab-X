@@ -78,7 +78,7 @@ const generateProblem = (options) => {
 
   // If the problem is multiple choice
   if (options.isMCQ) {
-    const options = [
+    const choices = [
       {
         type: "formula",
         value: isOpposite ? negativeExponentForm : reciprocalForm,
@@ -104,20 +104,20 @@ const generateProblem = (options) => {
       },
     ];
 
-    // Shuffle the options
-    options.sort(() => Math.random() - 0.5);
+    // Shuffle the choices
+    choices.sort(() => Math.random() - 0.5);
 
     // Add the choices to the problem
     problem.push({
       type: "options",
-      value: options,
+      value: choices,
     });
 
     // Determine the correct choice
     const solution = [
       {
         type: "choice",
-        choice: options.findIndex((option) => {
+        choice: choices.findIndex((option) => {
           if (option.correct) {
             delete option.correct;
             return true;
