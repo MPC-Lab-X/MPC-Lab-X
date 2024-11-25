@@ -12,8 +12,8 @@ describe("generateProblem", () => {
       baseRange: { min: 2, max: 5 },
       exponentRange: { min: 2, max: 5 },
       withVariable: true,
-      withLogarithm: true,
-      withExponent: true,
+      toLogarithm: true,
+      toExponent: true,
     };
     const problem = generateProblem(options);
     expect(problem.problem[1].value).toMatch(
@@ -30,8 +30,8 @@ describe("generateProblem", () => {
       baseRange: { min: 2, max: 5 },
       exponentRange: { min: 2, max: 5 },
       withVariable: false,
-      withLogarithm: true,
-      withExponent: true,
+      toLogarithm: true,
+      toExponent: true,
     };
     const problem = generateProblem(options);
     expect(problem.problem[1].value).toMatch(
@@ -48,8 +48,8 @@ describe("generateProblem", () => {
       baseRange: { min: 2, max: 5 },
       exponentRange: { min: 2, max: 5 },
       withVariable: false,
-      withLogarithm: true,
-      withExponent: true,
+      toLogarithm: true,
+      toExponent: true,
     };
     const problem = generateProblem(options);
     expect(problem.problem[2].type).toBe("options");
@@ -63,8 +63,8 @@ describe("generateProblem", () => {
       baseRange: { min: 2, max: 5 },
       exponentRange: { min: 2, max: 5 },
       withVariable: false,
-      withLogarithm: true,
-      withExponent: true,
+      toLogarithm: true,
+      toExponent: true,
     };
     const problem = generateProblem(options);
     expect(problem.steps[1].value).toMatch(
@@ -78,8 +78,8 @@ describe("generateProblem", () => {
       baseRange: { min: 2, max: 5 },
       exponentRange: { min: 2, max: 5 },
       withVariable: false,
-      withLogarithm: true,
-      withExponent: false,
+      toLogarithm: true,
+      toExponent: false,
     };
     const problem = generateProblem(options);
     const base = parseInt(problem.problem[1].value.match(/\d+/g)[0]);
@@ -98,8 +98,8 @@ describe("generateProblem", () => {
       baseRange: { min: 2, max: 5 },
       exponentRange: { min: 2, max: 5 },
       withVariable: false,
-      withLogarithm: false,
-      withExponent: true,
+      toLogarithm: false,
+      toExponent: true,
     };
     const problem = generateProblem(options);
     const base = parseInt(problem.problem[1].value.match(/\d+/g)[0]);
@@ -110,5 +110,23 @@ describe("generateProblem", () => {
     expect(exponent).toBeGreaterThanOrEqual(options.exponentRange.min);
     expect(exponent).toBeLessThanOrEqual(options.exponentRange.max);
     expect(value).toBe(base ** exponent);
+  });
+
+  it("still generates a problem when toLogarithm and toExponent are the same (both false)", () => {
+    const options = {
+      isMCQ: false,
+      baseRange: { min: 2, max: 5 },
+      exponentRange: { min: 2, max: 5 },
+      withVariable: false,
+      toLogarithm: false,
+      toExponent: false,
+    };
+    const problem = generateProblem(options);
+    expect(problem.problem[0].value).toMatch(
+      /Convert the following expression to (exponent|logarithm) form:/
+    );
+    expect(problem.problem[1].value).toMatch(
+      /\d+\^\{\d+\} = \d+|\\log_\{\d+\}\{\d+\} = \d+/
+    );
   });
 });

@@ -17,8 +17,8 @@ const expressionTemplates = require("../../../../../utils/expressionTemplates");
  * @param {object} options.baseRange - The range of the base of the powers.
  * @param {object} options.exponentRange - The range of the exponents of the powers.
  * @param {boolean} options.withVariable - Whether to include a variable in the base and value.
- * @param {boolean} options.withLogarithm - Whether to include a logarithm solution.
- * @param {boolean} options.withExponent - Whether to include an exponent solution.
+ * @param {boolean} options.toLogarithm - Whether to convert to a logarithm form.
+ * @param {boolean} options.toExponent - Whether to convert to an exponent form.
  * @returns {Object} - The problem involving converting between exponents and logarithms.
  */
 const generateProblem = (options) => {
@@ -32,9 +32,9 @@ const generateProblem = (options) => {
   );
   const value = options.withVariable ? randomVariable() : base ** exponent;
   const isOpposite =
-    options.withLogarithm && options.withExponent
+    options.toLogarithm === options.toExponent
       ? randomBool()
-      : options.withExponent;
+      : options.toExponent;
 
   // Exponent form
   const exponentForm = expressionTemplates.exponent.powerEquality(

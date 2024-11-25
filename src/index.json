@@ -375,16 +375,68 @@
                                                 "description": "Whether the base and value are variables.",
                                                 "default": false
                                             },
-                                            "withLogarithm": {
+                                            "toLogarithm": {
                                                 "type": "boolean",
-                                                "name": "With Logarithm",
-                                                "description": "Whether to convert to a logarithm.",
+                                                "name": "To Logarithm",
+                                                "description": "Whether to convert to a logarithm form.",
                                                 "default": true
                                             },
-                                            "withExponent": {
+                                            "toExponent": {
                                                 "type": "boolean",
-                                                "name": "With Exponent",
-                                                "description": "Whether to convert to an exponent.",
+                                                "name": "To Exponent",
+                                                "description": "Whether to convert to an exponent form.",
+                                                "default": true
+                                            }
+                                        }
+                                    },
+                                    "productRule": {
+                                        "name": "Product Rule for Logarithms",
+                                        "description": "Problems involving converting between exponential and logarithmic forms. Example: log_b(x * y) = log_b(x) + log_b(y).",
+                                        "parameters": {
+                                            "isMCQ": {
+                                                "type": "boolean",
+                                                "name": "Multiple Choice",
+                                                "description": "Whether the problem is multiple choice.",
+                                                "default": true
+                                            },
+                                            "baseRange": {
+                                                "type": "range",
+                                                "name": "Base Range",
+                                                "description": "The range of values for the base b.",
+                                                "default": {
+                                                    "min": 2,
+                                                    "max": 10
+                                                },
+                                                "min": 2,
+                                                "max": 100
+                                            },
+                                            "valueRange": {
+                                                "type": "range",
+                                                "name": "Value Range",
+                                                "description": "The range of values for the values x and y.",
+                                                "default": {
+                                                    "min": 1,
+                                                    "max": 10
+                                                },
+                                                "min": 1,
+                                                "max": 100
+                                            },
+                                            "withVariable": {
+                                                "type": "boolean",
+                                                "name": "With Variable",
+                                                "description": "Whether the base and values are variables.",
+                                                "default": false
+                                            },
+                                            "toProduct": {
+                                                "type": "boolean",
+                                                "name": "To Product",
+                                                "description": "Whether to convert to a single logarithm.",
+                                                "default": true
+                                            },
+                                            "toFactors": {
+                                                "type": "boolean",
+                                                "name": "To Factors",
+                                                "description": "Whether to convert to multiple logarithms.",
                                                 "default": true
                                             }
                                         }
