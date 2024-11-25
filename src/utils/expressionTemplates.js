@@ -76,6 +76,20 @@ const expressionTemplates = {
         exp
       )}}{${this.productOfExponents(denBase, denExp, exp)}}`;
     },
+
+    powerEquality: function (base, exp, value) {
+      return `${this.power(base, exp)} = ${value}`;
+    },
+  },
+
+  logarithm: {
+    base: function (base, value) {
+      return `\\log_{${base}}{${value}}`;
+    },
+
+    equality: function (base, value, exponent) {
+      return `${this.base(base, value)} = ${exponent}`;
+    },
   },
 
   radical: {

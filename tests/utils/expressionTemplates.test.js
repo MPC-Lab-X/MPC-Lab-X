@@ -157,6 +157,27 @@ describe("expressionTemplates", () => {
     });
   });
 
+  describe("exponent.powerEquality", () => {
+    it("should format a power equality expression correctly", () => {
+      const result = expressionTemplates.exponent.powerEquality(2, 3, 8);
+      expect(result).toBe("2^{3} = 8");
+    });
+  });
+
+  describe("logarithm.base", () => {
+    it("should format a logarithm base expression correctly", () => {
+      const result = expressionTemplates.logarithm.base(2, 8);
+      expect(result).toBe("\\log_{2}{8}");
+    });
+  });
+
+  describe("logarithm.equality", () => {
+    it("should format a logarithm equality expression correctly", () => {
+      const result = expressionTemplates.logarithm.equality(2, 8, 3);
+      expect(result).toBe("\\log_{2}{8} = 3");
+    });
+  });
+
   describe("radical.root", () => {
     it("should format a square root expression correctly", () => {
       const result = expressionTemplates.radical.root(2, 16);
