@@ -332,6 +332,64 @@
                                         }
                                     }
                                 }
+                            },
+                            "logarithm-properties": {
+                                "name": "Logarithm Basics and Properties",
+                                "description": "Problems involving the basic properties of logarithms, including the product rule, quotient rule, power rule, change of base formula, and more.",
+                                "topics": {
+                                    "exponentLogarithmConversion": {
+                                        "name": "Exponent and Logarithm Conversion",
+                                        "description": "Problems involving converting between exponential and logarithmic forms. Example: Convert b^y = x to log_b(x) = y.",
+                                        "parameters": {
+                                            "isMCQ": {
+                                                "type": "boolean",
+                                                "name": "Multiple Choice",
+                                                "description": "Whether the problem is multiple choice.",
+                                                "default": true
+                                            },
+                                            "baseRange": {
+                                                "type": "range",
+                                                "name": "Base Range",
+                                                "description": "The range of values for the base b.",
+                                                "default": {
+                                                    "min": 2,
+                                                    "max": 10
+                                                },
+                                                "min": 2,
+                                                "max": 100
+                                            },
+                                            "exponentRange": {
+                                                "type": "range",
+                                                "name": "Exponent Range",
+                                                "description": "The range of values for the exponent y.",
+                                                "default": {
+                                                    "min": 1,
+                                                    "max": 10
+                                                },
+                                                "min": 1,
+                                                "max": 100
+                                            },
+                                            "withVariable": {
+                                                "type": "boolean",
+                                                "name": "With Variable",
+                                                "description": "Whether the base and value are variables.",
+                                                "default": false
+                                            },
+                                            "withLogarithm": {
+                                                "type": "boolean",
+                                                "name": "With Logarithm",
+                                                "description": "Whether to convert to a logarithm.",
+                                                "default": true
+                                            },
+                                            "withExponent": {
+                                                "type": "boolean",
+                                                "name": "With Exponent",
+                                                "description": "Whether to convert to an exponent.",
+                                                "default": true
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     },
