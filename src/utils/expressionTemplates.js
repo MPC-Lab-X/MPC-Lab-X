@@ -90,6 +90,10 @@ const expressionTemplates = {
     equality: function (base, value, exponent) {
       return `${this.base(base, value)} = ${exponent}`;
     },
+
+    product: function (base, value1, value2) {
+      return `${this.base(base, value1)} + ${this.base(base, value2)}`;
+    },
   },
 
   radical: {

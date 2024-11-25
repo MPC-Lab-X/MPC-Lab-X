@@ -178,6 +178,13 @@ describe("expressionTemplates", () => {
     });
   });
 
+  describe("logarithm.product", () => {
+    it("should format a product of logarithms correctly", () => {
+      const result = expressionTemplates.logarithm.product(2, 8, 16);
+      expect(result).toBe("\\log_{2}{8} + \\log_{2}{16}");
+    });
+  });
+
   describe("radical.root", () => {
     it("should format a square root expression correctly", () => {
       const result = expressionTemplates.radical.root(2, 16);
