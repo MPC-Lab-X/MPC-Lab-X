@@ -22,8 +22,9 @@ const expressionTemplates = require("../../../../../utils/expressionTemplates");
  * @returns {Object} - The problem involving the product rule for logarithms.
  */
 const generateProblem = (options) => {
-  if (options.toFactors || options.toProduct === options.toFactors)
-    options.withVariable = true;
+  const isOpposite =
+    options.toProduct === options.toFactors ? randomBool() : options.toFactors;
+  if (isOpposite) options.withVariable = true;
   const base = options.withVariable
     ? randomVariable()
     : randomInt(options.baseRange.min, options.baseRange.max, true);
@@ -34,8 +35,6 @@ const generateProblem = (options) => {
     ? randomVariable()
     : randomInt(options.valueRange.min, options.valueRange.max, true);
   const product = options.withVariable ? `${value1}${value2}` : value1 * value2;
-  const isOpposite =
-    options.toProduct === options.toFactors ? randomBool() : options.toFactors;
 
   // Product form
   const productForm = expressionTemplates.logarithm.base(base, product);

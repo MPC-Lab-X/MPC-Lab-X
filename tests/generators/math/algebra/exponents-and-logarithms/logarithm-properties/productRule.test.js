@@ -60,24 +60,6 @@ describe("generateProblem", () => {
     );
   });
 
-  it("generates a problem with variables if toProduct and toFactors are false", () => {
-    const options = {
-      isMCQ: false,
-      baseRange: { min: 2, max: 5 },
-      valueRange: { min: 2, max: 5 },
-      withVariable: false,
-      toProduct: false,
-      toFactors: false,
-    };
-    const problem = generateProblem(options);
-    expect(problem.problem[1].value).toMatch(
-      /\\log_\{[a-z]\}\{[a-z]\} \+ \\log_\{[a-z]\}\{[a-z]\}|\\log_\{[a-z]\}\{[a-z][a-z]\}/
-    );
-    expect(problem.solution[0].value).toMatch(
-      /\\log_\{[a-z]\}\{[a-z]\} \+ \\log_\{[a-z]\}\{[a-z]\}|\\log_\{[a-z]\}\{[a-z][a-z]\}/
-    );
-  });
-
   it("generates a multiple choice problem", () => {
     const options = {
       isMCQ: true,
@@ -130,5 +112,23 @@ describe("generateProblem", () => {
     expect(values[0]).toBeLessThanOrEqual(options.valueRange.max);
     expect(values[1]).toBeGreaterThanOrEqual(options.valueRange.min);
     expect(values[1]).toBeLessThanOrEqual(options.valueRange.max);
+  });
+
+  it("still generates a problem when toProduct and toFactors are the same (both false)", () => {
+    const options = {
+      isMCQ: false,
+      baseRange: { min: 2, max: 5 },
+      valueRange: { min: 2, max: 5 },
+      withVariable: false,
+      toProduct: false,
+      toFactors: false,
+    };
+    const problem = generateProblem(options);
+    expect(problem.problem[1].value).toMatch(
+      /\\log_\{[a-z\d]+\}\{[a-z\d]+\} \+ \\log_\{[a-z\d]+\}\{[a-z\d]+\}|\\log_\{[a-z\d]+\}\{[a-z\d]+\}/
+    );
+    expect(problem.solution[0].value).toMatch(
+      /\\log_\{[a-z\d]+\}\{[a-z\d]+\} \+ \\log_\{[a-z\d]+\}\{[a-z\d]+\}|\\log_\{[a-z\d]+\}\{[a-z\d]+\}/
+    );
   });
 });
