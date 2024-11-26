@@ -185,6 +185,20 @@ describe("expressionTemplates", () => {
     });
   });
 
+  describe("logarithm.quotient", () => {
+    it("should format a quotient of logarithms correctly", () => {
+      const result = expressionTemplates.logarithm.quotient(2, 8, 16);
+      expect(result).toBe("\\log_{2}{8} - \\log_{2}{16}");
+    });
+  });
+
+  describe("logarithm.fraction", () => {
+    it("should format a fraction of logarithms correctly", () => {
+      const result = expressionTemplates.logarithm.fraction(2, 8, 16);
+      expect(result).toBe("\\log_{2}{\\frac{8}{16}}");
+    });
+  });
+
   describe("radical.root", () => {
     it("should format a square root expression correctly", () => {
       const result = expressionTemplates.radical.root(2, 16);

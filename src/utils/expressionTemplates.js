@@ -94,6 +94,14 @@ const expressionTemplates = {
     product: function (base, value1, value2) {
       return `${this.base(base, value1)} + ${this.base(base, value2)}`;
     },
+
+    quotient: function (base, value1, value2) {
+      return `${this.base(base, value1)} - ${this.base(base, value2)}`;
+    },
+
+    fraction: function (base, value1, value2) {
+      return `${this.base(base, `\\frac{${value1}}{${value2}}`)}`;
+    },
   },
 
   radical: {
