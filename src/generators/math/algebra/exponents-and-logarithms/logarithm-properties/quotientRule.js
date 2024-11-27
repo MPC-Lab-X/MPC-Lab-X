@@ -59,8 +59,8 @@ const generateProblem = (options) => {
     {
       type: "text",
       value: isOpposite
-        ? "Convert the following expression to terms form:"
-        : "Convert the following expression to quotient form:",
+        ? "Convert the following to multiple logarithms:"
+        : "Convert the following to a single logarithm:",
     },
     {
       type: "formula",

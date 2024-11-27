@@ -135,7 +135,7 @@ const generateProblem = (options) => {
     const solution = [
       {
         type: "formula",
-        value: isOpposite ? logarithmForm : exponentForm,
+        value: isOpposite ? exponentForm : logarithmForm,
       },
     ];
 

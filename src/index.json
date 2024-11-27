@@ -391,7 +391,7 @@
                                     },
                                     "productRule": {
                                         "name": "Product Rule for Logarithms",
-                                        "description": "Problems involving converting between exponential and logarithmic forms. Example: log_b(x) + log_b(y) = log_b(x * y).",
+                                        "description": "Problems involving the product rule for logarithms. Example: log_b(x) + log_b(y) = log_b(x * y).",
                                         "parameters": {
                                             "isMCQ": {
                                                 "type": "boolean",

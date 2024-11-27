@@ -57,6 +57,40 @@ describe("generateProblem", () => {
     expect(problem.solution[0].type).toBe("choice");
   });
 
+  it("generates a problem that converts from exponent to logarithm", () => {
+    const options = {
+      isMCQ: false,
+      baseRange: { min: 2, max: 5 },
+      exponentRange: { min: 2, max: 5 },
+      withVariable: false,
+      toLogarithm: true,
+      toExponent: false,
+    };
+    const problem = generateProblem(options);
+    expect(problem.problem[0].value).toBe(
+      "Convert the following expression to logarithm form:"
+    );
+    expect(problem.problem[1].value).toMatch(/\d+\^\{\d+\} = \d+/);
+    expect(problem.solution[0].value).toMatch(/\\log_\{\d+\}\{\d+\} = \d+/);
+  });
+
+  it("generates a problem that converts from logarithm to exponent", () => {
+    const options = {
+      isMCQ: false,
+      baseRange: { min: 2, max: 5 },
+      exponentRange: { min: 2, max: 5 },
+      withVariable: false,
+      toLogarithm: false,
+      toExponent: true,
+    };
+    const problem = generateProblem(options);
+    expect(problem.problem[0].value).toBe(
+      "Convert the following expression to exponent form:"
+    );
+    expect(problem.problem[1].value).toMatch(/\\log_\{\d+\}\{\d+\} = \d+/);
+    expect(problem.solution[0].value).toMatch(/\d+\^\{\d+\} = \d+/);
+  });
+
   it("generates a problem with correct steps", () => {
     const options = {
       isMCQ: false,

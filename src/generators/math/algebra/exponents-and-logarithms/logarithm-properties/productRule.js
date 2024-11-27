@@ -51,8 +51,8 @@ const generateProblem = (options) => {
     {
       type: "text",
       value: isOpposite
-        ? "Convert the following expression to factors form:"
-        : "Convert the following expression to product form:",
+        ? "Convert the following to multiple logarithms:"
+        : "Convert the following to a single logarithm:",
     },
     {
       type: "formula",
@@ -127,7 +127,7 @@ const generateProblem = (options) => {
     const solution = [
       {
         type: "formula",
-        value: isOpposite ? productForm : factorsForm,
+        value: isOpposite ? factorsForm : productForm,
       },
     ];
 
